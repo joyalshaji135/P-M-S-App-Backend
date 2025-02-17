@@ -16,6 +16,11 @@ app.use('/api', routes);
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+})
+
+.on("error", (err: Error) => {
+    // Specify the type for the error parameter
+    console.error("Error starting server:", err);
 });
 
 // Connect to MongoDB

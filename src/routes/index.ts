@@ -1,13 +1,15 @@
 import { Router } from 'express';
-import superAdminRoutes from '../module/superAdmin/superAdminRoutes';
+import superAdminRoutes from '../module/superAdmins/superAdminRoutes';
 
 const router: Router = Router();
 
-// To create All Module routes
-
-// Use Super Admin Routes
+// Super Admin Routes
 router.use('/superAdmin', superAdminRoutes);
 
+// Company Owner Routes
 
+// Team Member Routes
+
+// Team Manager Routes
 
 export default router;
