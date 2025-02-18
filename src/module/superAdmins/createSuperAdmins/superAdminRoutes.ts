@@ -3,7 +3,10 @@ import * as superAdminControllers from './superAdminControllers';
 
 const router = express.Router();
 
-router.post('/create-super-admin', superAdminControllers.createSuperAdminController);
+router.post(
+  '/create-super-admin',
+  superAdminControllers.createSuperAdminController,
+);
 // router.get("/:id", superAdminControllers.getSuperAdminById);
 // router.get("/", superAdminControllers.getAllSuperAdmins);
 

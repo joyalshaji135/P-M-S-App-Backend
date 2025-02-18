@@ -1,6 +1,6 @@
-import bcrypt from "bcrypt";
-import { superAdminDocument } from "../../../model/admin/superAdminModel";
-import * as authSuperAdminLoginRepository from "./authSuperAdminLoginRepository";
+import bcrypt from 'bcrypt';
+import { superAdminDocument } from '../../../model/admin/superAdminModel';
+import * as authSuperAdminLoginRepository from './authSuperAdminLoginRepository';
 
 export const superAdminLogin = async (
   email: string,

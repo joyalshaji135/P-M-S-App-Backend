@@ -1,7 +1,7 @@
 // Helmet helps secure Express apps by setting various HTTP headers
-import { Request, Response, NextFunction } from "express";
-import { respondError } from "../helper/response";
-import statusCode from "../helper/locales/statusCodes.json";
+import { Request, Response, NextFunction } from 'express';
+import { respondError } from '../helper/response';
+import statusCode from '../helper/locales/statusCodes.json';
 // Extend Express Request interface to include custom properties
 interface CustomRequest extends Request {
   language?: string;
@@ -14,32 +14,32 @@ export const requireApiKey = (
   res: Response,
   next: NextFunction,
 ): void => {
-  if (req.originalUrl.startsWith("/uploads")) {
+  if (req.originalUrl.startsWith('/uploads')) {
     return next();
   }
 
-  const apiKey = req.header("x-api-key");
-  const appVersion = req.header("x-app-version");
-  const deviceType = req.header("x-app-deviceType");
+  const apiKey = req.header('x-api-key');
+  const appVersion = req.header('x-app-version');
+  const deviceType = req.header('x-app-deviceType');
 
   if (!apiKey) {
     return next(
-      respondError("x-api-key is required in header", statusCode.BAD_REQUEST),
+      respondError('x-api-key is required in header', statusCode.FORBIDDEN),
     );
   }
 
   if (!appVersion) {
     return next(
-      respondError("x-app-version is required in header", statusCode.FORBIDDEN),
+      respondError('x-app-version is required in header', statusCode.FORBIDDEN),
     );
   }
 
   if (apiKey !== process.env.API_KEY) {
-    return next(respondError("invalid api-key", statusCode.FORBIDDEN));
+    return next(respondError('invalid api-key', statusCode.FORBIDDEN));
   }
 
-  req.appVersion = appVersion || "";
-  req.deviceType = deviceType || "";
+  req.appVersion = appVersion || '';
+  req.deviceType = deviceType || '';
 
   return next();
 };
@@ -49,12 +49,12 @@ export const requireAuthToken = (
   res: Response,
   next: NextFunction,
 ): any => {
-  if (req.originalUrl.startsWith("/uploads")) {
+  if (req.originalUrl.startsWith('/uploads')) {
     return next();
   }
 
-  if (!req.header("Authorization")) {
-    return res.status(403).json({ message: "Auth token required" });
+  if (!req.header('Authorization')) {
+    return res.status(403).json({ message: 'Auth token required' });
   }
 
   return next();

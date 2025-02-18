@@ -32,7 +32,8 @@ export const createSuperAdminServices = async (
     throw new Error(message.SUPER_ADMIN_EXISTS);
   }
 
-  const createdSuperAdmin = await superAdminRepository.createSuperAdminRepository(newSuperAdmin);
+  const createdSuperAdmin =
+    await superAdminRepository.createSuperAdminRepository(newSuperAdmin);
 
   return createdSuperAdmin;
 };

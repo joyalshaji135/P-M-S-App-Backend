@@ -2,15 +2,16 @@ import { Router } from 'express';
 import superAdminRoutes from '../module/superAdmins/createSuperAdmins/superAdminRoutes';
 import authSuperAdminLoginRoutes from '../module/superAdmins/authSuperAdminLogin/authSuperAdminLoginRoutes';
 import verifyTokenMiddleware from '../middleware/verifyToken';
-import { requireApiKey } from '../middleware/apiRequest';
+import { requireApiKey, requireAuthToken } from '../middleware/apiRequest';
 const router: Router = Router();
-
 
 router.use(requireApiKey);
 
 // Super Admin Login Routes
 
 router.use('/auth-super-admin', authSuperAdminLoginRoutes);
+
+router.use(requireAuthToken);
 
 // Middleware
 router.use(verifyTokenMiddleware);

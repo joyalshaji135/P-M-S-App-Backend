@@ -1,7 +1,7 @@
-import { Response } from "express";
+import { Response } from 'express';
 
-import StatusCode from "./locales/statusCodes.json";
-import logger from "../utils/logger";
+import StatusCode from './locales/statusCodes.json';
+import logger from '../utils/logger';
 
 interface ResponseData {
   status: boolean;
@@ -38,14 +38,14 @@ const respond = (
   { status, message, statusCode, data = null, err = null }: RespondOptions,
 ): Response => {
   const defaultMessage = status
-    ? "Query was successful"
-    : "Something went wrong";
+    ? 'Query was successful'
+    : 'Something went wrong';
 
   if (err) {
-    console.log("error", err);
+    console.log('error', err);
   }
 
-  console.log(status ? "info" : "error", message);
+  console.log(status ? 'info' : 'error', message);
 
   return res.status(statusCode).json({
     success: status,
@@ -56,12 +56,12 @@ const respond = (
 
 const respondSuccess = (
   res: Response,
-  message: string = "Query was successful",
+  message: string = 'Query was successful',
   data: any = null,
 ): Response => {
   const statusCode = StatusCode.OK;
 
-  console.log("info", message);
+  console.log('info', message);
 
   return res.status(statusCode).json({
     success: true,
@@ -84,13 +84,13 @@ const respondError = (
 ): Error => {
   const error: Error & { status?: number } = new Error(message);
   error.status = statusCode;
-  logger.error("error", message);
+  logger.error('error', message);
   return error;
 };
 
 const urlNotFound = (): Error => {
-  const message = "URL not found, please check the documentation";
-  console.log("warn", message);
+  const message = 'URL not found, please check the documentation';
+  console.log('warn', message);
   const error: Error & { status?: number } = new Error(message);
   error.status = StatusCode.NOT_FOUND;
   return error;

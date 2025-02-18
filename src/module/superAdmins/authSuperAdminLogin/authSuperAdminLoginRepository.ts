@@ -1,4 +1,6 @@
-import superAdminModel,{ superAdminDocument } from "../../../model/admin/superAdminModel";
+import superAdminModel, {
+  superAdminDocument,
+} from '../../../model/admin/superAdminModel';
 
 export const findByEmail = async (
   email: string,

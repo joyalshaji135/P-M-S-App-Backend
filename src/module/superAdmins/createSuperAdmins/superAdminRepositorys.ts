@@ -19,4 +19,3 @@ export const findByEmail = async (
 export const isPhoneNumberExists = async (phone: string) => {
   return superAdminModel.findOne({ phone }).exec();
 };
-
