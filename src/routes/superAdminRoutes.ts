@@ -1,12 +1,31 @@
-// Super Admin Routes
-// import { Router } from 'express';
-// import * as superAdminControllers from './superAdminControllers';
+import { Router } from 'express';
+import superAdminRoutes from '../module/superAdmins/createSuperAdmins/superAdminRoutes';
+import authSuperAdminLoginRoutes from '../module/superAdmins/authSuperAdminLogin/authSuperAdminLoginRoutes';
+import verifyTokenMiddleware from '../middleware/verifyToken';
+import { requireApiKey } from '../middleware/apiRequest';
+const router: Router = Router();
 
-// const superAdminRouter = Router();
 
-// // Define routes
+router.use(requireApiKey);
 
-// Common Functionality
+// Super Admin Login Routes
+
+router.use('/auth-super-admin', authSuperAdminLoginRoutes);
+
+// Middleware
+router.use(verifyTokenMiddleware);
+
+// Super Admin Creating Functionality Routes
+
+router.use('/super-admin-module', superAdminRoutes);
+
+// Company Owner Routes
+
+// Team Member Routes
+
+// Team Manager Routes
+
+export default router;
 
 // Auth
 

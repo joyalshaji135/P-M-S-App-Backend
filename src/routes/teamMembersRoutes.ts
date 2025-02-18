@@ -16,5 +16,4 @@
 
 // View WorkSpace Details
 
-// Chatting Functionality  
-
+// Chatting Functionality
