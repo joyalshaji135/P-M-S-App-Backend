@@ -1,0 +1,8 @@
+// Lookup Codes
+
+export const LookupTypes = {
+    CUSTOMER_TYPE: "CUSTOMER_TYPE",
+    COMPANY_OWNER: "COMPANY_OWNER",
+    TEAM_MANAGER: "TEAM_MANAGER",
+    TEAM_MEMBER: "TEAM_MEMBER",
+};

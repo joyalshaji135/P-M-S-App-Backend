@@ -1,8 +1,15 @@
-// Super Admin Routes
-// import { Router } from 'express';
-// import * as companyOwnerControllers from './superAdminControllers';
+import { Router } from "express";
+import verifyTokenMiddleware from '../middleware/verifyToken';
+import { requireApiKey, requireAuthToken } from '../middleware/apiRequest';
+import companyOwnerAuthLoginRoutes from '../module/companyOwners/companyOwnerAuth/companyOwnerAuthLoginRoutes';
 
-// const superAdminRouter = Router();
+const router: Router = Router();
+
+router.use(requireApiKey);
+
+// Company Owner Login Routes
+
+router.use('/auth-company-owner', companyOwnerAuthLoginRoutes);
 
 // // Define routes
 
@@ -21,3 +28,6 @@
 // Tasks
 
 // WorkSpaces
+
+
+export default router;

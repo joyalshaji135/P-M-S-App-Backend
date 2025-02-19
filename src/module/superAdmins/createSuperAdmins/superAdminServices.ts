@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { superAdminDocument } from '../../../model/admin/superAdminModel';
+import { superAdminDocument } from '../../../model/superAdmin/superAdminModel';
 import logger from '../../../utils/logger';
 import * as superAdminRepository from './superAdminRepositorys';
 import { message } from '../../../constants/responseMessage';

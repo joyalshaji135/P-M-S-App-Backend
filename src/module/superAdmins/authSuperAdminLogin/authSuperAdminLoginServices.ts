@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { superAdminDocument } from '../../../model/admin/superAdminModel';
+import { superAdminDocument } from '../../../model/superAdmin/superAdminModel';
 import * as authSuperAdminLoginRepository from './authSuperAdminLoginRepository';
 
 export const superAdminLogin = async (

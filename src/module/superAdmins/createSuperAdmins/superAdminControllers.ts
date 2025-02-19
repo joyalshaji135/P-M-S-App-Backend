@@ -1,4 +1,4 @@
-import { superAdminDocument } from '../../../model/admin/superAdminModel';
+import { superAdminDocument } from '../../../model/superAdmin/superAdminModel';
 import { RequestWithAuthData } from '../../../@types/express';
 import * as superAdminService from './superAdminServices';
 import { NextFunction, Response } from 'express';

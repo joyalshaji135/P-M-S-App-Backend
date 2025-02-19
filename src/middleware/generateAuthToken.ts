@@ -1,13 +1,13 @@
 import { config } from 'dotenv';
 import jwt from 'jsonwebtoken';
-import { superAdminDocument } from '../model/admin/superAdminModel';
+import { superAdminDocument } from '../model/superAdmin/superAdminModel';
 
 config();
 
-const generateToken = (user: superAdminDocument): string => {
+const generateToken = (superAdmin: superAdminDocument): string => {
   const payload: any = {
-    _id: user._id,
-    role: user.role,
+    _id: superAdmin._id,
+    role: superAdmin.role,
   };
 
   return jwt.sign(payload, process.env.JWT_SECRET as string, {

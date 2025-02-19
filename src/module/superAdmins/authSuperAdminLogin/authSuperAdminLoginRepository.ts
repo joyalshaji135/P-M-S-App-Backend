@@ -1,6 +1,6 @@
 import superAdminModel, {
   superAdminDocument,
-} from '../../../model/admin/superAdminModel';
+} from '../../../model/superAdmin/superAdminModel';
 
 export const findByEmail = async (
   email: string,
