@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import superAdminModel, {
   superAdminDocument,
-} from '../../../model/superAdmin/superAdminModel';
+} from '@models/superAdmin/superAdminModel';
 
 export const createSuperAdminRepository = async (
   superAdminData: Partial<superAdminDocument>,

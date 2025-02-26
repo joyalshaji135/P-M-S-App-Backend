@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import * as authSuperAdminLoginServices from './authSuperAdminLoginServices';
-import generateToken from '../../../middleware/generateAuthToken';
-import { message } from '../../../constants/responseMessage';
+import generateToken from '@middleware/generateAuthToken';
+import { message } from '@constants/responseMessage';
 
 export const superAdminLogin = async (
   req: Request,

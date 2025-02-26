@@ -6,7 +6,7 @@ import {
   getCustomerTypeById,
   getAllCustomerTypes,
   updateCustomerTypeStatus,
-} from './customerTypeControllers';
+} from './customer-type.controllers';
 
 const router = Router();
 

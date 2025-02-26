@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
-import { customerDocument } from '../../../model/Customers/customizeCustomerModel';
+import { customerDocument } from '@models/Customers/customizeCustomerModel';
 import logger from '../../../utils/logger';
 import * as companyOwnerRepository from './companyOwnerRepositorys';
 import { message } from '../../../constants/responseMessage';
 import bcrypt from 'bcrypt';
-import Log from '../../../model/lookups/logModel';
+import Log from '@models/lookups/logModel';
 
 export const createCompanyOwnerServices = async (
   companyOwnerData: Partial<customerDocument>,

@@ -1,4 +1,4 @@
-import LookupCodes from '../model/lookups/lookupCodeModel';
+import LookupCodes from '@models/lookups/lookupCodeModel';
 export async function generateNewLookupCode(type: string): Promise<string> {
   console.log(type, 'type');
   const lookupCodeDoc = await LookupCodes.findOne({ type });

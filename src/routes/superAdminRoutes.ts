@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import superAdminRoutes from '../module/superAdmins/createSuperAdmins/superAdminRoutes';
 import authSuperAdminLoginRoutes from '../module/superAdmins/authSuperAdminLogin/authSuperAdminLoginRoutes';
-import lookupRoutes from '../module/lookups/lookupCode/lookupCodeRoutes';
-import customerTypeRoutes from '../module/lookups/customerType/customerTypeRoutes';
+import lookupRoutes from '../module/lookups/lookup-code/lookup-code.route';
+import customerTypeRoutes from '../module/lookups/customer-type/customer-type.route';
 import companyOwnerRoutes from '../module/superAdmins/createCompanyOwner/companyOwnerRoutes';
 import verifyTokenMiddleware from '../middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '../middleware/apiRequest';

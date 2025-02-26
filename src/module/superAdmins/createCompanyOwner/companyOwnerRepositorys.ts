@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import customerModel, {
   customerDocument,
-} from '../../../model/Customers/customizeCustomerModel';
+} from '@models/Customers/customizeCustomerModel';
 
 export const createCompanyOwnerRepository = async (
   companyOwnerData: Partial<customerDocument>,

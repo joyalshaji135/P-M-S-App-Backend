@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 import logger from '../../../utils/logger';
-import Log from '../../../model/lookups/logModel';
+import Log from '@models/lookups/logModel';
 
-import * as customerTypeRepository from './customerTypeRepositorys';
-import { customerTypeDocument } from '../../../model/lookups/customerTypeModel';
+import * as customerTypeRepository from './customer-type.repositorys';
+import { customerTypeDocument } from '@models/lookups/customerTypeModel';
 
 export const createCustomerTypeProfile = async (
   customerTypeData: Partial<customerTypeDocument>,

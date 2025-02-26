@@ -1,8 +1,8 @@
-import * as lookupCodeService from './lookupCodeServices';
+import * as lookupCodeService from './lookup-code.services';
 import { Response } from 'express';
 import { RequestWithAuthData } from '../../../@types/express';
 import mongoose from 'mongoose';
-import { CreateLookupCodeInput } from './lookupCodeServices';
+import { CreateLookupCodeInput } from './lookup-code.services';
 import { message } from '../../../constants/responseMessage';
 
 export const createLookupCode = async (

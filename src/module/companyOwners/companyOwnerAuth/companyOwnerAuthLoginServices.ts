@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { customerDocument } from '../../../model/Customers/customizeCustomerModel';
+import { customerDocument } from '@models/Customers/customizeCustomerModel';
 import * as companyOwnerAuthLoginRepository from './companyOwnerAuthLoginRepositorys';
 
 export const companyOwnerLogin = async (

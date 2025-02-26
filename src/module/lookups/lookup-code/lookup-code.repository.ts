@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import LookupCode, {
   LookupCodeDocument,
-} from '../../../model/lookups/lookupCodeModel';
+} from '@models/lookups/lookupCodeModel';
 
 export const createLookupCode = async (
   lookupCodeData: Partial<LookupCodeDocument>,

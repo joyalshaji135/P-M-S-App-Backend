@@ -6,7 +6,7 @@ import {
   editLookupCode,
   deleteLookupCode,
   updateLookupCodeStatus,
-} from './lookupCodeControllers';
+} from './lookup-code.controllers';
 
 const router = express.Router();
 
