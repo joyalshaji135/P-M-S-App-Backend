@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import jwt from 'jsonwebtoken';
-import { superAdminDocument } from '../model/superAdmin/superAdminModel';
+import { superAdminDocument } from '@models/superAdmin/superAdminModel';
 
 config();
 

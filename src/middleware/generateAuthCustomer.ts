@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import jwt from 'jsonwebtoken';
-import { customerDocument } from '../model/Customers/customizeCustomerModel';
+import { customerDocument } from '@models/Customers/customizeCustomerModel';
 
 config();
 

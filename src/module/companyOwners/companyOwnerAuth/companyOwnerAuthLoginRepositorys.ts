@@ -1,6 +1,6 @@
 import customerModel, {
   customerDocument,
-} from '../../../model/Customers/customizeCustomerModel';
+} from '@models/Customers/customizeCustomerModel';
 
 export const findByEmail = async (
   email: string,

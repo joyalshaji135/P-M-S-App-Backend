@@ -5,9 +5,9 @@ import { config } from './config'; // Import configuration
 export const connectToDatabase = async () => {
   try {
     await mongoose.connect(config.MONGO_URI);
-    console.log('Connected to MongoDB');
+    console.log('✅ MongoDB Connected');
   } catch (error) {
-    console.error('Failed to connect to MongoDB:', error);
+    console.error('❌ Database connection failed:', error);
     process.exit(1); // Exit the process if the connection fails
   }
 };

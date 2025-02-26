@@ -4,7 +4,7 @@
   "description": "Manage the Industry Projects",
   "main": "./server.ts",
   "scripts": {
-    "dev": "npm run prettier-format && nodemon",
+    "dev": "npm run prettier-format && nodemon -r tsconfig-paths/register --exec",
     "prettier-format": "prettier --write . && prettier --check .",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts",
@@ -37,6 +37,7 @@
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.0",
     "webpack": "^5.98.0",

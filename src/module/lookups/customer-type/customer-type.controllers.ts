@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import * as customerTypeService from './customerTypeServices';
+import * as customerTypeService from './customer-type.services';
 import { message } from '../../../constants/responseMessage';
 import { RequestWithAuthData } from '../../../@types/express';
 import { LookupTypes } from '../../../constants/lookup';

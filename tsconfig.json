@@ -8,7 +8,19 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@config/*": ["src/config/*"],
+      "@models/*": ["src/models/*"],
+      "@middleware/*": ["src/middleware/*"],
+      "@modules/*": ["src/modules/*"],
+      "@utils/*": ["src/utils/*"],
+      "@constants/*": ["src/constants/*"],
+      "@types/*": ["src/@types/*"],
+      "@routes/*": ["src/routes/*"]
+    }
   },
   "include": ["src/**/*", "types/**/*"],
   "exclude": ["node_modules"]
