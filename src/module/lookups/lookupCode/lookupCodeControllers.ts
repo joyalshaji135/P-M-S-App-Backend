@@ -1,9 +1,9 @@
-import * as lookupCodeService from "./lookupCodeServices";
-import { Response } from "express";
-import { RequestWithAuthData } from "../../../@types/express";
-import mongoose from "mongoose";
-import { CreateLookupCodeInput } from "./lookupCodeServices";
-import { message } from "../../../constants/responseMessage";
+import * as lookupCodeService from './lookupCodeServices';
+import { Response } from 'express';
+import { RequestWithAuthData } from '../../../@types/express';
+import mongoose from 'mongoose';
+import { CreateLookupCodeInput } from './lookupCodeServices';
+import { message } from '../../../constants/responseMessage';
 
 export const createLookupCode = async (
   req: RequestWithAuthData,
@@ -166,12 +166,12 @@ export const updateLookupCodeStatus = async (
   res: Response,
 ): Promise<any> => {
   const { id } = req.params;
-    const { status } = req.body;
-    const updatedData = {
-        status,
-        userUpdatedBy: req.userId,
-        userUpdatedDate: new Date(),
-        };
+  const { status } = req.body;
+  const updatedData = {
+    status,
+    userUpdatedBy: req.userId,
+    userUpdatedDate: new Date(),
+  };
 
   try {
     if (!req.userId) {
@@ -181,22 +181,21 @@ export const updateLookupCodeStatus = async (
     }
 
     const updatedLookupCode = await lookupCodeService.updateLookupCodeStatus(
-        id,
-        updatedData,
-        req.userId
-        );
+      id,
+      updatedData,
+      req.userId,
+    );
 
     if (!updatedLookupCode) {
-        return res
-            .status(204)
-            .json({ success: false, message: message.LOOKUP_CODE_NOT_FOUND });
-        }
+      return res
+        .status(204)
+        .json({ success: false, message: message.LOOKUP_CODE_NOT_FOUND });
+    }
 
     return res
-        .status(200)
-        .json({ success: true, message: message.LOOKUP_CODE_STATUS_UPDATED });
-    }
-    catch (error: any) {
-        return res.status(500).json({ success: false, error: error.message });
-    }
+      .status(200)
+      .json({ success: true, message: message.LOOKUP_CODE_STATUS_UPDATED });
+  } catch (error: any) {
+    return res.status(500).json({ success: false, error: error.message });
+  }
 };

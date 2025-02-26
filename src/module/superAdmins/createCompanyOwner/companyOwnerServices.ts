@@ -33,15 +33,15 @@ export const createCompanyOwnerServices = async (
     throw new Error(message.COMPANY_OWNER_EXISTS);
   }
 
-  const createdCompanyOwner = 
+  const createdCompanyOwner =
     await companyOwnerRepository.createCompanyOwnerRepository(newCompanyOwner);
-    await Log.create({
-        userId: createdCompanyOwner.createdBy,
-        module: "companyOwner",
-        action: "create",
-        actionId: createdCompanyOwner._id,
-        description: `Created a new customer type profile with name: ${createdCompanyOwner.name}`,
-      });
+  await Log.create({
+    userId: createdCompanyOwner.createdBy,
+    module: 'companyOwner',
+    action: 'create',
+    actionId: createdCompanyOwner._id,
+    description: `Created a new customer type profile with name: ${createdCompanyOwner.name}`,
+  });
   return createdCompanyOwner;
 };
 

@@ -1,10 +1,9 @@
-import { Response } from "express";
-import * as customerTypeService from "./customerTypeServices";
-import { message } from "../../../constants/responseMessage";
-import { RequestWithAuthData } from "../../../@types/express";
-import { LookupTypes } from "../../../constants/lookup";
-import { generateNewLookupCode } from "../../../utils/lookupCodeGenerator";
-
+import { Response } from 'express';
+import * as customerTypeService from './customerTypeServices';
+import { message } from '../../../constants/responseMessage';
+import { RequestWithAuthData } from '../../../@types/express';
+import { LookupTypes } from '../../../constants/lookup';
+import { generateNewLookupCode } from '../../../utils/lookupCodeGenerator';
 
 export const createCustomerTypeProfile = async (
   req: RequestWithAuthData,
@@ -18,7 +17,7 @@ export const createCustomerTypeProfile = async (
       });
     }
     const name = req.body.name;
-    const nameAlias = name.toLowerCase().replace(/\s+/g, "").replace(/\./g, "");
+    const nameAlias = name.toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
     const lookupType = LookupTypes.CUSTOMER_TYPE;
     const code = await generateNewLookupCode(lookupType);
 
@@ -68,8 +67,8 @@ export const editCustomerTypeProfile = async (
       const name = req.body.name;
       const nameAlias = name
         .toLowerCase()
-        .replace(/\s+/g, "")
-        .replace(/\./g, "");
+        .replace(/\s+/g, '')
+        .replace(/\./g, '');
       customerTypeData.nameAlias = nameAlias;
     }
 

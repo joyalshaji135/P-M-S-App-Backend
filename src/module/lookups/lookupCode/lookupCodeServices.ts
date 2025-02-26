@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
-import * as lookupCodeRepository from "./lookupCodeRepository";
-import { LookupCodeDocument } from "../../../model/lookups/lookupCodeModel";
-import Log from "../../../model/lookups/logModel";
-import logger from "../../../utils/logger";
+import mongoose from 'mongoose';
+import * as lookupCodeRepository from './lookupCodeRepository';
+import { LookupCodeDocument } from '../../../model/lookups/lookupCodeModel';
+import Log from '../../../model/lookups/logModel';
+import logger from '../../../utils/logger';
 
 export interface CreateLookupCodeInput {
   type: string;
@@ -16,13 +16,13 @@ export interface CreateLookupCodeInput {
 export const createLookupCode = async (
   lookupCodeData: CreateLookupCodeInput,
 ): Promise<LookupCodeDocument> => {
-    logger.info("Creating lookup code", { lookupCodeData });
+  logger.info('Creating lookup code', { lookupCodeData });
   return await lookupCodeRepository.createLookupCode(lookupCodeData);
 };
 
 export const getAllLookupCodes = async (): Promise<LookupCodeDocument[]> => {
   try {
-    logger.info("Fetching all lookup codes");
+    logger.info('Fetching all lookup codes');
     return await lookupCodeRepository.getAllLookupCodes();
   } catch (error: any) {
     throw new Error(`Error fetching lookup codes: ${error.message}`);
@@ -59,8 +59,8 @@ export const editLookupCode = async (
 
     await Log.create({
       userId: updatedLookupCode.userUpdatedBy,
-      module: "lookup_code",
-      action: "edit",
+      module: 'lookup_code',
+      action: 'edit',
       actionId: updatedLookupCode._id,
       description: `Updated lookup code with ID ${lookupCodeId}`,
     });
@@ -97,8 +97,8 @@ export const updateLookupCodeStatus = async (
 
     await Log.create({
       userId: updatedStatus.userUpdatedBy,
-      module: "lookup_code",
-      action: "update_status",
+      module: 'lookup_code',
+      action: 'update_status',
       actionId: updatedStatus._id,
       description: `Updated the status for lookup code with ID ${id} to ${updatedData.status}`,
     });
@@ -128,8 +128,8 @@ export const deleteLookupCode = async (
 
     await Log.create({
       userId: deletedBy,
-      module: "lookup_code",
-      action: "delete",
+      module: 'lookup_code',
+      action: 'delete',
       actionId: deletedLookupCode._id,
       description: `Deleted lookup code with ID ${lookupCodeId}`,
     });

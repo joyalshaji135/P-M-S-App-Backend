@@ -20,7 +20,8 @@ export const companyOwnerLogin = async (
     }
 
     const token = generateTokenCustomer(companyOwner);
-    const { password: _, ...companyOwnerWithoutPassword } = companyOwner.toObject();
+    const { password: _, ...companyOwnerWithoutPassword } =
+      companyOwner.toObject();
 
     res.cookie('token', token).status(200).json({
       success: true,

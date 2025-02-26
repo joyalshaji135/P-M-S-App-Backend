@@ -1,5 +1,5 @@
-import mongoose, { Schema, Document } from "mongoose";
-import { customerDocument } from "../Customers/customizeCustomerModel";
+import mongoose, { Schema, Document } from 'mongoose';
+import { customerDocument } from '../Customers/customizeCustomerModel';
 
 export interface BaseDocument extends Document {
   status: boolean;
@@ -16,10 +16,10 @@ export const BaseSchema = new Schema<BaseDocument>(
   {
     status: { type: Boolean, default: true },
     isDeleted: { type: Boolean, default: false },
-    createdBy: { type: Schema.Types.ObjectId, ref: "customer" },
+    createdBy: { type: Schema.Types.ObjectId, ref: 'customer' },
     userUpdatedDate: { type: Date },
-    updatedBy: { type: Schema.Types.ObjectId, ref: "customer" },
-    deletedBy: { type: Schema.Types.ObjectId, ref: "customer" },
+    updatedBy: { type: Schema.Types.ObjectId, ref: 'customer' },
+    deletedBy: { type: Schema.Types.ObjectId, ref: 'customer' },
     deletedAt: { type: Date },
     createdAt: { type: Date },
   },

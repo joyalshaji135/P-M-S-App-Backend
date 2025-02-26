@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router } from 'express';
 import verifyTokenMiddleware from '../middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '../middleware/apiRequest';
 import companyOwnerAuthLoginRoutes from '../module/companyOwners/companyOwnerAuth/companyOwnerAuthLoginRoutes';
@@ -28,6 +28,5 @@ router.use('/auth-company-owner', companyOwnerAuthLoginRoutes);
 // Tasks
 
 // WorkSpaces
-
 
 export default router;

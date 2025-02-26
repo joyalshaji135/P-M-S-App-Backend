@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 import customerTypeModel, {
   customerTypeDocument,
-} from "../../../model/lookups/customerTypeModel";
+} from '../../../model/lookups/customerTypeModel';
 
 export const create = async (
   customerTypeData: Partial<customerTypeDocument>,
@@ -41,10 +41,11 @@ export const isNameAliasExists = async (
 export const findById = async (
   id: string,
 ): Promise<customerTypeDocument | null> => {
-  return customerTypeModel.findById(id)
+  return customerTypeModel
+    .findById(id)
     .where({ isDeleted: false })
-    .populate("createdBy", "name email")
-    .populate("updatedBy", "name email")
+    .populate('createdBy', 'name email')
+    .populate('updatedBy', 'name email')
     .exec();
 };
 
@@ -52,26 +53,28 @@ export const updateById = async (
   id: string,
   updateData: Partial<customerTypeDocument>,
 ): Promise<customerTypeDocument | null> => {
-  return customerTypeModel.findByIdAndUpdate(
-    id,
-    {
-      $set: {
-        ...updateData,
-        userUpdatedBy: updateData.updatedBy,
-        userUpdatedDate: new Date(),
+  return customerTypeModel
+    .findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          ...updateData,
+          userUpdatedBy: updateData.updatedBy,
+          userUpdatedDate: new Date(),
+        },
       },
-    },
-    { new: true, runValidators: true },
-  )
-    .populate("createdBy", "name email")
-    .populate("updatedBy", "name email")
+      { new: true, runValidators: true },
+    )
+    .populate('createdBy', 'name email')
+    .populate('updatedBy', 'name email')
     .exec();
 };
 
 export const getAllCustomerTypes = async () => {
-  return customerTypeModel.find({ isDeleted: false })
-    .populate("createdBy", "name email")
-    .populate("updatedBy", "name email")
+  return customerTypeModel
+    .find({ isDeleted: false })
+    .populate('createdBy', 'name email')
+    .populate('updatedBy', 'name email')
     .sort({ createdAt: -1 });
 };
 

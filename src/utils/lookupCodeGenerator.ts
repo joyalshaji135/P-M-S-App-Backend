@@ -1,6 +1,6 @@
-import LookupCodes from "../model/lookups/lookupCodeModel";
+import LookupCodes from '../model/lookups/lookupCodeModel';
 export async function generateNewLookupCode(type: string): Promise<string> {
-  console.log(type, "type");
+  console.log(type, 'type');
   const lookupCodeDoc = await LookupCodes.findOne({ type });
   // console.log(lookupCodeDoc, "lookupCOde");
   if (!lookupCodeDoc) {
@@ -16,7 +16,7 @@ export async function generateNewLookupCode(type: string): Promise<string> {
     newNumber = lastNumber + 1;
   }
 
-  const newNumberString = newNumber.toString().padStart(2, "0");
+  const newNumberString = newNumber.toString().padStart(2, '0');
 
   const newCode = `${lookupCodeDoc.code}${newNumberString}`;
 

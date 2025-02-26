@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document } from 'mongoose';
 
 export interface UserLogDocument extends Document {
   userId: mongoose.Types.ObjectId;
@@ -18,6 +18,6 @@ const UserLogSchema = new Schema<UserLogDocument>({
   timestamp: { type: Date, default: Date.now },
 });
 
-const UserLog = mongoose.model<UserLogDocument>("UserLog", UserLogSchema);
+const UserLog = mongoose.model<UserLogDocument>('UserLog', UserLogSchema);
 
 export default UserLog;

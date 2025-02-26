@@ -1,5 +1,8 @@
-import mongoose, { Schema, Document } from "mongoose";
-import { superAdminBaseDocument, superAdminBaseSchema } from "./superAdminBaseModel";
+import mongoose, { Schema, Document } from 'mongoose';
+import {
+  superAdminBaseDocument,
+  superAdminBaseSchema,
+} from './superAdminBaseModel';
 
 export interface LookupCodes extends superAdminBaseDocument {
   type: string;
@@ -19,12 +22,16 @@ const LookupCodeSchema: Schema<LookupCodes> = new Schema(
     code: { type: String, required: true, unique: true },
     firstNumber: { type: Number, required: true },
     lastNumber: { type: Number, required: true },
-    createdBy: { type: Schema.Types.ObjectId, ref: "superAdmin", required: true },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'superAdmin',
+      required: true,
+    },
   },
   { timestamps: true },
 );
 LookupCodeSchema.add(superAdminBaseSchema);
 export default mongoose.model<LookupCodeDocument>(
-  "LookupCodes",
+  'LookupCodes',
   LookupCodeSchema,
 );

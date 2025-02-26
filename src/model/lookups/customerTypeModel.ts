@@ -1,6 +1,9 @@
-import mongoose, { Schema, Document } from "mongoose";
-import { BaseDocument, BaseSchema } from "./customizeBaseModel";
-import { superAdminBaseDocument, superAdminBaseSchema } from "./superAdminBaseModel";
+import mongoose, { Schema, Document } from 'mongoose';
+import { BaseDocument, BaseSchema } from './customizeBaseModel';
+import {
+  superAdminBaseDocument,
+  superAdminBaseSchema,
+} from './superAdminBaseModel';
 
 export interface customerTypeModel extends superAdminBaseDocument {
   code: string;
@@ -26,7 +29,7 @@ const customerTypeSchema: Schema<customerTypeDocument> = new Schema({
     validate: {
       validator: (v: string) => /^[a-z0-9\-]+$/.test(v),
       message:
-        "nameAlias must be lowercase, without spaces, and can include hyphens!",
+        'nameAlias must be lowercase, without spaces, and can include hyphens!',
     },
   },
 });
@@ -34,6 +37,6 @@ const customerTypeSchema: Schema<customerTypeDocument> = new Schema({
 customerTypeSchema.add(superAdminBaseSchema);
 
 export default mongoose.model<customerTypeDocument>(
-  "customerType",
+  'customerType',
   customerTypeSchema,
 );
