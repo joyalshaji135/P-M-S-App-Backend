@@ -1,18 +1,18 @@
 import { Router } from 'express';
-import superAdminRoutes from '../module/superAdmins/createSuperAdmins/superAdminRoutes';
-import authSuperAdminLoginRoutes from '../module/superAdmins/authSuperAdminLogin/authSuperAdminLoginRoutes';
-import lookupRoutes from '../module/lookups/lookup-code/lookup-code.route';
-import customerTypeRoutes from '../module/lookups/customer-type/customer-type.route';
-import companyOwnerRoutes from '../module/superAdmins/createCompanyOwner/companyOwnerRoutes';
-import verifyTokenMiddleware from '../middleware/verifyToken';
-import { requireApiKey, requireAuthToken } from '../middleware/apiRequest';
+import superAdminRoutes from '@modules/master-manage-modules/super-admins/super-admins.route';
+import authOrganizationRoutes from '@modules/auth-organization/auth-organization-login.route';
+import lookupRoutes from '@modules/lookups-modules/lookup-code/lookup-code.route';
+import customerTypeRoutes from '@modules/lookups-modules/customer-type/customer-type.route';
+import companyOwnersRoutes from '@modules/master-manage-modules/company-owners/company-owners.route';
+import verifyTokenMiddleware from '@middleware/verifyToken';
+import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
 const router: Router = Router();
 
 router.use(requireApiKey);
 
 // Super Admin Login Routes
 
-router.use('/auth-super-admin', authSuperAdminLoginRoutes);
+router.use('/auth-super-admin', authOrganizationRoutes);
 
 router.use(requireAuthToken);
 
@@ -33,7 +33,7 @@ router.use('/customer-types', customerTypeRoutes);
 
 // Company Owner Routes
 
-router.use('/company-owners', companyOwnerRoutes);
+router.use('/company-owners', companyOwnersRoutes);
 
 // Team Member Routes
 

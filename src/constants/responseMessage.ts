@@ -3,7 +3,7 @@ export const message = {
 
   UNAUTHORIZED: 'Unauthorized. Please login',
   PASSWORD_MISMATCH: ' Passwords do not match',
-  INVALID_LOGIN: 'Invalid email or password',
+  INVALID_LOGIN: 'Invalid email or password , role is required',
   LOGIN_SUCCESS: 'Login successful',
   INVALID_TOKEN: 'Invalid token',
   TOKEN_EXPIRED: 'Token expired',

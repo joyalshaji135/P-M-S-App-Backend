@@ -1,14 +1,20 @@
 import bcrypt from 'bcrypt';
-import { superAdminDocument } from '@models/superAdmin/superAdminModel';
-import * as authSuperAdminLoginRepository from './auth-organization-login.repository';
+import { customerDocument } from '@models/master-manage-modules-models/customer.models';
+import * as customerAuthLoginRepository from './auth-organization-login.repository';
 
-export const superAdminLogin = async (
+export const customerLogin = async (
   email: string,
   password: string,
-): Promise<superAdminDocument | null> => {
-  const superAdmin = await authSuperAdminLoginRepository.findByEmail(email);
-  if (superAdmin && (await bcrypt.compare(password, superAdmin.password))) {
-    return superAdmin;
+  role: string,
+): Promise<customerDocument | null> => {
+  const customer = await customerAuthLoginRepository.findByEmail(email);
+  const customerRole = await customerAuthLoginRepository.findRole(role);
+  if (
+    customerRole &&
+    customer &&
+    (await bcrypt.compare(password, customer.password))
+  ) {
+    return customer;
   }
   return null;
 };

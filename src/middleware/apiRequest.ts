@@ -1,7 +1,7 @@
 // Helmet helps secure Express apps by setting various HTTP headers
 import { Request, Response, NextFunction } from 'express';
 import { respondError } from '../helper/response';
-import statusCode from '../helper/locales/statusCodes.json';
+import statusCode from '@helper/locales/statusCodes.json';
 // Extend Express Request interface to include custom properties
 interface CustomRequest extends Request {
   language?: string;
