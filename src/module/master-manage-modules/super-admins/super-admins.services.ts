@@ -38,6 +38,13 @@ export const createSuperAdminServices = async (
   return createdSuperAdmin;
 };
 
-export const isPhoneNumbeExists = async (phone: string) => {
+export const isPhoneNumberExists = async (phone: string) => {
   return await superAdminRepository.isPhoneNumberExists(phone);
+};
+
+// Get All Super Admin Services
+export const getAllSuperAdminServices = async () => {
+  // logger info
+  logger.info('Fetching all super admins');
+  return await superAdminRepository.getAllSuperAdminRepository();
 };

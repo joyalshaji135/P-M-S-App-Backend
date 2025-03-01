@@ -1,14 +1,18 @@
-import mongoose from 'mongoose';
 import { RequestWithAuthData } from '../../../@types/express';
 import * as companyOwnerServices from './company-owners.services';
 import { NextFunction, Response } from 'express';
 import { message } from '@constants/responseMessage';
 import { LookupTypes } from '@constants/lookup';
 import { generateNewLookupCode } from '@utils/lookupCodeGenerator';
+import { companyOwnersValidation } from '@validation/company-owners/company-owners.validation';
+import { respondError } from '@src/helper/response';
+import { getMessageFromValidationError } from '@src/helper/utils';
 
+// Create Company Owner
 export const createCompanyOwnerController = async (
   req: RequestWithAuthData,
   res: Response,
+  next: NextFunction,
 ): Promise<any> => {
   try {
     if (!req.userId) {
@@ -26,6 +30,12 @@ export const createCompanyOwnerController = async (
       ...req.body,
       createdBy: req.userId,
     };
+
+    // Add Validation for CustomerType
+    const { error } = companyOwnersValidation(req.body);
+    if (error) {
+      return next(respondError(getMessageFromValidationError(error)));
+    }
 
     const phoneExists = await companyOwnerServices.isPhoneNumberExists(
       companyOwnerData.phone,

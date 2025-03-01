@@ -2,7 +2,7 @@ import { customerDocument } from '@models/master-manage-modules-models/customer.
 import { RequestWithAuthData } from '../../../@types/express';
 import * as superAdminService from './super-admins.services';
 import { NextFunction, Response } from 'express';
-import { message } from '../../../constants/responseMessage';
+import { message } from '@constants/responseMessage';
 
 const mapToSuperAdminResponse = (superAdmin: customerDocument) => {
   return {
@@ -36,7 +36,7 @@ export const createSuperAdminController = async (
   try {
     const superAdminData = req.body;
 
-    const phoneExists = await superAdminService.isPhoneNumbeExists(
+    const phoneExists = await superAdminService.isPhoneNumberExists(
       superAdminData.phone,
     );
     if (phoneExists) {
@@ -67,6 +67,45 @@ export const createSuperAdminController = async (
     });
   } catch (error: any) {
     return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+export const getAllSuperAdminsController = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  try {
+    if (!req.userId) {
+      return res
+        .status(401)
+        .json({ success: false, message: message.UNAUTHORIZED });
+    }
+
+    const superAdmins = await superAdminService.getAllSuperAdminServices();
+
+    // issue with mapToSuperAdminResponse
+    const superAdminsResponses = superAdmins.map((superAdmin: any) =>
+      mapToSuperAdminResponse(superAdmin as customerDocument),
+    );
+
+    if (superAdminsResponses.length > 0) {
+      return res.status(200).json({
+        success: true,
+        message: message.SUPER_ADMINS_FETCHED_SUCCESSFULLY,
+        data: superAdminsResponses,
+      });
+    } else {
+      return res.status(204).json({
+        success: false,
+        message: message.SUPER_ADMIN_NOT_FOUND,
+      });
+    }
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 
@@ -131,43 +170,6 @@ export const createSuperAdminController = async (
 //   }
 // };
 
-// export const getAllSuperAdmins = async (
-//   req: RequestWithAuthData,
-//   res: Response
-// ): Promise<any> => {
-//   try {
-//     if (!req.userId) {
-//       return res
-//         .status(401)
-//         .json({ success: false, message: message.UNAUTHORIZED });
-//     }
-
-//     const superAdmins = await superAdminService.getAllSuperAdmins();
-
-//     // issue with mapToSuperAdminResponse
-//     const superAdminsResponses = superAdmins.map((superAdmin: any) =>
-//       mapToSuperAdminResponse(superAdmin as superAdminDocument)
-//     );
-
-//     if (superAdminsResponses.length > 0) {
-//       return res.status(200).json({
-//         success: true,
-//         message: message.SUPER_ADMINS_FETCHED_SUCCESSFULLY,
-//         data: superAdminsResponses,
-//       });
-//     } else {
-//       return res.status(204).json({
-//         success: false,
-//         message: message.SUPER_ADMIN_NOT_FOUND,
-//       });
-//     }
-//   } catch (error: any) {
-//     return res.status(500).json({
-//       success: false,
-//       message: error.message,
-//     });
-//   }
-// };
 
 // export const getSuperAdminById = async (
 //   req: RequestWithAuthData,

@@ -9,7 +9,7 @@ router.use('/super-admin', superAdminRoutes);
 
 // Company Owner Routes
 
-// router.use('/company-owner', companyOwnerRoutes);
+router.use('/company-owner', companyOwnerRoutes);
 
 // Team Member Routes
 

@@ -8,7 +8,10 @@ router.post(
   superAdminControllers.createSuperAdminController,
 );
 // router.get("/:id", superAdminControllers.getSuperAdminById);
-// router.get("/", superAdminControllers.getAllSuperAdmins);
+router.get(
+  '/get-all-super-admin',
+  superAdminControllers.getAllSuperAdminsController,
+);
 
 // router.put("/:id", superAdminControllers.updateSuperAdmin);
 

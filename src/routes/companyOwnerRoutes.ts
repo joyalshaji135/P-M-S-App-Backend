@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import verifyTokenMiddleware from '../middleware/verifyToken';
-import { requireApiKey, requireAuthToken } from '../middleware/apiRequest';
-import companyOwnerAuthLoginRoutes from '../module/companyOwners/companyOwnerAuth/companyOwnerAuthLoginRoutes';
+import verifyTokenMiddleware from '@middleware/verifyToken';
+import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
+import companyOwnerAuthLoginRoutes from '@modules/auth-organization/auth-organization-login.route';
 
 const router: Router = Router();
 
@@ -10,6 +10,11 @@ router.use(requireApiKey);
 // Company Owner Login Routes
 
 router.use('/auth-company-owner', companyOwnerAuthLoginRoutes);
+
+router.use(requireAuthToken);
+
+// Middleware   
+router.use(verifyTokenMiddleware);
 
 // // Define routes
 

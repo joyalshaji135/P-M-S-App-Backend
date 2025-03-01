@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
-import logger from '../../../utils/logger';
+import logger from '@utils/logger';
 import Log from '@models/lookups-models/log.model';
-
 import * as customerTypeRepository from './customer-type.repositorys';
 import { customerTypeDocument } from '@models/lookups-models/customer-type.model';
 
@@ -94,7 +93,7 @@ export const editCustomerTypeProfile = async (
     }
 
     await Log.create({
-      userId: updatedCustomerTypeProfile.updatedBy,
+      userId: updatedCustomerTypeProfile.userUpdatedBy,
       module: 'customerType',
       action: 'edit',
       actionId: updatedCustomerTypeProfile._id,
@@ -148,7 +147,7 @@ export const updateCustomerTypeStatus = async (
 ): Promise<customerTypeDocument | null> => {
   try {
     logger.info(
-      `Updating status for customer type with ID ${id} to ${updatedData.status} by user ${updatedData.updatedBy}`,
+      `Updating status for customer type with ID ${id} to ${updatedData.status} by user ${updatedData.userUpdatedBy}`,
     );
 
     const updatedStatus = await customerTypeRepository.changeCustomerTypeStatus(
@@ -161,7 +160,7 @@ export const updateCustomerTypeStatus = async (
     }
 
     await Log.create({
-      userId: updatedData.updatedBy,
+      userId: updatedData.userUpdatedBy,
       module: 'customerType',
       action: 'update_status',
       actionId: updatedStatus._id,

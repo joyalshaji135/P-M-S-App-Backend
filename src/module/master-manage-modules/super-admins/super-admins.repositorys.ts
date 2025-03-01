@@ -3,6 +3,7 @@ import customerModel, {
   customerDocument,
 } from '@models/master-manage-modules-models/customer.models';
 
+// To Create Super Admin
 export const createSuperAdminRepository = async (
   superAdminData: Partial<customerDocument>,
 ): Promise<customerDocument> => {
@@ -18,4 +19,9 @@ export const findByEmail = async (
 
 export const isPhoneNumberExists = async (phone: string) => {
   return customerModel.findOne({ phone }).exec();
+};
+
+// Get All Super Admin
+export const getAllSuperAdminRepository = async () => {
+  return customerModel.find({ role: 'admin' }).exec();
 };

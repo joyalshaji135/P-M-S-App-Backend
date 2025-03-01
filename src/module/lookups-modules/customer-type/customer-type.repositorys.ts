@@ -45,7 +45,7 @@ export const findById = async (
     .findById(id)
     .where({ isDeleted: false })
     .populate('createdBy', 'name email')
-    .populate('updatedBy', 'name email')
+    .populate('userUpdatedBy', 'name email')
     .exec();
 };
 
@@ -59,14 +59,14 @@ export const updateById = async (
       {
         $set: {
           ...updateData,
-          userUpdatedBy: updateData.updatedBy,
+          userUpdatedBy: updateData.userUpdatedBy,
           userUpdatedDate: new Date(),
         },
       },
       { new: true, runValidators: true },
     )
     .populate('createdBy', 'name email')
-    .populate('updatedBy', 'name email')
+    .populate('userUpdatedBy', 'name email')
     .exec();
 };
 
@@ -74,7 +74,7 @@ export const getAllCustomerTypes = async () => {
   return customerTypeModel
     .find({ isDeleted: false })
     .populate('createdBy', 'name email')
-    .populate('updatedBy', 'name email')
+    .populate('userUpdatedBy', 'name email')
     .sort({ createdAt: -1 });
 };
 
@@ -104,7 +104,7 @@ export const changeCustomerTypeStatus = async (
     {
       $set: {
         status: updatedData.status,
-        userUpdatedBy: updatedData.updatedBy,
+        userUpdatedBy: updatedData.userUpdatedBy,
         userUpdatedDate: updatedData.userUpdatedDate,
       },
     },
