@@ -33,7 +33,7 @@ export interface customerModel extends baseDocument {
     email: string;
     phone: string;
     industry: string;
-  }
+  };
 }
 
 export type customerDocument = customerModel & Document;
@@ -42,7 +42,11 @@ const customerSchema: Schema<customerModel> = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   phone: { type: String, required: true },
-  role: { type: String, default: 'admin', enum: ['admin', 'company-owners', 'team-managers', 'team-members'] }, // Default role set to 'admin'
+  role: {
+    type: String,
+    default: 'admin',
+    enum: ['admin', 'company-owners', 'team-managers', 'team-members'],
+  }, // Default role set to 'admin'
   password: { type: String, required: true },
   isDefault: { type: Boolean, default: false },
   dateOfBirth: { type: Date }, // Optional field
@@ -53,7 +57,7 @@ const customerSchema: Schema<customerModel> = new Schema({
     newsletter: { type: Boolean, default: false }, // Default to false
     notifications: { type: Boolean, default: true }, // Default to true
   },
-  
+
   address: {
     street: { type: String, required: true },
     city: { type: String, required: true },
@@ -75,7 +79,7 @@ const customerSchema: Schema<customerModel> = new Schema({
       state: { type: String, required: false },
       district: { type: String, required: false },
       zipCode: { type: String, required: false },
-    }
+    },
   },
 });
 

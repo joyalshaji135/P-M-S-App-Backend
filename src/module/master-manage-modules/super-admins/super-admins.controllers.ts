@@ -70,7 +70,6 @@ export const createSuperAdminController = async (
   }
 };
 
-
 export const getAllSuperAdminsController = async (
   req: RequestWithAuthData,
   res: Response,
@@ -169,7 +168,6 @@ export const getAllSuperAdminsController = async (
 //     });
 //   }
 // };
-
 
 // export const getSuperAdminById = async (
 //   req: RequestWithAuthData,

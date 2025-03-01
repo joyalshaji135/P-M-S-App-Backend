@@ -13,7 +13,7 @@ router.use('/auth-company-owner', companyOwnerAuthLoginRoutes);
 
 router.use(requireAuthToken);
 
-// Middleware   
+// Middleware
 router.use(verifyTokenMiddleware);
 
 // // Define routes
