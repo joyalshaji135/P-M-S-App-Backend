@@ -19,7 +19,8 @@
       "@utils/*": ["src/utils/*"],
       "@constants/*": ["src/constants/*"],
       "@types/*": ["src/@types/*"],
-      "@routes/*": ["src/routes/*"]
+      "@routes/*": ["src/routes/*"],
+      "@helper/*": ["src/helper/*"]
     }
   },
   "include": ["src/**/*", "types/**/*"],

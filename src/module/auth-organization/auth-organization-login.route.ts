@@ -1,9 +1,12 @@
+// Import modules
 import express from 'express';
-import * as authSuperAdminLoginControllers from './auth-organization-login.controllers';
 
+// Import controllers
+import { customerLogin } from './auth-organization-login.controllers';
+
+// Define routes
 const router = express.Router();
-router.post(
-  '/super-admin-login',
-  authSuperAdminLoginControllers.superAdminLogin,
-);
+
+router.post('/customer-login', customerLogin);
+
 export default router;

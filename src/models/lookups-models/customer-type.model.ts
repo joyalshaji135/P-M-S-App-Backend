@@ -1,11 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { BaseDocument, BaseSchema } from './customizeBaseModel';
-import {
-  superAdminBaseDocument,
-  superAdminBaseSchema,
-} from './superAdminBaseModel';
+import { baseDocument, baseSchema } from './base.model';
 
-export interface customerTypeModel extends superAdminBaseDocument {
+export interface customerTypeModel extends baseDocument {
   code: string;
   name: string;
   nameAlias: string;
@@ -34,7 +30,7 @@ const customerTypeSchema: Schema<customerTypeDocument> = new Schema({
   },
 });
 
-customerTypeSchema.add(superAdminBaseSchema);
+customerTypeSchema.add(baseSchema);
 
 export default mongoose.model<customerTypeDocument>(
   'customerType',

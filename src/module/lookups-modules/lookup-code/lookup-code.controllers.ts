@@ -3,7 +3,7 @@ import { Response } from 'express';
 import { RequestWithAuthData } from '../../../@types/express';
 import mongoose from 'mongoose';
 import { CreateLookupCodeInput } from './lookup-code.services';
-import { message } from '../../../constants/responseMessage';
+import { message } from '@constants/responseMessage';
 
 export const createLookupCode = async (
   req: RequestWithAuthData,

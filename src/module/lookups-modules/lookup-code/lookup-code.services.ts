@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import * as lookupCodeRepository from './lookup-code.repository';
-import { LookupCodeDocument } from '@models/lookups/lookupCodeModel';
-import Log from '@models/lookups/logModel';
+import { LookupCodeDocument } from '@models/lookups-models/lookup-code.model';
+import Log from '@models/lookups-models/log.model';
 import logger from '../../../utils/logger';
 
 export interface CreateLookupCodeInput {

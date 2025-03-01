@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import customerTypeModel, {
   customerTypeDocument,
-} from '@models/lookups/customerTypeModel';
+} from '@models/lookups-models/customer-type.model';
 
 export const create = async (
   customerTypeData: Partial<customerTypeDocument>,

@@ -1,10 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import {
-  superAdminBaseDocument,
-  superAdminBaseSchema,
-} from './superAdminBaseModel';
+import { baseDocument, baseSchema } from './base.model';
 
-export interface industryModel extends superAdminBaseDocument {
+export interface industryModel extends baseDocument {
   code: string;
   name: string;
   nameAlias: string;
@@ -33,6 +30,6 @@ const industrySchema: Schema<industryDocument> = new Schema({
   },
 });
 
-industrySchema.add(superAdminBaseSchema);
+industrySchema.add(baseSchema);
 
 export default mongoose.model<industryDocument>('industry', industrySchema);

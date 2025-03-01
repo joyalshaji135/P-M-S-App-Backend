@@ -1,10 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import {
-  superAdminBaseDocument,
-  superAdminBaseSchema,
-} from './superAdminBaseModel';
+import { baseDocument, baseSchema } from './base.model';
 
-export interface LookupCodes extends superAdminBaseDocument {
+export interface LookupCodes extends baseDocument {
   type: string;
   name: string;
   code: string;
@@ -30,7 +27,7 @@ const LookupCodeSchema: Schema<LookupCodes> = new Schema(
   },
   { timestamps: true },
 );
-LookupCodeSchema.add(superAdminBaseSchema);
+LookupCodeSchema.add(baseSchema);
 export default mongoose.model<LookupCodeDocument>(
   'LookupCodes',
   LookupCodeSchema,

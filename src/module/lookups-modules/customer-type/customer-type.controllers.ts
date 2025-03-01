@@ -1,9 +1,9 @@
 import { Response } from 'express';
 import * as customerTypeService from './customer-type.services';
-import { message } from '../../../constants/responseMessage';
+import { message } from '@constants/responseMessage';
 import { RequestWithAuthData } from '../../../@types/express';
-import { LookupTypes } from '../../../constants/lookup';
-import { generateNewLookupCode } from '../../../utils/lookupCodeGenerator';
+import { LookupTypes } from '@constants/lookup';
+import { generateNewLookupCode } from '@utils/lookupCodeGenerator';
 
 export const createCustomerTypeProfile = async (
   req: RequestWithAuthData,

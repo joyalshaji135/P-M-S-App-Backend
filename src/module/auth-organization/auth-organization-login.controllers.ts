@@ -1,33 +1,33 @@
 import { Request, Response } from 'express';
-import * as authSuperAdminLoginServices from './auth-organization-login.services';
-import generateToken from '@middleware/generateAuthToken';
+import * as customerAuthLoginServices from './auth-organization-login.services';
+import generateTokenCustomer from '@middleware/generateAuthToken';
 import { message } from '@constants/responseMessage';
 
-export const superAdminLogin = async (
+export const customerLogin = async (
   req: Request,
   res: Response,
 ): Promise<any> => {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
 
   try {
-    const superAdmin = await authSuperAdminLoginServices.superAdminLogin(
+    const customer = await customerAuthLoginServices.customerLogin(
       email,
       password,
+      role,
     );
 
-    if (!superAdmin) {
+    if (!customer) {
       return res.status(400).json({ message: message.INVALID_LOGIN });
     }
 
-    const token = generateToken(superAdmin);
-    const { password: _, ...superAdminWithoutPassword } = superAdmin.toObject();
+    const token = generateTokenCustomer(customer);
+    const { password: _, ...customerWithoutPassword } = customer.toObject();
 
     res.cookie('token', token).status(200).json({
       success: true,
-
       message: message.LOGIN_SUCCESS,
       token,
-      superAdmin: superAdminWithoutPassword,
+      customer: customerWithoutPassword,
     });
   } catch (error: any) {
     res.status(500).json({ message: error.message });

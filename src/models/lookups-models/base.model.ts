@@ -1,27 +1,29 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { customerDocument } from '../Customers/customizeCustomerModel';
+import { customerDocument } from '../master-manage-modules-models/customer.models';
 
-export interface BaseDocument extends Document {
+export interface baseDocument extends Document {
   status: boolean;
   isDeleted: boolean;
   userUpdatedDate: Date;
-  updatedBy: mongoose.Types.ObjectId | customerDocument;
+  userUpdatedBy: mongoose.Types.ObjectId | customerDocument;
   createdBy: mongoose.Types.ObjectId | customerDocument;
+  updatedBy: mongoose.Types.ObjectId | customerDocument;
   deletedBy: mongoose.Types.ObjectId | customerDocument;
   deletedAt: Date;
-  createdAt: Date;
+  isDefault: boolean;
 }
 
-export const BaseSchema = new Schema<BaseDocument>(
+export const baseSchema = new Schema<baseDocument>(
   {
     status: { type: Boolean, default: true },
     isDeleted: { type: Boolean, default: false },
     createdBy: { type: Schema.Types.ObjectId, ref: 'customer' },
     userUpdatedDate: { type: Date },
+    userUpdatedBy: { type: Schema.Types.ObjectId, ref: 'customer' },
     updatedBy: { type: Schema.Types.ObjectId, ref: 'customer' },
     deletedBy: { type: Schema.Types.ObjectId, ref: 'customer' },
     deletedAt: { type: Date },
-    createdAt: { type: Date },
+    isDefault: { type: Boolean, default: true },
   },
   { timestamps: true },
 );

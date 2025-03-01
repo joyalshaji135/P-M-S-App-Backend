@@ -2,7 +2,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import { config } from 'dotenv';
 import { RequestWithAuthData } from '../@types/express';
-import { message } from '../constants/responseMessage';
+import { message } from '@constants/responseMessage';
 
 config();
 
