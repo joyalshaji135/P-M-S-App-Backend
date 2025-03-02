@@ -65,4 +65,13 @@ export const message = {
   TEAM_MANAGER_STATUS_UPDATED: 'Team manager status updated successfully',
   FAILED_TO_RETRIEVE_TEAM_MANAGERS: 'Failed to retrieve team managers',
   TEAM_MANAGER_EXISTS: 'Team manager with same exists',
+
+  // Team Member
+  TEAM_MEMBER_CREATED_SUCCESS: 'Team member created successfully',
+  TEAM_MEMBER_UPDATED_SUCCESS: 'Team member updated successfully',
+  TEAM_MEMBER_DELETED: 'Team member deleted successfully',
+  TEAM_MEMBER_NOT_FOUND: 'Team member not found',
+  TEAM_MEMBER_STATUS_UPDATED: 'Team member status updated successfully',
+  FAILED_TO_RETRIEVE_TEAM_MEMBERS: 'Failed to retrieve team members',
+  TEAM_MEMBER_EXISTS: 'Team member with same exists',
 };

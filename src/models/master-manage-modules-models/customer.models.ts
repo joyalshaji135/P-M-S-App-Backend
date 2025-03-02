@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { baseDocument, baseSchema } from '../lookups-models/base.model';
 
+// Address Interface
 interface Address {
   street: string;
   city: string;
@@ -9,6 +10,15 @@ interface Address {
   zipCode: string;
 }
 
+// Skill Interface
+interface Skill {
+  skillName: string;
+  proficiency: 'beginner' | 'intermediate' | 'advanced' | 'expert';
+  yearsOfExperience: number;
+  certification?: string;
+}
+
+// Customer Model Interface
 export interface customerModel extends baseDocument {
   name: string;
   email: string;
@@ -17,6 +27,7 @@ export interface customerModel extends baseDocument {
   address: Address;
   password: string;
   isDefault: boolean;
+  skills: Skill[];  // Array of skills
   dateOfBirth?: Date;
   gender?: string;
   profilePicture?: string;
@@ -38,6 +49,19 @@ export interface customerModel extends baseDocument {
 
 export type customerDocument = customerModel & Document;
 
+// Skill Schema
+const skillSchema = new Schema<Skill>({
+  skillName: { type: String, required: false },
+  proficiency: {
+    type: String,
+    enum: ['beginner', 'intermediate', 'advanced', 'expert'],
+    required: false,
+  },
+  yearsOfExperience: { type: Number, required: false },
+  certification: { type: String },
+});
+
+// Customer Schema
 const customerSchema: Schema<customerModel> = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
@@ -46,16 +70,16 @@ const customerSchema: Schema<customerModel> = new Schema({
     type: String,
     default: 'admin',
     enum: ['admin', 'company-owners', 'team-managers', 'team-members'],
-  }, // Default role set to 'admin'
+  },
   password: { type: String, required: true },
   isDefault: { type: Boolean, default: false },
-  dateOfBirth: { type: Date }, // Optional field
-  gender: { type: String, enum: ['male', 'female', 'other'] }, // Optional field with enum values
-  profilePicture: { type: String }, // Optional field for profile picture URL
-  lastLogin: { type: Date }, // Optional field for tracking last login date
+  dateOfBirth: { type: Date },
+  gender: { type: String, enum: ['male', 'female', 'other'] },
+  profilePicture: { type: String },
+  lastLogin: { type: Date },
   preferences: {
-    newsletter: { type: Boolean, default: false }, // Default to false
-    notifications: { type: Boolean, default: true }, // Default to true
+    newsletter: { type: Boolean, default: false },
+    notifications: { type: Boolean, default: true },
   },
 
   address: {
@@ -65,6 +89,9 @@ const customerSchema: Schema<customerModel> = new Schema({
     district: { type: String, required: true },
     zipCode: { type: String, required: true },
   },
+
+  // Array of skills
+  skills: [skillSchema],
 
   company: {
     name: { type: String, required: false },
@@ -83,7 +110,7 @@ const customerSchema: Schema<customerModel> = new Schema({
   },
 });
 
-// Add base schema fields (if any)
+// Add base schema fields (like createdBy, updatedBy, etc.)
 customerSchema.add(baseSchema);
 
 export default mongoose.model<customerDocument>('customer', customerSchema);
