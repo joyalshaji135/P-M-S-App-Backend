@@ -38,7 +38,6 @@ export const message = {
     'A LookupCode with the same type, name, or code already exists.',
   INTERNAL_SERVER_ERROR_LOOKUP_CODE: 'Internal server error.',
 
-  // Customer Type
   //Customer type
   CUSTOMER_TYPE_CREATED_SUCCESS: 'Customer type created successfully',
   CUSTOMER_TYPE_UPDATED_SUCCESS: 'Customer type updated successfully',
@@ -74,4 +73,14 @@ export const message = {
   TEAM_MEMBER_STATUS_UPDATED: 'Team member status updated successfully',
   FAILED_TO_RETRIEVE_TEAM_MEMBERS: 'Failed to retrieve team members',
   TEAM_MEMBER_EXISTS: 'Team member with same exists',
+
+  // industry Projects
+  INDUSTRY_PROJECT_CREATED_SUCCESS: 'Industry project created successfully',
+  INDUSTRY_PROJECT_UPDATED_SUCCESS: 'Industry project updated successfully',
+  INDUSTRY_PROJECT_DELETED: 'Industry project deleted successfully',
+  INDUSTRY_PROJECT_NOT_FOUND: 'Industry project not found',
+  INDUSTRY_PROJECT_STATUS_UPDATED:
+    'Industry project status updated successfully',
+  FAILED_TO_RETRIEVE_INDUSTRY_PROJECTS: 'Failed to retrieve industry projects',
+  INDUSTRY_PROJECT_EXISTS: 'Industry project with same exists',
 };

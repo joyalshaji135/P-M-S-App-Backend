@@ -79,10 +79,7 @@ export const editTeamMember = async (
     }
 
     if (teamMemberData.password) {
-      teamMemberData.password = await bcrypt.hash(
-        teamMemberData.password,
-        10,
-      );
+      teamMemberData.password = await bcrypt.hash(teamMemberData.password, 10);
     }
 
     const updatedTeamMember = await teamMemberRepository.updateTeamMember(

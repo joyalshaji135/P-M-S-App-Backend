@@ -52,7 +52,8 @@ export const createTeamManagerController = async (
       });
     }
 
-    const createdTeamManager = await teamManagerServices.createTeamManagerServices(teamManagerData);
+    const createdTeamManager =
+      await teamManagerServices.createTeamManagerServices(teamManagerData);
 
     return res.status(201).json({
       success: true,
@@ -65,7 +66,10 @@ export const createTeamManagerController = async (
 };
 
 // Update Team Manager
-export const updateTeamManagerController = async (req: RequestWithAuthData, res: Response): Promise<any> => {
+export const updateTeamManagerController = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
   const { id } = req.params;
   const teamManagerData = {
     ...req.body,
@@ -75,17 +79,23 @@ export const updateTeamManagerController = async (req: RequestWithAuthData, res:
 
   try {
     if (!req.userId) {
-      return res.status(401).json({ success: false, message: message.UNAUTHORIZED });
+      return res
+        .status(401)
+        .json({ success: false, message: message.UNAUTHORIZED });
     }
 
-
-    const existingTeamManager = await teamManagerServices.getTeamManagerById(id);
-    // 400 bad request  
+    const existingTeamManager =
+      await teamManagerServices.getTeamManagerById(id);
+    // 400 bad request
     if (!existingTeamManager) {
-      return res.status(400).json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
+      return res
+        .status(400)
+        .json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
     }
 
-    const emailExists = await teamManagerServices.isEmailExists(teamManagerData.email);
+    const emailExists = await teamManagerServices.isEmailExists(
+      teamManagerData.email,
+    );
     if (emailExists) {
       return res.status(400).json({
         success: false,
@@ -94,7 +104,9 @@ export const updateTeamManagerController = async (req: RequestWithAuthData, res:
     }
 
     if (!existingTeamManager) {
-      return res.status(204).json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
+      return res
+        .status(204)
+        .json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
     }
 
     if (teamManagerData.password !== teamManagerData.confirmPassword) {
@@ -104,7 +116,10 @@ export const updateTeamManagerController = async (req: RequestWithAuthData, res:
       });
     }
 
-    const updatedTeamManager = await teamManagerServices.editTeamManager(id, teamManagerData);
+    const updatedTeamManager = await teamManagerServices.editTeamManager(
+      id,
+      teamManagerData,
+    );
 
     return res.status(200).json({
       success: true,
@@ -117,42 +132,63 @@ export const updateTeamManagerController = async (req: RequestWithAuthData, res:
 };
 
 // Delete Team Manager
-export const deleteTeamManagerController = async (req: RequestWithAuthData, res: Response): Promise<any> => {
+export const deleteTeamManagerController = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
   const { id } = req.params;
 
   try {
     if (!req.userId) {
-      return res.status(401).json({ success: false, message: message.UNAUTHORIZED });
+      return res
+        .status(401)
+        .json({ success: false, message: message.UNAUTHORIZED });
     }
 
-    const deletedTeamManager = await teamManagerServices.deleteTeamManager(id, req.userId);
+    const deletedTeamManager = await teamManagerServices.deleteTeamManager(
+      id,
+      req.userId,
+    );
     if (!deletedTeamManager) {
-      return res.status(204).json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
+      return res
+        .status(204)
+        .json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
     }
 
-    res.status(200).json({ success: true, message: message.TEAM_MANAGER_DELETED });
+    res
+      .status(200)
+      .json({ success: true, message: message.TEAM_MANAGER_DELETED });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });
   }
 };
 
 // Get Team Manager by ID
-export const getTeamManagerByIdController = async (req: RequestWithAuthData, res: Response): Promise<any> => {
+export const getTeamManagerByIdController = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
   const { id } = req.params;
 
   try {
     if (!req.userId) {
-      return res.status(401).json({ success: false, message: message.UNAUTHORIZED });
+      return res
+        .status(401)
+        .json({ success: false, message: message.UNAUTHORIZED });
     }
 
     const teamManager = await teamManagerServices.getTeamManagerById(id);
-    
+
     if (teamManager === null) {
-      return res.status(400).json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
+      return res
+        .status(400)
+        .json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
     }
 
     if (!teamManager) {
-      return res.status(204).json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
+      return res
+        .status(204)
+        .json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
     }
 
     res.status(200).json({ success: true, teamManager });
@@ -162,10 +198,15 @@ export const getTeamManagerByIdController = async (req: RequestWithAuthData, res
 };
 
 // Get All Team Managers
-export const getAllTeamManagersController = async (req: RequestWithAuthData, res: Response): Promise<any> => {
+export const getAllTeamManagersController = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
   try {
     if (!req.userId) {
-      return res.status(401).json({ success: false, message: message.UNAUTHORIZED });
+      return res
+        .status(401)
+        .json({ success: false, message: message.UNAUTHORIZED });
     }
 
     const teamManagers = await teamManagerServices.getAllTeamManagers();
@@ -184,7 +225,10 @@ export const getAllTeamManagersController = async (req: RequestWithAuthData, res
 };
 
 // Update Team Manager Status
-export const updateTeamManagerStatusController = async (req: RequestWithAuthData, res: Response): Promise<any> => {
+export const updateTeamManagerStatusController = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
   const { id } = req.params;
 
   if (!req.userId) {
@@ -198,11 +242,13 @@ export const updateTeamManagerStatusController = async (req: RequestWithAuthData
   };
 
   try {
-
-    const existingTeamManager = await teamManagerServices.getTeamManagerById(id);
-    // 400 bad request  
+    const existingTeamManager =
+      await teamManagerServices.getTeamManagerById(id);
+    // 400 bad request
     if (!existingTeamManager) {
-      return res.status(400).json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
+      return res
+        .status(400)
+        .json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
     }
 
     const updatedModule = await teamManagerServices.updateTeamManagerStatus(
@@ -211,7 +257,9 @@ export const updateTeamManagerStatusController = async (req: RequestWithAuthData
     );
 
     if (!updatedModule) {
-      return res.status(404).json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
+      return res
+        .status(404)
+        .json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
     }
 
     return res.status(200).json({
