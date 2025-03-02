@@ -84,7 +84,7 @@ export const deleteTeamMember = async (
 
 export const getAllTeamMembers = async (): Promise<customerDocument[]> => {
   return customerModel
-    .find({ isDeleted: false, role: 'team-members' })  // Make sure 'team-members' matches your system role
+    .find({ isDeleted: false, role: 'team-members' }) // Make sure 'team-members' matches your system role
     .sort({ createdAt: -1 });
 };
 

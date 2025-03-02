@@ -6,6 +6,7 @@ import customerTypeRoutes from '@modules/lookups-modules/customer-type/customer-
 import companyOwnersRoutes from '@modules/master-manage-modules/company-owners/company-owners.route';
 import teamManagerRoutes from '@modules/master-manage-modules/team-managers/team-managers.route';
 import teamMemberRoutes from '@modules/master-manage-modules/team-members/team-members.route';
+import industryProjectRoutes from '@modules/master-workspace-modules/industry-projects/industry-projects.route';
 import verifyTokenMiddleware from '@middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
 const router: Router = Router();
@@ -47,7 +48,7 @@ router.use('/team-members', teamMemberRoutes);
 
 // Projects Routes
 
-// router.use('/projects', projectRoutes);
+router.use('/industry-projects', industryProjectRoutes);
 
 // Tasks Routes
 

@@ -53,7 +53,8 @@ export const createTeamMemberController = async (
       });
     }
 
-    const createdTeamMember = await teamMemberServices.createTeamMemberServices(teamMemberData);
+    const createdTeamMember =
+      await teamMemberServices.createTeamMemberServices(teamMemberData);
 
     return res.status(201).json({
       success: true,
@@ -66,7 +67,11 @@ export const createTeamMemberController = async (
 };
 
 // Update Team Member
-export const updateTeamMemberController = async (req: RequestWithAuthData, res: Response, next: NextFunction): Promise<any> => {
+export const updateTeamMemberController = async (
+  req: RequestWithAuthData,
+  res: Response,
+  next: NextFunction,
+): Promise<any> => {
   const { id } = req.params;
   const teamMemberData = {
     ...req.body,
@@ -75,20 +80,26 @@ export const updateTeamMemberController = async (req: RequestWithAuthData, res: 
   };
 
   const { error } = teamMembersValidation(req.body);
-    if (error) {
-      return next(respondError(getMessageFromValidationError(error)));
-    }
+  if (error) {
+    return next(respondError(getMessageFromValidationError(error)));
+  }
   try {
     if (!req.userId) {
-      return res.status(401).json({ success: false, message: message.UNAUTHORIZED });
+      return res
+        .status(401)
+        .json({ success: false, message: message.UNAUTHORIZED });
     }
 
     const existingTeamMember = await teamMemberServices.getTeamMemberById(id);
     if (!existingTeamMember) {
-      return res.status(400).json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
+      return res
+        .status(400)
+        .json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
     }
 
-    const emailExists = await teamMemberServices.isEmailExists(teamMemberData.email);
+    const emailExists = await teamMemberServices.isEmailExists(
+      teamMemberData.email,
+    );
     if (emailExists) {
       return res.status(400).json({
         success: false,
@@ -103,7 +114,10 @@ export const updateTeamMemberController = async (req: RequestWithAuthData, res: 
       });
     }
 
-    const updatedTeamMember = await teamMemberServices.editTeamMember(id, teamMemberData);
+    const updatedTeamMember = await teamMemberServices.editTeamMember(
+      id,
+      teamMemberData,
+    );
 
     return res.status(200).json({
       success: true,
@@ -116,38 +130,57 @@ export const updateTeamMemberController = async (req: RequestWithAuthData, res: 
 };
 
 // Delete Team Member
-export const deleteTeamMemberController = async (req: RequestWithAuthData, res: Response): Promise<any> => {
+export const deleteTeamMemberController = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
   const { id } = req.params;
 
   try {
     if (!req.userId) {
-      return res.status(401).json({ success: false, message: message.UNAUTHORIZED });
+      return res
+        .status(401)
+        .json({ success: false, message: message.UNAUTHORIZED });
     }
 
-    const deletedTeamMember = await teamMemberServices.deleteTeamMember(id, req.userId);
+    const deletedTeamMember = await teamMemberServices.deleteTeamMember(
+      id,
+      req.userId,
+    );
     if (!deletedTeamMember) {
-      return res.status(204).json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
+      return res
+        .status(204)
+        .json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
     }
 
-    res.status(200).json({ success: true, message: message.TEAM_MEMBER_DELETED });
+    res
+      .status(200)
+      .json({ success: true, message: message.TEAM_MEMBER_DELETED });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });
   }
 };
 
 // Get Team Member by ID
-export const getTeamMemberByIdController = async (req: RequestWithAuthData, res: Response): Promise<any> => {
+export const getTeamMemberByIdController = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
   const { id } = req.params;
 
   try {
     if (!req.userId) {
-      return res.status(401).json({ success: false, message: message.UNAUTHORIZED });
+      return res
+        .status(401)
+        .json({ success: false, message: message.UNAUTHORIZED });
     }
 
     const teamMember = await teamMemberServices.getTeamMemberById(id);
-    
+
     if (teamMember === null) {
-      return res.status(400).json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
+      return res
+        .status(400)
+        .json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
     }
 
     res.status(200).json({ success: true, teamMember });
@@ -157,10 +190,15 @@ export const getTeamMemberByIdController = async (req: RequestWithAuthData, res:
 };
 
 // Get All Team Members
-export const getAllTeamMembersController = async (req: RequestWithAuthData, res: Response): Promise<any> => {
+export const getAllTeamMembersController = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
   try {
     if (!req.userId) {
-      return res.status(401).json({ success: false, message: message.UNAUTHORIZED });
+      return res
+        .status(401)
+        .json({ success: false, message: message.UNAUTHORIZED });
     }
 
     const teamMembers = await teamMemberServices.getAllTeamMembers();
@@ -179,7 +217,10 @@ export const getAllTeamMembersController = async (req: RequestWithAuthData, res:
 };
 
 // Update Team Member Status
-export const updateTeamMemberStatusController = async (req: RequestWithAuthData, res: Response): Promise<any> => {
+export const updateTeamMemberStatusController = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
   const { id } = req.params;
 
   if (!req.userId) {
@@ -195,7 +236,9 @@ export const updateTeamMemberStatusController = async (req: RequestWithAuthData,
   try {
     const existingTeamMember = await teamMemberServices.getTeamMemberById(id);
     if (!existingTeamMember) {
-      return res.status(400).json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
+      return res
+        .status(400)
+        .json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
     }
 
     const updatedModule = await teamMemberServices.updateTeamMemberStatus(
@@ -204,7 +247,9 @@ export const updateTeamMemberStatusController = async (req: RequestWithAuthData,
     );
 
     if (!updatedModule) {
-      return res.status(404).json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
+      return res
+        .status(404)
+        .json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
     }
 
     return res.status(200).json({

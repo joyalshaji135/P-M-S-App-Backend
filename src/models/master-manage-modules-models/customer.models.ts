@@ -27,7 +27,7 @@ export interface customerModel extends baseDocument {
   address: Address;
   password: string;
   isDefault: boolean;
-  skills: Skill[];  // Array of skills
+  skills: Skill[]; // Array of skills
   dateOfBirth?: Date;
   gender?: string;
   profilePicture?: string;
