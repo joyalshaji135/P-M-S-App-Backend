@@ -4,6 +4,8 @@ import authOrganizationRoutes from '@modules/auth-organization/auth-organization
 import lookupRoutes from '@modules/lookups-modules/lookup-code/lookup-code.route';
 import customerTypeRoutes from '@modules/lookups-modules/customer-type/customer-type.route';
 import companyOwnersRoutes from '@modules/master-manage-modules/company-owners/company-owners.route';
+import teamManagerRoutes from '@modules/master-manage-modules/team-managers/team-managers.route';
+import teamMemberRoutes from '@modules/master-manage-modules/team-members/team-members.route';
 import verifyTokenMiddleware from '@middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
 const router: Router = Router();
@@ -35,13 +37,13 @@ router.use('/customer-types', customerTypeRoutes);
 
 router.use('/company-owners', companyOwnersRoutes);
 
-// Team Member Routes
-
-// router.use('/team-members', teamMemberRoutes);
-
 // Team Manager Routes
 
-// router.use('/team-managers', teamManagerRoutes);
+router.use('/team-managers', teamManagerRoutes);
+
+// Team Member Routes
+
+router.use('/team-members', teamMemberRoutes);
 
 // Projects Routes
 

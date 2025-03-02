@@ -3,26 +3,26 @@ import customerModel, {
   customerDocument,
 } from '@models/master-manage-modules-models/customer.models';
 
-export const createCompanyOwnerRepository = async (
-  companyOwnerData: Partial<customerDocument>,
+export const createTeamMemberRepository = async (
+  teamMemberData: Partial<customerDocument>,
 ): Promise<customerDocument> => {
-  const user = new customerModel(companyOwnerData);
+  const user = new customerModel(teamMemberData);
   return await user.save();
 };
 
 export const findByEmail = async (
   email: string,
 ): Promise<customerDocument | null> => {
-  return customerModel.findOne({ email }).exec();
+  return customerModel.findOne({ email, role: 'team-member' }).exec();
 };
 
 export const isPhoneNumberExists = async (phone: string) => {
-  return customerModel.findOne({ phone }).exec();
+  return customerModel.findOne({ phone, role: 'team-members' }).exec();
 };
 
-// Company Owner Name is Existing
-export const isCompanyOwnerNameExists = async (name: string) => {
-  return customerModel.findOne({ name }).exec();
+// Team Member Name is Existing
+export const isTeamMemberNameExists = async (name: string) => {
+  return customerModel.findOne({ name, role: 'team-members' }).exec();
 };
 
 export const isNameExists = async (name: string, idToExclude?: string) => {
@@ -37,15 +37,16 @@ export const isNameExists = async (name: string, idToExclude?: string) => {
 
   return await customerModel.findOne(filter).exec();
 };
+
 export const isEmailExists = async (email: string) => {
   return customerModel.findOne({ email }).exec();
 };
 
-export const findCompanyOwnerById = async (
-  companyOwnerId: string,
+export const findTeamMemberById = async (
+  teamMemberId: string,
 ): Promise<customerDocument | null> => {
   return customerModel
-    .findById(companyOwnerId)
+    .findById(teamMemberId)
     .where({ isDeleted: false })
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
@@ -53,23 +54,23 @@ export const findCompanyOwnerById = async (
     .exec();
 };
 
-export const updateCompanyOwner = async (
-  companyOwnerId: string,
-  companyOwnerData: Partial<customerDocument>,
+export const updateTeamMember = async (
+  teamMemberId: string,
+  teamMemberData: Partial<customerDocument>,
 ): Promise<customerDocument | null> => {
   return customerModel.findByIdAndUpdate(
-    companyOwnerId,
-    { $set: companyOwnerData },
+    teamMemberId,
+    { $set: teamMemberData },
     { new: true, runValidators: true },
   );
 };
 
-export const deleteCompanyOwner = async (
-  companyOwnerId: string,
+export const deleteTeamMember = async (
+  teamMemberId: string,
   deletedBy: mongoose.Types.ObjectId,
 ): Promise<customerDocument | null> => {
   return customerModel.findByIdAndUpdate(
-    companyOwnerId,
+    teamMemberId,
     {
       $set: {
         isDeleted: true,
@@ -81,13 +82,13 @@ export const deleteCompanyOwner = async (
   );
 };
 
-export const getAllCompanyOwners = async (): Promise<customerDocument[]> => {
+export const getAllTeamMembers = async (): Promise<customerDocument[]> => {
   return customerModel
-    .find({ isDeleted: false, role: 'company-owners' })
+    .find({ isDeleted: false, role: 'team-members' })  // Make sure 'team-members' matches your system role
     .sort({ createdAt: -1 });
 };
 
-export const changeCompanyOwnerStatus = async (
+export const changeTeamMemberStatus = async (
   id: string,
   updatedData: Partial<customerDocument>,
 ): Promise<customerDocument | null> => {
