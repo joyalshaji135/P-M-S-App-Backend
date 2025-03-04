@@ -22,7 +22,7 @@ export interface taskRoleModel extends baseDocument {
 
 export type taskRoleDocument = taskRoleModel & Document;
 
-const customerTypeSchema: Schema<taskRoleDocument> = new Schema({
+const taskRoleSchema: Schema<taskRoleDocument> = new Schema({
   code: { type: String, required: true },
   taskName: { type: String, required: true, unique: true },
   resourceName: {
@@ -59,9 +59,9 @@ const customerTypeSchema: Schema<taskRoleDocument> = new Schema({
   },
 });
 
-customerTypeSchema.add(baseSchema);
+taskRoleSchema.add(baseSchema);
 
 export default mongoose.model<taskRoleDocument>(
-  'customerType',
-  customerTypeSchema,
+  'taskRole',
+  taskRoleSchema,
 );

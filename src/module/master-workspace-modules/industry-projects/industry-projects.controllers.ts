@@ -41,7 +41,7 @@ export const createIndustryProject = async (
     if (error) {
       return next(respondError(getMessageFromValidationError(error)));
     }
-    // Validate the getTeamMemberById and getTeamManagerById 
+    // Validate the getTeamMemberById and getTeamManagerById
 
     const teamManager = await getTeamManagerById(req.body.customer);
     if (!teamManager) {
@@ -78,7 +78,7 @@ export const createIndustryProject = async (
 export const editIndustryProject = async (
   req: RequestWithAuthData,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<any> => {
   const { id } = req.params;
   const industryProjectData = {
@@ -87,9 +87,9 @@ export const editIndustryProject = async (
     userUpdatedBy: req.userId,
   };
   const { error } = industryProjectValidation(req.body);
-    if (error) {
-      return next(respondError(getMessageFromValidationError(error)));
-    }
+  if (error) {
+    return next(respondError(getMessageFromValidationError(error)));
+  }
   try {
     if (!req.userId) {
       return res.status(401).json({
