@@ -15,4 +15,3 @@ connectToDatabase();
 
 export default app;
 
-// Umma
