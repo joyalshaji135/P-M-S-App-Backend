@@ -83,4 +83,13 @@ export const message = {
     'Industry project status updated successfully',
   FAILED_TO_RETRIEVE_INDUSTRY_PROJECTS: 'Failed to retrieve industry projects',
   INDUSTRY_PROJECT_EXISTS: 'Industry project with same exists',
+
+  // task roles
+  TASK_ROLE_CREATED_SUCCESS: 'Task role created successfully',
+  TASK_ROLE_UPDATED_SUCCESS: 'Task role updated successfully',
+  TASK_ROLE_DELETED: 'Task role deleted successfully',
+  TASK_ROLE_NOT_FOUND: 'Task role not found',
+  TASK_ROLE_STATUS_UPDATED: 'Task role status updated successfully',
+  FAILED_TO_RETRIEVE_TASK_ROLES: 'Failed to retrieve task roles',
+  TASK_ROLE_EXISTS: 'Task role with same exists',
 };

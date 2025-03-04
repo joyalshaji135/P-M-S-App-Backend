@@ -22,10 +22,14 @@ export const industryProjectValidation = (data: any) => {
       'string.max': 'Industry must be at most 50 characters long.',
     }),
 
-    priority: Joi.string().valid('Low', 'Medium', 'High', 'Critical').required().messages({
-      'any.only': "Invalid priority. Allowed values: 'Low', 'Medium', 'High', 'Critical'.",
-      'string.empty': 'Priority is required.',
-    }),
+    priority: Joi.string()
+      .valid('Low', 'Medium', 'High', 'Critical')
+      .required()
+      .messages({
+        'any.only':
+          "Invalid priority. Allowed values: 'Low', 'Medium', 'High', 'Critical'.",
+        'string.empty': 'Priority is required.',
+      }),
 
     description: Joi.string().min(10).max(500).required().messages({
       'string.empty': 'Description is required.',
@@ -33,21 +37,31 @@ export const industryProjectValidation = (data: any) => {
       'string.max': 'Description must be at most 500 characters long.',
     }),
 
-    projectStatus: Joi.string().valid('Planned', 'Ongoing', 'Completed', 'On Hold', 'Cancelled').required().messages({
-      'any.only': "Invalid project status. Allowed values: 'Planned', 'Ongoing', 'Completed', 'On Hold', 'Cancelled'.",
-      'string.empty': 'Project status is required.',
-    }),
+    projectStatus: Joi.string()
+      .valid('Planned', 'Ongoing', 'Completed', 'On Hold', 'Cancelled')
+      .required()
+      .messages({
+        'any.only':
+          "Invalid project status. Allowed values: 'Planned', 'Ongoing', 'Completed', 'On Hold', 'Cancelled'.",
+        'string.empty': 'Project status is required.',
+      }),
 
     startDate: Joi.date().iso().required().messages({
       'date.base': 'Invalid start date format.',
-      'date.iso': 'Start date must be in ISO format (YYYY-MM-DDTHH:MM:SS.SSSZ).',
+      'date.iso':
+        'Start date must be in ISO format (YYYY-MM-DDTHH:MM:SS.SSSZ).',
     }),
 
-    endDate: Joi.date().iso().greater(Joi.ref('startDate')).required().messages({
-      'date.base': 'Invalid end date format.',
-      'date.iso': 'End date must be in ISO format (YYYY-MM-DDTHH:MM:SS.SSSZ).',
-      'date.greater': 'End date must be after the start date.',
-    }),
+    endDate: Joi.date()
+      .iso()
+      .greater(Joi.ref('startDate'))
+      .required()
+      .messages({
+        'date.base': 'Invalid end date format.',
+        'date.iso':
+          'End date must be in ISO format (YYYY-MM-DDTHH:MM:SS.SSSZ).',
+        'date.greater': 'End date must be after the start date.',
+      }),
   });
 
   // Validate data

@@ -7,6 +7,7 @@ import companyOwnersRoutes from '@modules/master-manage-modules/company-owners/c
 import teamManagerRoutes from '@modules/master-manage-modules/team-managers/team-managers.route';
 import teamMemberRoutes from '@modules/master-manage-modules/team-members/team-members.route';
 import industryProjectRoutes from '@modules/master-workspace-modules/industry-projects/industry-projects.route';
+import taskRolesRoutes from '@modules/master-workspace-modules/task-roles/task-roles.route';
 import verifyTokenMiddleware from '@middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
 const router: Router = Router();
@@ -52,7 +53,7 @@ router.use('/industry-projects', industryProjectRoutes);
 
 // Tasks Routes
 
-// router.use('/tasks', taskRoutes);
+router.use('/task-roles', taskRolesRoutes);
 
 // WorkSpaces Routes
 
