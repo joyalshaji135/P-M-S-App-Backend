@@ -53,9 +53,7 @@ export const createTaskRole = async (
     }
 
     // Validate the getIndustryProjectById
-    const industryProject = await getIndustryProjectById(
-      req.body.project,
-    );
+    const industryProject = await getIndustryProjectById(req.body.project);
     if (!industryProject) {
       return res.status(400).json({
         success: false,
@@ -70,7 +68,6 @@ export const createTaskRole = async (
       message: message.TASK_ROLE_CREATED_SUCCESS,
       taskRole: createdTaskRole,
     });
-    
   } catch (error: any) {
     return res.status(500).json({
       success: false,
@@ -90,10 +87,10 @@ export const editTaskRole = async (
     userUpdatedDate: new Date(),
     userUpdatedBy: req.userId,
   };
-//   const { error } = taskRoleValidation(req.body);
-//   if (error) {
-//     return next(respondError(getMessageFromValidationError(error)));
-//   }
+  //   const { error } = taskRoleValidation(req.body);
+  //   if (error) {
+  //     return next(respondError(getMessageFromValidationError(error)));
+  //   }
   try {
     if (!req.userId) {
       return res.status(401).json({
@@ -119,7 +116,10 @@ export const editTaskRole = async (
       taskRoleData.nameAlias = nameAlias;
     }
 
-    const updatedTaskRole = await taskRoleService.editTaskRole(id, taskRoleData);
+    const updatedTaskRole = await taskRoleService.editTaskRole(
+      id,
+      taskRoleData,
+    );
 
     return res.status(200).json({
       success: true,
@@ -147,7 +147,10 @@ export const deleteTaskRole = async (
       });
     }
 
-    const deletedTaskRole = await taskRoleService.deleteTaskRole(id, req.userId);
+    const deletedTaskRole = await taskRoleService.deleteTaskRole(
+      id,
+      req.userId,
+    );
 
     if (!deletedTaskRole) {
       return res.status(204).json({

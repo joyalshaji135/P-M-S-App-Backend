@@ -14,5 +14,3 @@ const app = http.createServer(expressApp);
 connectToDatabase();
 
 export default app;
-
-// Umma

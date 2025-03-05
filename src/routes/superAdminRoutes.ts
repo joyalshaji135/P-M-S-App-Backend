@@ -8,6 +8,8 @@ import teamManagerRoutes from '@modules/master-manage-modules/team-managers/team
 import teamMemberRoutes from '@modules/master-manage-modules/team-members/team-members.route';
 import industryProjectRoutes from '@modules/master-workspace-modules/industry-projects/industry-projects.route';
 import taskRolesRoutes from '@modules/master-workspace-modules/task-roles/task-roles.route';
+// import workspaceRoutes from '@modules/master-workspace-modules/workspaces/workspaces.route';
+import todoListsRoutes from '@modules/master-workspace-modules/todo-lists/todo-lists.route';
 import verifyTokenMiddleware from '@middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
 const router: Router = Router();
@@ -61,7 +63,7 @@ router.use('/task-roles', taskRolesRoutes);
 
 // Todos Routes
 
-// router.use('/todos', todoRoutes);
+router.use('/todo-lists', todoListsRoutes);
 
 // Feedback Routes
 

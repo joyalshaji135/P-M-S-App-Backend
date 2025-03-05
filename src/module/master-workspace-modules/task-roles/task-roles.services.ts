@@ -115,7 +115,9 @@ export const deleteTaskRole = async (
   deletedBy: mongoose.Types.ObjectId,
 ) => {
   try {
-    logger.info(`Deleting task role with ID ${taskRoleId} by user ${deletedBy}`);
+    logger.info(
+      `Deleting task role with ID ${taskRoleId} by user ${deletedBy}`,
+    );
 
     const deletedTaskRole = await taskRoleRepository.deleteTaskRole(
       taskRoleId,
@@ -164,4 +166,3 @@ export const updateTaskRoleStatus = async (
     );
   }
 };
-
