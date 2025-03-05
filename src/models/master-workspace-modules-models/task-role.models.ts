@@ -61,7 +61,4 @@ const taskRoleSchema: Schema<taskRoleDocument> = new Schema({
 
 taskRoleSchema.add(baseSchema);
 
-export default mongoose.model<taskRoleDocument>(
-  'taskRole',
-  taskRoleSchema,
-);
+export default mongoose.model<taskRoleDocument>('taskRole', taskRoleSchema);

@@ -92,4 +92,13 @@ export const message = {
   TASK_ROLE_STATUS_UPDATED: 'Task role status updated successfully',
   FAILED_TO_RETRIEVE_TASK_ROLES: 'Failed to retrieve task roles',
   TASK_ROLE_EXISTS: 'Task role with same exists',
+
+  // todo list
+  TODO_LIST_CREATED_SUCCESS: 'Todo list created successfully',
+  TODO_LIST_UPDATED_SUCCESS: 'Todo list updated successfully',
+  TODO_LIST_DELETED: 'Todo list deleted successfully',
+  TODO_LIST_NOT_FOUND: 'Todo list not found',
+  TODO_LIST_STATUS_UPDATED: 'Todo list status updated successfully',
+  FAILED_TO_RETRIEVE_TODO_LISTS: 'Failed to retrieve todo lists',
+  TODO_LIST_EXISTS: 'Todo list with same exists',
 };
