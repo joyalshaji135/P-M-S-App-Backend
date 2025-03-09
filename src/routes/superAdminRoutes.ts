@@ -10,6 +10,8 @@ import industryProjectRoutes from '@modules/master-workspace-modules/industry-pr
 import taskRolesRoutes from '@modules/master-workspace-modules/task-roles/task-roles.route';
 // import workspaceRoutes from '@modules/master-workspace-modules/workspaces/workspaces.route';
 import todoListsRoutes from '@modules/master-workspace-modules/todo-lists/todo-lists.route';
+import alertModesRoutess from '@modules/master-workspace-modules/alert-modes/alert-modes.route';
+import clientFeedbacksRoutes from '@modules/master-workspace-modules/clients-feedbacks/clients-feedbacks.route';
 import verifyTokenMiddleware from '@middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
 const router: Router = Router();
@@ -68,5 +70,13 @@ router.use('/todo-lists', todoListsRoutes);
 // Feedback Routes
 
 // router.use('/feedback', feedbackRoutes);
+
+// alert modes Routes
+
+router.use("/alert-modes", alertModesRoutess );
+
+// client feedbacks Routes
+
+router.use("/client-feedback", clientFeedbacksRoutes );
 
 export default router;

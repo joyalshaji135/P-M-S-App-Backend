@@ -14,10 +14,10 @@ export const isNameExists = async (title: string, idToExclude?: string) => {
   const filter: any = {
     titleName: title,
     isDeleted: false,
-  }
+  };
 
   if (idToExclude) {
-    filter._id = { $ne: new mongoose.Types.ObjectId(idToExclude) }
+    filter._id = { $ne: new mongoose.Types.ObjectId(idToExclude) };
   }
 
   return await todoListsModel.findOne(filter).exec();

@@ -2,10 +2,10 @@ import { Router } from 'express';
 import {
   createTodoListProfile,
   editTodoListProfile,
-  deleteTodoListProfile
-//   getTodoListById,
-//   getAllTodoLists,
-//   updateTodoListStatus,
+  deleteTodoListProfile,
+  //   getTodoListById,
+  //   getAllTodoLists,
+  //   updateTodoListStatus,
 } from './todo-lists.controllers';
 
 const router = Router();

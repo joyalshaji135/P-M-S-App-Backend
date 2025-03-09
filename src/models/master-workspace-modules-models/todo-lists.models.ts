@@ -31,7 +31,7 @@ const todoListsSchema: Schema<todoListsDocument> = new Schema({
       message:
         'nameAlias must be lowercase, without spaces, and can include hyphens!',
     },
-  }
+  },
 });
 
 todoListsSchema.add(baseSchema);
