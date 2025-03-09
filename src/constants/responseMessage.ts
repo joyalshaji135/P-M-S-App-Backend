@@ -101,4 +101,59 @@ export const message = {
   TODO_LIST_STATUS_UPDATED: 'Todo list status updated successfully',
   FAILED_TO_RETRIEVE_TODO_LISTS: 'Failed to retrieve todo lists',
   TODO_LIST_EXISTS: 'Todo list with same exists',
+
+  // Alert Modes
+    // Success Messages
+    ALERT_MODE_CREATED_SUCCESS: 'Alert mode created successfully.',
+    ALERT_MODE_UPDATED_SUCCESS: 'Alert mode updated successfully.',
+    ALERT_MODE_DELETED: 'Alert mode deleted successfully.',
+    ALERT_MODES_FETCHED_SUCCESS: 'Alert modes fetched successfully.',
+    ALERT_MODE_FETCHED_SUCCESS: 'Alert mode fetched successfully.',
+    ALERT_MODE_STATUS_UPDATED: 'Alert mode status updated successfully.',
+  
+    // Error Messages
+    UNAUTHORIZED_: 'Unauthorized access. Please log in.',
+    ALERT_MODE_NOT_FOUND: 'Alert mode not found.',
+    ALERT_MODE_CODE_EXISTS: 'An alert mode with the same code already exists.',
+    ALERT_MODE_MESSAGE_EXISTS: 'An alert mode with the same message already exists.',
+    ALERT_MODE_CODE_REQUIRED: 'Alert mode code is required.',
+    ALERT_MODE_MESSAGE_REQUIRED: 'Alert mode message is required.',
+    ALERT_MODE_SEVERITY_REQUIRED: 'Alert mode severity is required.',
+    ALERT_MODE_CUSTOMER_REQUIRED: 'Alert mode customer is required.',
+    ALERT_MODE_TRIGGERED_AT_REQUIRED: 'Alert mode triggered date is required.',
+    ALERT_MODE_STATUS_REQUIRED: 'Alert mode status is required.',
+    ALERT_MODE_UPDATE_FAILED: 'Failed to update alert mode.',
+    ALERT_MODE_DELETE_FAILED: 'Failed to delete alert mode.',
+    ALERT_MODE_FETCH_FAILED: 'Failed to fetch alert mode.',
+    ALERT_MODE_CREATE_FAILED: 'Failed to create alert mode.',
+
+    // client feedback messages
+
+      // General messages
+  UNAUTHORIZED_FEEDBACK: 'Unauthorized access. Please log in.',
+  INTERNAL_SERVER_ERROR: 'Internal server error. Please try again later.',
+
+  // Client Feedback messages
+  CLIENT_FEEDBACK_CREATED_SUCCESS: 'Client feedback created successfully.',
+  CLIENT_FEEDBACK_UPDATED_SUCCESS: 'Client feedback updated successfully.',
+  CLIENT_FEEDBACK_DELETED: 'Client feedback deleted successfully.',
+  CLIENT_FEEDBACKS_FETCHED_SUCCESS: 'Client feedbacks fetched successfully.',
+  CLIENT_FEEDBACK_FETCHED_SUCCESS: 'Client feedback fetched successfully.',
+  CLIENT_FEEDBACK_STATUS_UPDATED: 'Client feedback status updated successfully.',
+  CLIENT_FEEDBACK_NOT_FOUND: 'Client feedback not found.',
+  CLIENT_FEEDBACK_CODE_EXISTS: 'A client feedback with the same code already exists.',
+
+  // Validation messages
+  CLIENT_FEEDBACK_CODE_REQUIRED: 'Client feedback code is required.',
+  CLIENT_FEEDBACK_COMMENT_REQUIRED: 'Client feedback comment is required.',
+  CLIENT_FEEDBACK_RATING_REQUIRED: 'Client feedback rating is required.',
+  CLIENT_FEEDBACK_CUSTOMER_REQUIRED: 'Customer is required.',
+  CLIENT_FEEDBACK_PROJECT_REQUIRED: 'Industry project is required.',
+
+  // Error messages
+  CLIENT_FEEDBACK_CREATE_ERROR: 'Error creating client feedback.',
+  CLIENT_FEEDBACK_UPDATE_ERROR: 'Error updating client feedback.',
+  CLIENT_FEEDBACK_DELETE_ERROR: 'Error deleting client feedback.',
+  CLIENT_FEEDBACK_FETCH_ERROR: 'Error fetching client feedback.',
+  CLIENT_FEEDBACK_STATUS_UPDATE_ERROR: 'Error updating client feedback status.',
 };

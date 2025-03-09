@@ -18,7 +18,7 @@ const alertModeSchema: Schema<alertModeDocument> = new Schema({
   message: { type: String, required: true },
   customer: { type: Schema.Types.ObjectId, ref: 'customer', required: true },
   severity: { type: String, required: true },
-  alertStatus: { type: Boolean, required: true },
+  alertStatus: { type: Boolean, default: true },
   triggeredAt: { type: Date, required: true },
 });
 

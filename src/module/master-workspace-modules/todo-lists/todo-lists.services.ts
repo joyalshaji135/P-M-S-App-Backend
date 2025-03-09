@@ -17,25 +17,22 @@ export const createTodoListProfile = async (
       throw new Error('Todo list name alias is required.');
     }
 
-    const existingTodoListByName =
-      await todoListRepository.isNameExists(todoListData.titleName);
-    const existingTodoListByAlias =
-      await todoListRepository.isNameAliasExists(
-        todoListData.nameAlias,
-      );
+    const existingTodoListByName = await todoListRepository.isNameExists(
+      todoListData.titleName,
+    );
+    const existingTodoListByAlias = await todoListRepository.isNameAliasExists(
+      todoListData.nameAlias,
+    );
 
     if (existingTodoListByName) {
       throw new Error('A todo list with the same name already exists.');
     }
 
     if (existingTodoListByAlias) {
-      throw new Error(
-        'A todo list with the same name alias already exists.',
-      );
+      throw new Error('A todo list with the same name alias already exists.');
     }
 
-    const newTodoListProfile =
-      await todoListRepository.create(todoListData);
+    const newTodoListProfile = await todoListRepository.create(todoListData);
     await Log.create({
       userId: newTodoListProfile.createdBy,
       module: 'todoList',
@@ -69,15 +66,12 @@ export const editTodoListProfile = async (
     }
 
     if (todoListData.nameAlias) {
-      const existingTodoList =
-        await todoListRepository.isNameAliasExists(
-          todoListData.nameAlias,
-          todoListId,
-        );
+      const existingTodoList = await todoListRepository.isNameAliasExists(
+        todoListData.nameAlias,
+        todoListId,
+      );
       if (existingTodoList) {
-        throw new Error(
-          'A todo list with the same name alias already exists.',
-        );
+        throw new Error('A todo list with the same name alias already exists.');
       }
     }
 
@@ -87,9 +81,7 @@ export const editTodoListProfile = async (
     );
 
     if (!updatedTodoListProfile) {
-      throw new Error(
-        `Todo list profile with ID ${todoListId} not found`,
-      );
+      throw new Error(`Todo list profile with ID ${todoListId} not found`);
     }
 
     await Log.create({
@@ -131,9 +123,7 @@ export const deleteTodoList = async (
     );
 
     if (!deletedTodoList) {
-      throw new Error(
-        `Todo list profile with ID ${todoListId} not found`,
-      );
+      throw new Error(`Todo list profile with ID ${todoListId} not found`);
     }
     return deletedTodoList;
   } catch (error: any) {

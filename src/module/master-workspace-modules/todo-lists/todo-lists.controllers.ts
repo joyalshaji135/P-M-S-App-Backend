@@ -21,7 +21,10 @@ export const createTodoListProfile = async (
       });
     }
     const titleName = req.body.titleName;
-    const nameAlias = titleName.toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
+    const nameAlias = titleName
+      .toLowerCase()
+      .replace(/\s+/g, '')
+      .replace(/\./g, '');
     const lookupType = LookupTypes.TODO_LIST;
     const code = await generateNewLookupCode(lookupType);
 
@@ -97,8 +100,10 @@ export const editTodoListProfile = async (
       });
     }
 
-    const updatedTodoList =
-      await todoListService.editTodoListProfile(id, todoListData);
+    const updatedTodoList = await todoListService.editTodoListProfile(
+      id,
+      todoListData,
+    );
 
     if (!updatedTodoList) {
       return res.status(204).json({
@@ -134,7 +139,10 @@ export const deleteTodoListProfile = async (
       });
     }
 
-    const deletedTodoList = await todoListService.deleteTodoList(id, req.userId);
+    const deletedTodoList = await todoListService.deleteTodoList(
+      id,
+      req.userId,
+    );
 
     if (!deletedTodoList) {
       return res.status(204).json({

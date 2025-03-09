@@ -10,7 +10,7 @@ export interface clientFeedbackModel extends baseDocument {
   rating: number;
   comment: string;
   submittedAt: Date;
-  feedbackStatus: string;
+  feedbackStatus: boolean;
 }
 
 export type clientFeedbackDocument = clientFeedbackModel & Document;
@@ -26,7 +26,7 @@ const clientFeedbackSchema: Schema<clientFeedbackDocument> = new Schema({
   rating: { type: Number, required: true },
   comment: { type: String, required: true },
   submittedAt: { type: Date, required: true },
-  feedbackStatus: { type: String, required: true },
+  feedbackStatus: { type: Boolean, default: true },
 });
 
 clientFeedbackSchema.add(baseSchema);
