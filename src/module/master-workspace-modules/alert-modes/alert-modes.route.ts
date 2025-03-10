@@ -6,7 +6,7 @@ import {
   getAlertModeById,
   getAllAlertModes,
   updateAlertModeStatus,
-} from './alert-modes.controllers'; 
+} from './alert-modes.controllers';
 
 const router = Router();
 

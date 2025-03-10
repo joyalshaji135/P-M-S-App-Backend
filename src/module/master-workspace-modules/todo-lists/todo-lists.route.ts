@@ -1,25 +1,19 @@
 import { Router } from 'express';
-import {
-  createTodoListProfile,
-  editTodoListProfile,
-  deleteTodoListProfile,
-  //   getTodoListById,
-  //   getAllTodoLists,
-  //   updateTodoListStatus,
-} from './todo-lists.controllers';
+import * as todoListControllers from './todo-lists.controllers';
 
 const router = Router();
 
-router.post('/create-todo-list', createTodoListProfile);
+router.post('/create-todo-list', todoListControllers.createTodoListProfile);
 
-// router.patch('/:id/status-change-todo-list', updateTodoListStatus);
+router.put('/:id/update-todo-list', todoListControllers.editTodoListProfile);
 
-router.put('/:id/update-todo-list', editTodoListProfile);
+router.delete('/:id/delete-todo-list', todoListControllers.deleteTodoListProfile);
 
-router.delete('/:id/delete-todo-list', deleteTodoListProfile);
+router.get('/:id/get-by-id-todo-list', todoListControllers.getTodoListById);
 
-// router.get('/:id/get-by-id-todo-list', getTodoListById);
+router.get('/get-all-todo-lists', todoListControllers.getAllTodoLists);
 
-// router.get('/get-all-todo-lists', getAllTodoLists);
+router.patch('/:id/status-change-todo-list', todoListControllers.updateTodoListStatus);
+
 
 export default router;

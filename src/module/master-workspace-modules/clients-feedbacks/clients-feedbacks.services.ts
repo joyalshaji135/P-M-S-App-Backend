@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import logger from '@utils/logger'; // Adjust the import path as needed
 import Log from '@models/lookups-models/log.model'; // Adjust the import path as needed
 import * as clientFeedbackRepository from './clients-feedbacks.repositorys'; // Adjust the import path as needed
-import { clientFeedbackDocument } from '@models/master-workspace-modules-models/clients-feedbacks.models';  // Adjust the import path as needed
+import { clientFeedbackDocument } from '@models/master-workspace-modules-models/clients-feedbacks.models'; // Adjust the import path as needed
 
 // Create a new client feedback profile
 export const createClientFeedbackProfile = async (
@@ -23,15 +23,15 @@ export const createClientFeedbackProfile = async (
       throw new Error('Client feedback rating is required.');
     }
 
-    const existingFeedbackByCode = await clientFeedbackRepository.isFeedbackCodeExists(
-      feedbackData.code,
-    );
+    const existingFeedbackByCode =
+      await clientFeedbackRepository.isFeedbackCodeExists(feedbackData.code);
 
     if (existingFeedbackByCode) {
       throw new Error('A client feedback with the same code already exists.');
     }
 
-    const newFeedbackProfile = await clientFeedbackRepository.createClientFeedback(feedbackData);
+    const newFeedbackProfile =
+      await clientFeedbackRepository.createClientFeedback(feedbackData);
 
     await Log.create({
       userId: newFeedbackProfile.createdBy,
@@ -58,22 +58,26 @@ export const editClientFeedbackProfile = async (
     });
 
     if (feedbackData.code) {
-      const existingFeedback = await clientFeedbackRepository.isFeedbackCodeExists(
-        feedbackData.code,
-        feedbackId,
-      );
+      const existingFeedback =
+        await clientFeedbackRepository.isFeedbackCodeExists(
+          feedbackData.code,
+          feedbackId,
+        );
       if (existingFeedback) {
         throw new Error('A client feedback with the same code already exists.');
       }
     }
 
-    const updatedFeedbackProfile = await clientFeedbackRepository.updateClientFeedbackById(
-      feedbackId,
-      feedbackData,
-    );
+    const updatedFeedbackProfile =
+      await clientFeedbackRepository.updateClientFeedbackById(
+        feedbackId,
+        feedbackData,
+      );
 
     if (!updatedFeedbackProfile) {
-      throw new Error(`Client feedback profile with ID ${feedbackId} not found`);
+      throw new Error(
+        `Client feedback profile with ID ${feedbackId} not found`,
+      );
     }
 
     await Log.create({
@@ -118,7 +122,9 @@ export const deleteClientFeedbackProfile = async (
     );
 
     if (!deletedFeedback) {
-      throw new Error(`Client feedback profile with ID ${feedbackId} not found`);
+      throw new Error(
+        `Client feedback profile with ID ${feedbackId} not found`,
+      );
     }
 
     await Log.create({
@@ -145,10 +151,11 @@ export const updateClientFeedbackStatus = async (
       `Updating status for client feedback with ID ${id} to ${updatedData.feedbackStatus} by user ${updatedData.userUpdatedBy}`,
     );
 
-    const updatedStatus = await clientFeedbackRepository.changeClientFeedbackStatus(
-      id,
-      updatedData,
-    );
+    const updatedStatus =
+      await clientFeedbackRepository.changeClientFeedbackStatus(
+        id,
+        updatedData,
+      );
 
     if (!updatedStatus) {
       throw new Error(`Client feedback profile with ID ${id} not found`);

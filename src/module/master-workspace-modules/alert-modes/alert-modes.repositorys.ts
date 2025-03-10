@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import alertModeModel, {
   alertModeDocument,
-} from '@models/master-workspace-modules-models/alert-mode.models'; 
+} from '@models/master-workspace-modules-models/alert-mode.models';
 
 export const createAlertMode = async (
   alertModeData: Partial<alertModeDocument>,

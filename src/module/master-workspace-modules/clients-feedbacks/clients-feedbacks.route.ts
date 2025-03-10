@@ -6,7 +6,7 @@ import {
   getClientFeedbackById,
   getAllClientFeedbacks,
   updateClientFeedbackStatus,
-} from './clients-feedbacks.controllers'; 
+} from './clients-feedbacks.controllers';
 
 const router = Router();
 

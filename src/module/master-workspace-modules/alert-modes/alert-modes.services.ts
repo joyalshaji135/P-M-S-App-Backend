@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import logger from '@utils/logger';
 import Log from '@models/lookups-models/log.model';
 import * as alertModeRepository from './alert-modes.repositorys';
-import { alertModeDocument } from '@models/master-workspace-modules-models/alert-mode.models'; 
+import { alertModeDocument } from '@models/master-workspace-modules-models/alert-mode.models';
 export const createAlertModeProfile = async (
   alertModeData: Partial<alertModeDocument>,
 ): Promise<alertModeDocument> => {
@@ -21,12 +21,12 @@ export const createAlertModeProfile = async (
       alertModeData.code,
     );
 
-
     if (existingAlertModeByCode) {
       throw new Error('An alert mode with the same code already exists.');
     }
 
-    const newAlertModeProfile = await alertModeRepository.createAlertMode(alertModeData);
+    const newAlertModeProfile =
+      await alertModeRepository.createAlertMode(alertModeData);
 
     await Log.create({
       userId: newAlertModeProfile.createdBy,
@@ -61,10 +61,8 @@ export const editAlertModeProfile = async (
       }
     }
 
-    const updatedAlertModeProfile = await alertModeRepository.updateAlertModeById(
-      alertModeId,
-      alertModeData,
-    );
+    const updatedAlertModeProfile =
+      await alertModeRepository.updateAlertModeById(alertModeId, alertModeData);
 
     if (!updatedAlertModeProfile) {
       throw new Error(`Alert mode profile with ID ${alertModeId} not found`);

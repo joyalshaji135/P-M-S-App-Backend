@@ -103,33 +103,34 @@ export const message = {
   TODO_LIST_EXISTS: 'Todo list with same exists',
 
   // Alert Modes
-    // Success Messages
-    ALERT_MODE_CREATED_SUCCESS: 'Alert mode created successfully.',
-    ALERT_MODE_UPDATED_SUCCESS: 'Alert mode updated successfully.',
-    ALERT_MODE_DELETED: 'Alert mode deleted successfully.',
-    ALERT_MODES_FETCHED_SUCCESS: 'Alert modes fetched successfully.',
-    ALERT_MODE_FETCHED_SUCCESS: 'Alert mode fetched successfully.',
-    ALERT_MODE_STATUS_UPDATED: 'Alert mode status updated successfully.',
-  
-    // Error Messages
-    UNAUTHORIZED_: 'Unauthorized access. Please log in.',
-    ALERT_MODE_NOT_FOUND: 'Alert mode not found.',
-    ALERT_MODE_CODE_EXISTS: 'An alert mode with the same code already exists.',
-    ALERT_MODE_MESSAGE_EXISTS: 'An alert mode with the same message already exists.',
-    ALERT_MODE_CODE_REQUIRED: 'Alert mode code is required.',
-    ALERT_MODE_MESSAGE_REQUIRED: 'Alert mode message is required.',
-    ALERT_MODE_SEVERITY_REQUIRED: 'Alert mode severity is required.',
-    ALERT_MODE_CUSTOMER_REQUIRED: 'Alert mode customer is required.',
-    ALERT_MODE_TRIGGERED_AT_REQUIRED: 'Alert mode triggered date is required.',
-    ALERT_MODE_STATUS_REQUIRED: 'Alert mode status is required.',
-    ALERT_MODE_UPDATE_FAILED: 'Failed to update alert mode.',
-    ALERT_MODE_DELETE_FAILED: 'Failed to delete alert mode.',
-    ALERT_MODE_FETCH_FAILED: 'Failed to fetch alert mode.',
-    ALERT_MODE_CREATE_FAILED: 'Failed to create alert mode.',
+  // Success Messages
+  ALERT_MODE_CREATED_SUCCESS: 'Alert mode created successfully.',
+  ALERT_MODE_UPDATED_SUCCESS: 'Alert mode updated successfully.',
+  ALERT_MODE_DELETED: 'Alert mode deleted successfully.',
+  ALERT_MODES_FETCHED_SUCCESS: 'Alert modes fetched successfully.',
+  ALERT_MODE_FETCHED_SUCCESS: 'Alert mode fetched successfully.',
+  ALERT_MODE_STATUS_UPDATED: 'Alert mode status updated successfully.',
 
-    // client feedback messages
+  // Error Messages
+  UNAUTHORIZED_: 'Unauthorized access. Please log in.',
+  ALERT_MODE_NOT_FOUND: 'Alert mode not found.',
+  ALERT_MODE_CODE_EXISTS: 'An alert mode with the same code already exists.',
+  ALERT_MODE_MESSAGE_EXISTS:
+    'An alert mode with the same message already exists.',
+  ALERT_MODE_CODE_REQUIRED: 'Alert mode code is required.',
+  ALERT_MODE_MESSAGE_REQUIRED: 'Alert mode message is required.',
+  ALERT_MODE_SEVERITY_REQUIRED: 'Alert mode severity is required.',
+  ALERT_MODE_CUSTOMER_REQUIRED: 'Alert mode customer is required.',
+  ALERT_MODE_TRIGGERED_AT_REQUIRED: 'Alert mode triggered date is required.',
+  ALERT_MODE_STATUS_REQUIRED: 'Alert mode status is required.',
+  ALERT_MODE_UPDATE_FAILED: 'Failed to update alert mode.',
+  ALERT_MODE_DELETE_FAILED: 'Failed to delete alert mode.',
+  ALERT_MODE_FETCH_FAILED: 'Failed to fetch alert mode.',
+  ALERT_MODE_CREATE_FAILED: 'Failed to create alert mode.',
 
-      // General messages
+  // client feedback messages
+
+  // General messages
   UNAUTHORIZED_FEEDBACK: 'Unauthorized access. Please log in.',
   INTERNAL_SERVER_ERROR: 'Internal server error. Please try again later.',
 
@@ -139,9 +140,11 @@ export const message = {
   CLIENT_FEEDBACK_DELETED: 'Client feedback deleted successfully.',
   CLIENT_FEEDBACKS_FETCHED_SUCCESS: 'Client feedbacks fetched successfully.',
   CLIENT_FEEDBACK_FETCHED_SUCCESS: 'Client feedback fetched successfully.',
-  CLIENT_FEEDBACK_STATUS_UPDATED: 'Client feedback status updated successfully.',
+  CLIENT_FEEDBACK_STATUS_UPDATED:
+    'Client feedback status updated successfully.',
   CLIENT_FEEDBACK_NOT_FOUND: 'Client feedback not found.',
-  CLIENT_FEEDBACK_CODE_EXISTS: 'A client feedback with the same code already exists.',
+  CLIENT_FEEDBACK_CODE_EXISTS:
+    'A client feedback with the same code already exists.',
 
   // Validation messages
   CLIENT_FEEDBACK_CODE_REQUIRED: 'Client feedback code is required.',
@@ -156,4 +159,45 @@ export const message = {
   CLIENT_FEEDBACK_DELETE_ERROR: 'Error deleting client feedback.',
   CLIENT_FEEDBACK_FETCH_ERROR: 'Error fetching client feedback.',
   CLIENT_FEEDBACK_STATUS_UPDATE_ERROR: 'Error updating client feedback status.',
+
+  // document file messages
+
+  DOCUMENT_FILE_CREATED_SUCCESS: 'Document file created successfully',
+  DOCUMENT_FILE_UPDATED_SUCCESS: 'Document file updated successfully',
+  DOCUMENT_FILE_DELETED: 'Document file deleted successfully',
+  DOCUMENT_FILE_NOT_FOUND: 'Document file not found',
+  DOCUMENT_FILE_STATUS_UPDATED: 'Document file status updated successfully',
+  FAILED_TO_RETRIEVE_DOCUMENT_FILES: 'Failed to retrieve document files',
+  DOCUMENT_FILE_EXISTS: 'Document file with same exists',
+
+  // google meet messages
+
+  GOOGLE_MEET_CREATED_SUCCESS: 'Google meet created successfully',
+  GOOGLE_MEET_UPDATED_SUCCESS: 'Google meet updated successfully',
+  GOOGLE_MEET_DELETED: 'Google meet deleted successfully',
+  GOOGLE_MEET_NOT_FOUND: 'Google meet not found',
+  GOOGLE_MEET_STATUS_UPDATED: 'Google meet status updated successfully',
+  FAILED_TO_RETRIEVE_GOOGLE_MEETS: 'Failed to retrieve google meets',
+  GOOGLE_MEET_EXISTS: 'Google meet with same exists',
+
+  // event programs messages
+
+  EVENT_PROGRAMS_CREATED_SUCCESS: 'Event program created successfully',
+  EVENT_PROGRAMS_UPDATED_SUCCESS: 'Event program updated successfully',
+  EVENT_PROGRAMS_DELETED: 'Event program deleted successfully',
+  EVENT_PROGRAMS_NOT_FOUND: 'Event program not found',
+  EVENT_PROGRAMS_STATUS_UPDATED: 'Event program status updated successfully',
+  FAILED_TO_RETRIEVE_EVENT_PROGRAMS: 'Failed to retrieve event programs',
+  EVENT_PROGRAMS_EXISTS: 'Event program with same exists',
+
+  // recruitment post messages
+
+  RECRUITMENT_POST_CREATED_SUCCESS: 'Recruitment post created successfully',
+  RECRUITMENT_POST_UPDATED_SUCCESS: 'Recruitment post updated successfully',
+  RECRUITMENT_POST_DELETED: 'Recruitment post deleted successfully',
+  RECRUITMENT_POST_NOT_FOUND: 'Recruitment post not found',
+  RECRUITMENT_POST_STATUS_UPDATED:
+    'Recruitment post status updated successfully',
+  FAILED_TO_RETRIEVE_RECRUITMENT_POSTS: 'Failed to retrieve recruitment posts',
+  RECRUITMENT_POST_EXISTS: 'Recruitment post with same exists',
 };

@@ -12,7 +12,10 @@ export const createClientFeedback = async (
 };
 
 // Check if a feedback code already exists (excluding a specific ID if provided)
-export const isFeedbackCodeExists = async (code: string, idToExclude?: string) => {
+export const isFeedbackCodeExists = async (
+  code: string,
+  idToExclude?: string,
+) => {
   const filter: any = {
     code: code,
     isDeleted: false,

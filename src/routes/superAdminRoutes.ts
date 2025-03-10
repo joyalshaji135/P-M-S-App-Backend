@@ -12,6 +12,10 @@ import taskRolesRoutes from '@modules/master-workspace-modules/task-roles/task-r
 import todoListsRoutes from '@modules/master-workspace-modules/todo-lists/todo-lists.route';
 import alertModesRoutess from '@modules/master-workspace-modules/alert-modes/alert-modes.route';
 import clientFeedbacksRoutes from '@modules/master-workspace-modules/clients-feedbacks/clients-feedbacks.route';
+import documentFileRoutes from '@modules/feature-manage-modules/document-files/document-files.route';
+import eventProgramRoutes from '@modules/feature-manage-modules/event-programs/event-programs.route';
+import googleMeetRoutes from '@modules/feature-manage-modules/google-meets/google-meets.route';
+import recruitmentPostsRoutes from '@modules/feature-manage-modules/recruitment-posts/recruitment-posts.route';
 import verifyTokenMiddleware from '@middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
 const router: Router = Router();
@@ -67,16 +71,29 @@ router.use('/task-roles', taskRolesRoutes);
 
 router.use('/todo-lists', todoListsRoutes);
 
-// Feedback Routes
-
-// router.use('/feedback', feedbackRoutes);
-
 // alert modes Routes
 
-router.use("/alert-modes", alertModesRoutess );
+router.use('/alert-modes', alertModesRoutess);
 
 // client feedbacks Routes
 
-router.use("/client-feedback", clientFeedbacksRoutes );
+router.use('/client-feedback', clientFeedbacksRoutes);
+
+// document routes
+
+router.use('/document-files', documentFileRoutes);
+
+// event programs Routes
+
+router.use('/event-programs', eventProgramRoutes);
+
+// google Meet Routes
+
+router.use('/google-meet', googleMeetRoutes);
+
+// recruitment posts Routes
+
+router.use('/recruitment-posts', recruitmentPostsRoutes);
+
 
 export default router;

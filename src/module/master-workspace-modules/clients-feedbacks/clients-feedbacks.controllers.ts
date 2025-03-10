@@ -1,12 +1,12 @@
 import { NextFunction, Response } from 'express';
-import * as clientFeedbackService from './clients-feedbacks.services'; 
-import { message } from '@constants/responseMessage'; 
-import { RequestWithAuthData } from '../../../@types/express'; 
-import { LookupTypes } from '@constants/lookup'; 
-import { generateNewLookupCode } from '@utils/lookupCodeGenerator'; 
-// import { clientFeedbackValidation } from '@validation/client-feedbacks/client-feedbacks.validation'; 
-import { respondError } from '@helper/response'; 
-import { getMessageFromValidationError } from '@helper/utils'; 
+import * as clientFeedbackService from './clients-feedbacks.services';
+import { message } from '@constants/responseMessage';
+import { RequestWithAuthData } from '../../../@types/express';
+import { LookupTypes } from '@constants/lookup';
+import { generateNewLookupCode } from '@utils/lookupCodeGenerator';
+// import { clientFeedbackValidation } from '@validation/client-feedbacks/client-feedbacks.validation';
+import { respondError } from '@helper/response';
+import { getMessageFromValidationError } from '@helper/utils';
 
 // Create a new client feedback profile
 export const createClientFeedbackProfile = async (
@@ -25,7 +25,7 @@ export const createClientFeedbackProfile = async (
     const { code, comment, rating, customer, industryProject } = req.body;
 
     // Generate a new lookup code if needed
-    const lookupType = LookupTypes.CLIENT_FEEDBACK; 
+    const lookupType = LookupTypes.CLIENT_FEEDBACK;
     const generatedCode = await generateNewLookupCode(lookupType);
 
     const feedbackData = {

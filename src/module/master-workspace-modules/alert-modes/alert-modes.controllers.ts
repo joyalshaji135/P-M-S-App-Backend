@@ -42,7 +42,8 @@ export const createAlertModeProfile = async (
     //   return next(respondError(getMessageFromValidationError(error)));
     // }
 
-    const createdAlertMode = await alertModeService.createAlertModeProfile(alertModeData);
+    const createdAlertMode =
+      await alertModeService.createAlertModeProfile(alertModeData);
 
     return res.status(201).json({
       success: true,

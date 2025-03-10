@@ -162,3 +162,138 @@ export const deleteTodoListProfile = async (
     });
   }
 };
+
+export const getTodoListById = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  const { id } = req.params;
+
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: message.UNAUTHORIZED,
+      });
+    }
+
+    const todoList = await todoListService.getTodoListById(id);
+
+    if (todoList === null) {
+      return res.status(400).json({
+        success: false,
+        message: message.TODO_LIST_NOT_FOUND,
+      });
+    }
+
+    if (!todoList) {
+      return res.status(204).json({
+        success: false,
+        message: message.TODO_LIST_NOT_FOUND,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      todoList,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const getAllTodoLists = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: message.UNAUTHORIZED,
+      });
+    }
+
+    const todoLists = await todoListService.getAllTodoLists();
+
+    if (todoLists.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: message.TODO_LIST_NOT_FOUND,
+      });
+    }
+
+    if (!todoLists) {
+      return res.status(204).json({
+        success: false,
+        message: message.FAILED_TO_RETRIEVE_TODO_LISTS,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      todoLists,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const updateTodoListStatus = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  const { id } = req.params;
+
+  if (!req.userId) {
+    return res.status(401).json({
+      success: false,
+      message: message.UNAUTHORIZED,
+    });
+  }
+  console.log(req.userId);
+  const userStatusUpdateData = {
+    ...req.body,
+    userUpdatedBy: req.userId,
+    userUpdatedDate: new Date(),
+  };
+  try {
+    const todoList = await todoListService.getTodoListById(id);
+
+    if (!todoList) {
+      return res.status(400).json({
+        success: false,
+        message: message.TODO_LIST_NOT_FOUND,
+      });
+    }
+    const updatedTodoList =
+      await todoListService.updateTodoListStatus(
+        id,
+        userStatusUpdateData,
+      );
+
+    if (!updatedTodoList) {
+      return res.status(204).json({
+        success: false,
+        message: message.TODO_LIST_NOT_FOUND,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: message.TODO_LIST_STATUS_UPDATED,
+      todoList: updatedTodoList,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
