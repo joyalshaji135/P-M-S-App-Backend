@@ -72,7 +72,8 @@ export const editRecruitmentPostProfile = async (
       });
     }
     // Get RecruitmentPost By Id from the database
-    const recruitmentPost = await recruitmentPostService.getRecruitmentPostById(id);
+    const recruitmentPost =
+      await recruitmentPostService.getRecruitmentPostById(id);
 
     if (!recruitmentPost) {
       return res.status(400).json({
@@ -135,10 +136,8 @@ export const deleteRecruitmentPostProfile = async (
       });
     }
 
-    const deletedRecruitmentPost = await recruitmentPostService.deleteRecruitmentPost(
-      id,
-      req.userId,
-    );
+    const deletedRecruitmentPost =
+      await recruitmentPostService.deleteRecruitmentPost(id, req.userId);
 
     if (!deletedRecruitmentPost) {
       return res.status(204).json({
@@ -159,136 +158,139 @@ export const deleteRecruitmentPostProfile = async (
   }
 };
 export const getRecruitmentPostById = async (
-    req: RequestWithAuthData,
-    res: Response,
-  ): Promise<any> => {
-    const { id } = req.params;
-  
-    try {
-      if (!req.userId) {
-        return res.status(401).json({
-          success: false,
-          message: message.UNAUTHORIZED,
-        });
-      }
-  
-      const recruitmentPost = await recruitmentPostService.getRecruitmentPostById(id);
-  
-      if (recruitmentPost === null) {
-        return res.status(400).json({
-          success: false,
-          message: message.RECRUITMENT_POST_NOT_FOUND,
-        });
-      }
-  
-      if (!recruitmentPost) {
-        return res.status(204).json({
-          success: false,
-          message: message.RECRUITMENT_POST_NOT_FOUND,
-        });
-      }
-  
-      return res.status(200).json({
-        success: true,
-        recruitmentPost,
-      });
-    } catch (error: any) {
-      return res.status(500).json({
-        success: false,
-        message: error.message,
-      });
-    }
-  };
-  
-  export const getAllRecruitmentPosts = async (
-    req: RequestWithAuthData,
-    res: Response,
-  ): Promise<any> => {
-    try {
-      if (!req.userId) {
-        return res.status(401).json({
-          success: false,
-          message: message.UNAUTHORIZED,
-        });
-      }
-  
-      const recruitmentPosts = await recruitmentPostService.getAllRecruitmentPosts();
-  
-      if (recruitmentPosts.length === 0) {
-        return res.status(400).json({
-          success: false,
-          message: message.RECRUITMENT_POST_NOT_FOUND,
-        });
-      }
-  
-      if (!recruitmentPosts) {
-        return res.status(204).json({
-          success: false,
-          message: message.FAILED_TO_RETRIEVE_RECRUITMENT_POSTS,
-        });
-      }
-  
-      return res.status(200).json({
-        success: true,
-        recruitmentPosts,
-      });
-    } catch (error: any) {
-      return res.status(500).json({
-        success: false,
-        message: error.message,
-      });
-    }
-  };
-  
-  export const updateRecruitmentPostStatus = async (
-    req: RequestWithAuthData,
-    res: Response,
-  ): Promise<any> => {
-    const { id } = req.params;
-  
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  const { id } = req.params;
+
+  try {
     if (!req.userId) {
       return res.status(401).json({
         success: false,
         message: message.UNAUTHORIZED,
       });
     }
-    console.log(req.userId);
-    const userStatusUpdateData = {
-      ...req.body,
-      userUpdatedBy: req.userId,
-      userUpdatedDate: new Date(),
-    };
-    try {
-      const recruitmentPost = await recruitmentPostService.getRecruitmentPostById(id);
-  
-      if (!recruitmentPost) {
-        return res.status(400).json({
-          success: false,
-          message: message.RECRUITMENT_POST_NOT_FOUND,
-        });
-      }
-      const updatedRecruitmentPost =
-        await recruitmentPostService.updateRecruitmentPostStatus(
-          id,
-          userStatusUpdateData,
-        );
-  
-      if (!updatedRecruitmentPost) {
-        return res.status(204).json({
-          success: false,
-          message: message.RECRUITMENT_POST_NOT_FOUND,
-        });
-      }
-  
-      return res.status(200).json({
-        success: true,
-        message: message.RECRUITMENT_POST_STATUS_UPDATED,
-        recruitmentPost: updatedRecruitmentPost,
-      });
-    } catch (error: any) {
-      return res.status(500).json({
+
+    const recruitmentPost =
+      await recruitmentPostService.getRecruitmentPostById(id);
+
+    if (recruitmentPost === null) {
+      return res.status(400).json({
         success: false,
-        message: error.message,
+        message: message.RECRUITMENT_POST_NOT_FOUND,
       });
     }
+
+    if (!recruitmentPost) {
+      return res.status(204).json({
+        success: false,
+        message: message.RECRUITMENT_POST_NOT_FOUND,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      recruitmentPost,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const getAllRecruitmentPosts = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: message.UNAUTHORIZED,
+      });
+    }
+
+    const recruitmentPosts =
+      await recruitmentPostService.getAllRecruitmentPosts();
+
+    if (recruitmentPosts.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: message.RECRUITMENT_POST_NOT_FOUND,
+      });
+    }
+
+    if (!recruitmentPosts) {
+      return res.status(204).json({
+        success: false,
+        message: message.FAILED_TO_RETRIEVE_RECRUITMENT_POSTS,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      recruitmentPosts,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const updateRecruitmentPostStatus = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  const { id } = req.params;
+
+  if (!req.userId) {
+    return res.status(401).json({
+      success: false,
+      message: message.UNAUTHORIZED,
+    });
+  }
+  console.log(req.userId);
+  const userStatusUpdateData = {
+    ...req.body,
+    userUpdatedBy: req.userId,
+    userUpdatedDate: new Date(),
   };
+  try {
+    const recruitmentPost =
+      await recruitmentPostService.getRecruitmentPostById(id);
+
+    if (!recruitmentPost) {
+      return res.status(400).json({
+        success: false,
+        message: message.RECRUITMENT_POST_NOT_FOUND,
+      });
+    }
+    const updatedRecruitmentPost =
+      await recruitmentPostService.updateRecruitmentPostStatus(
+        id,
+        userStatusUpdateData,
+      );
+
+    if (!updatedRecruitmentPost) {
+      return res.status(204).json({
+        success: false,
+        message: message.RECRUITMENT_POST_NOT_FOUND,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: message.RECRUITMENT_POST_STATUS_UPDATED,
+      recruitmentPost: updatedRecruitmentPost,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

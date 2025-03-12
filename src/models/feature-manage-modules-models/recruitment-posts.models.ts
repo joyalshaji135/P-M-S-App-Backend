@@ -51,4 +51,7 @@ const recruitmentPostSchema: Schema<recruitmentPostDocument> = new Schema({
 
 recruitmentPostSchema.add(baseSchema);
 
-export default mongoose.model<recruitmentPostDocument>('recruitmentPost', recruitmentPostSchema);
+export default mongoose.model<recruitmentPostDocument>(
+  'recruitmentPost',
+  recruitmentPostSchema,
+);
