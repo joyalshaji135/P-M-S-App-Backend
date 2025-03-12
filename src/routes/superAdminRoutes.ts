@@ -24,7 +24,7 @@ router.use(requireApiKey);
 
 // Super Admin Login Routes
 
-router.use('/auth-super-admin', authOrganizationRoutes);
+router.use('/auth', authOrganizationRoutes);
 
 router.use(requireAuthToken);
 
@@ -94,6 +94,5 @@ router.use('/google-meet', googleMeetRoutes);
 // recruitment posts Routes
 
 router.use('/recruitment-posts', recruitmentPostsRoutes);
-
 
 export default router;

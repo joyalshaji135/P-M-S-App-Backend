@@ -89,8 +89,7 @@ export const editDocumentFileProfile = async (
       documentFileData.nameAlias = nameAlias;
     }
 
-    const existingDocumentFile =
-      await documentFileService.getDocumentById(id);
+    const existingDocumentFile = await documentFileService.getDocumentById(id);
     if (!existingDocumentFile) {
       return res.status(204).json({
         success: false,
@@ -98,8 +97,10 @@ export const editDocumentFileProfile = async (
       });
     }
 
-    const updatedDocumentFile =
-      await documentFileService.editDocumentProfile(id, documentFileData);
+    const updatedDocumentFile = await documentFileService.editDocumentProfile(
+      id,
+      documentFileData,
+    );
 
     if (!updatedDocumentFile) {
       return res.status(204).json({
@@ -159,137 +160,135 @@ export const deleteDocumentFileProfile = async (
   }
 };
 export const getDocumentFileById = async (
-    req: RequestWithAuthData,
-    res: Response,
-  ): Promise<any> => {
-    const { id } = req.params;
-  
-    try {
-      if (!req.userId) {
-        return res.status(401).json({
-          success: false,
-          message: message.UNAUTHORIZED,
-        });
-      }
-  
-      const documentFile = await documentFileService.getDocumentById(id);
-  
-      if (documentFile === null) {
-        return res.status(400).json({
-          success: false,
-          message: message.DOCUMENT_FILE_NOT_FOUND,
-        });
-      }
-  
-      if (!documentFile) {
-        return res.status(204).json({
-          success: false,
-          message: message.DOCUMENT_FILE_NOT_FOUND,
-        });
-      }
-  
-      return res.status(200).json({
-        success: true,
-        documentFile,
-      });
-    } catch (error: any) {
-      return res.status(500).json({
-        success: false,
-        message: error.message,
-      });
-    }
-  };
-  
-  export const getAllDocumentFiles = async (
-    req: RequestWithAuthData,
-    res: Response,
-  ): Promise<any> => {
-    try {
-      if (!req.userId) {
-        return res.status(401).json({
-          success: false,
-          message: message.UNAUTHORIZED,
-        });
-      }
-  
-      const documentFiles = await documentFileService.getAllDocuments();
-  
-      if (documentFiles.length === 0) {
-        return res.status(400).json({
-          success: false,
-          message: message.DOCUMENT_FILE_NOT_FOUND,
-        });
-      }
-  
-      if (!documentFiles) {
-        return res.status(204).json({
-          success: false,
-          message: message.FAILED_TO_RETRIEVE_DOCUMENT_FILES,
-        });
-      }
-  
-      return res.status(200).json({
-        success: true,
-        documentFiles,
-      });
-    } catch (error: any) {
-      return res.status(500).json({
-        success: false,
-        message: error.message,
-      });
-    }
-  };
-  
-  export const updateDocumentFileStatus = async (
-    req: RequestWithAuthData,
-    res: Response,
-  ): Promise<any> => {
-    const { id } = req.params;
-  
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  const { id } = req.params;
+
+  try {
     if (!req.userId) {
       return res.status(401).json({
         success: false,
         message: message.UNAUTHORIZED,
       });
     }
-    console.log(req.userId);
-    const userStatusUpdateData = {
-      ...req.body,
-      userUpdatedBy: req.userId,
-      userUpdatedDate: new Date(),
-    };
-    try {
-      const documentFile = await documentFileService.getDocumentById(id);
-  
-      if (!documentFile) {
-        return res.status(400).json({
-          success: false,
-          message: message.DOCUMENT_FILE_NOT_FOUND,
-        });
-      }
-      const updatedDocumentFile =
-        await documentFileService.updateDocumentStatus(
-          id,
-          userStatusUpdateData,
-        );
-  
-      if (!updatedDocumentFile) {
-        return res.status(204).json({
-          success: false,
-          message: message.DOCUMENT_FILE_NOT_FOUND,
-        });
-      }
-  
-      return res.status(200).json({
-        success: true,
-        message: message.DOCUMENT_FILE_STATUS_UPDATED,
-        documentFile: updatedDocumentFile,
-      });
-    } catch (error: any) {
-      return res.status(500).json({
+
+    const documentFile = await documentFileService.getDocumentById(id);
+
+    if (documentFile === null) {
+      return res.status(400).json({
         success: false,
-        message: error.message,
+        message: message.DOCUMENT_FILE_NOT_FOUND,
       });
     }
+
+    if (!documentFile) {
+      return res.status(204).json({
+        success: false,
+        message: message.DOCUMENT_FILE_NOT_FOUND,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      documentFile,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const getAllDocumentFiles = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: message.UNAUTHORIZED,
+      });
+    }
+
+    const documentFiles = await documentFileService.getAllDocuments();
+
+    if (documentFiles.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: message.DOCUMENT_FILE_NOT_FOUND,
+      });
+    }
+
+    if (!documentFiles) {
+      return res.status(204).json({
+        success: false,
+        message: message.FAILED_TO_RETRIEVE_DOCUMENT_FILES,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      documentFiles,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const updateDocumentFileStatus = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  const { id } = req.params;
+
+  if (!req.userId) {
+    return res.status(401).json({
+      success: false,
+      message: message.UNAUTHORIZED,
+    });
+  }
+  console.log(req.userId);
+  const userStatusUpdateData = {
+    ...req.body,
+    userUpdatedBy: req.userId,
+    userUpdatedDate: new Date(),
   };
-  
+  try {
+    const documentFile = await documentFileService.getDocumentById(id);
+
+    if (!documentFile) {
+      return res.status(400).json({
+        success: false,
+        message: message.DOCUMENT_FILE_NOT_FOUND,
+      });
+    }
+    const updatedDocumentFile = await documentFileService.updateDocumentStatus(
+      id,
+      userStatusUpdateData,
+    );
+
+    if (!updatedDocumentFile) {
+      return res.status(204).json({
+        success: false,
+        message: message.DOCUMENT_FILE_NOT_FOUND,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: message.DOCUMENT_FILE_STATUS_UPDATED,
+      documentFile: updatedDocumentFile,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

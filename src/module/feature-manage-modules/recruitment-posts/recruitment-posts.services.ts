@@ -59,12 +59,15 @@ export const editRecruitmentPost = async (
       recruitmentPostData,
     });
     if (recruitmentPostData.name) {
-      const existingRecruitmentPost = await recruitmentPostRepository.isNameExists(
-        recruitmentPostData.name,
-        recruitmentPostId,
-      );
+      const existingRecruitmentPost =
+        await recruitmentPostRepository.isNameExists(
+          recruitmentPostData.name,
+          recruitmentPostId,
+        );
       if (existingRecruitmentPost) {
-        throw new Error('A recruitment post with the same name already exists.');
+        throw new Error(
+          'A recruitment post with the same name already exists.',
+        );
       }
     }
 
@@ -125,10 +128,11 @@ export const deleteRecruitmentPost = async (
       `Deleting recruitment post with ID ${recruitmentPostId} by user ${deletedBy}`,
     );
 
-    const deletedRecruitmentPost = await recruitmentPostRepository.deleteRecruitmentPost(
-      recruitmentPostId,
-      deletedBy,
-    );
+    const deletedRecruitmentPost =
+      await recruitmentPostRepository.deleteRecruitmentPost(
+        recruitmentPostId,
+        deletedBy,
+      );
 
     if (!deletedRecruitmentPost) {
       throw new Error(
@@ -150,10 +154,11 @@ export const updateRecruitmentPostStatus = async (
       `Updating status for recruitment post with ID ${id} to ${updatedData.status} by user ${updatedData.userUpdatedBy}`,
     );
 
-    const updatedStatus = await recruitmentPostRepository.changeRecruitmentPostStatus(
-      id,
-      updatedData,
-    );
+    const updatedStatus =
+      await recruitmentPostRepository.changeRecruitmentPostStatus(
+        id,
+        updatedData,
+      );
 
     if (!updatedStatus) {
       throw new Error(`Recruitment post with ID ${id} not found`);
@@ -169,8 +174,6 @@ export const updateRecruitmentPostStatus = async (
 
     return updatedStatus;
   } catch (error: any) {
-    throw new Error(
-      `Error updating recruitment post status: ${error.message}`,
-    );
+    throw new Error(`Error updating recruitment post status: ${error.message}`);
   }
 };

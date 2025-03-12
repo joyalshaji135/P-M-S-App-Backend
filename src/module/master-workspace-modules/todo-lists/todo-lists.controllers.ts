@@ -272,11 +272,10 @@ export const updateTodoListStatus = async (
         message: message.TODO_LIST_NOT_FOUND,
       });
     }
-    const updatedTodoList =
-      await todoListService.updateTodoListStatus(
-        id,
-        userStatusUpdateData,
-      );
+    const updatedTodoList = await todoListService.updateTodoListStatus(
+      id,
+      userStatusUpdateData,
+    );
 
     if (!updatedTodoList) {
       return res.status(204).json({
