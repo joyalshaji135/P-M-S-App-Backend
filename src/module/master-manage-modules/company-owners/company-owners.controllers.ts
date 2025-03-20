@@ -46,7 +46,7 @@ export const createCompanyOwnerController = async (
         message: message.PHONE_NUMBER_ALREADY_EXISTS,
       });
     }
-    
+
     const createdCompanyOwner =
       await companyOwnerServices.createCompanyOwnerServices(companyOwnerData);
 

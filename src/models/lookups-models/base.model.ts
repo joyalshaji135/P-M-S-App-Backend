@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 import { customerDocument } from '../master-manage-modules-models/customer.models';
 
 export interface baseDocument extends Document {
-  status: boolean;
+  status: string;
   isDeleted: boolean;
   userUpdatedDate: Date;
   userUpdatedBy: mongoose.Types.ObjectId | customerDocument;
@@ -15,7 +15,7 @@ export interface baseDocument extends Document {
 
 export const baseSchema = new Schema<baseDocument>(
   {
-    status: { type: Boolean, default: true },
+    status: { type: String },
     isDeleted: { type: Boolean, default: false },
     createdBy: { type: Schema.Types.ObjectId, ref: 'customer' },
     userUpdatedDate: { type: Date },

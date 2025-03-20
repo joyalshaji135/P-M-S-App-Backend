@@ -100,7 +100,6 @@ const customerSchema: Schema<customerModel> = new Schema({
     phone: { type: String, required: false },
     industry: { type: String, required: false },
     website: { type: String, required: false },
-
   },
 });
 

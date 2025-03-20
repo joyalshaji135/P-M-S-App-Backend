@@ -11,7 +11,11 @@ export const createCompanyOwnerServices = async (
 ): Promise<Partial<customerDocument>> => {
   logger.info(`Creating company owner: ${companyOwnerData.email}`);
 
-  const { password = "defaultPassword123", email, ...otherCompanyOwnerData } = companyOwnerData;
+  const {
+    password = 'defaultPassword123',
+    email,
+    ...otherCompanyOwnerData
+  } = companyOwnerData;
 
   if (!password) {
     throw new Error(message.PASSWORD_REQUIRED);

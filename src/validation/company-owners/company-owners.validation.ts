@@ -13,13 +13,7 @@ export const companyOwnersValidation = (data: any) => {
       'string.empty': 'Email is required.',
     }),
 
-    phone: Joi.string()
-      .pattern(/^\+\d{10,15}$/)
-      .required()
-      .messages({
-        'string.pattern.base':
-          'Phone number must be in international format (e.g., +1234567890).',
-      }),
+    phone: Joi.string().required(),
 
     role: Joi.string()
       .valid('company-owners') // Only allows "company-owners"
@@ -27,7 +21,6 @@ export const companyOwnersValidation = (data: any) => {
       .messages({
         'any.only': "Invalid role. Only 'company-owners' is allowed.",
       }),
-
 
     address: Joi.object({
       street: Joi.string().required(),
@@ -54,13 +47,7 @@ export const companyOwnersValidation = (data: any) => {
         'string.uri': 'Invalid website URL format.',
       }),
       email: Joi.string().email().required(),
-      phone: Joi.string()
-        .pattern(/^\+\d{10,15}$/)
-        .required()
-        .messages({
-          'string.pattern.base':
-            'Phone number must be in international format (e.g., +1234567890).',
-        }),
+      phone: Joi.string().required(),
       industry: Joi.string().required(),
     }).required(),
 
@@ -70,7 +57,6 @@ export const companyOwnersValidation = (data: any) => {
     }),
 
     gender: Joi.string().valid('male', 'female', 'other').required(),
-
 
     lastLogin: Joi.date().iso().optional().messages({
       'date.base': 'Invalid date format.',

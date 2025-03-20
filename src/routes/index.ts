@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import superAdminRoutes from './superAdminRoutes';
 import companyOwnerRoutes from './companyOwnerRoutes';
+import teamManagerRoutes from './teamManagersRoutes';
 
 const router: Router = Router();
 
@@ -12,6 +13,8 @@ router.use('/super-admin', superAdminRoutes);
 router.use('/company-owner', companyOwnerRoutes);
 
 // Team Member Routes
+
+router.use('/team-member', teamManagerRoutes);
 
 // Team Manager Routes
 
