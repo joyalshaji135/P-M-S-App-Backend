@@ -28,19 +28,6 @@ export const companyOwnersValidation = (data: any) => {
         'any.only': "Invalid role. Only 'company-owners' is allowed.",
       }),
 
-    password: Joi.string().min(6).required().messages({
-      'string.min': 'Password must be at least 6 characters long.',
-      'string.empty': 'Password is required.',
-    }),
-
-    confirmPassword: Joi.string()
-      .valid(Joi.ref('password'))
-      .required()
-      .messages({
-        'any.only': 'Passwords do not match.',
-      }),
-
-    isDefault: Joi.boolean().required(),
 
     address: Joi.object({
       street: Joi.string().required(),
@@ -63,18 +50,6 @@ export const companyOwnersValidation = (data: any) => {
     company: Joi.object({
       name: Joi.string().required(),
       registrationNumber: Joi.string().required(),
-      address: Joi.object({
-        street: Joi.string().required(),
-        city: Joi.string().required(),
-        state: Joi.string().required(),
-        district: Joi.string().required(),
-        zipCode: Joi.string()
-          .pattern(/^\d{5}$/)
-          .required()
-          .messages({
-            'string.pattern.base': 'Zip code must be a 5-digit number.',
-          }),
-      }).required(),
       website: Joi.string().uri().required().messages({
         'string.uri': 'Invalid website URL format.',
       }),
@@ -96,9 +71,6 @@ export const companyOwnersValidation = (data: any) => {
 
     gender: Joi.string().valid('male', 'female', 'other').required(),
 
-    profilePicture: Joi.string().uri().optional().messages({
-      'string.uri': 'Invalid profile picture URL format.',
-    }),
 
     lastLogin: Joi.date().iso().optional().messages({
       'date.base': 'Invalid date format.',

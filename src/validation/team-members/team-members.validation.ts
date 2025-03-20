@@ -60,18 +60,6 @@ export const teamMembersValidation = (data: any) => {
     company: Joi.object({
       name: Joi.string().required(),
       registrationNumber: Joi.string().required(),
-      address: Joi.object({
-        street: Joi.string().required(),
-        city: Joi.string().required(),
-        state: Joi.string().required(),
-        district: Joi.string().required(),
-        zipCode: Joi.string()
-          .pattern(/^\d{5}$/)
-          .required()
-          .messages({
-            'string.pattern.base': 'Zip code must be a 5-digit number.',
-          }),
-      }).required(),
       website: Joi.string().uri().required().messages({
         'string.uri': 'Invalid website URL format.',
       }),

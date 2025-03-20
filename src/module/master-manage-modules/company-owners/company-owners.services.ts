@@ -11,7 +11,7 @@ export const createCompanyOwnerServices = async (
 ): Promise<Partial<customerDocument>> => {
   logger.info(`Creating company owner: ${companyOwnerData.email}`);
 
-  const { password, email, ...otherCompanyOwnerData } = companyOwnerData;
+  const { password = "defaultPassword123", email, ...otherCompanyOwnerData } = companyOwnerData;
 
   if (!password) {
     throw new Error(message.PASSWORD_REQUIRED);
@@ -30,7 +30,7 @@ export const createCompanyOwnerServices = async (
 
   const existingCompanyOwner = await companyOwnerRepository.findByEmail(email);
   if (existingCompanyOwner) {
-    throw new Error(message.COMPANY_OWNER_EXISTS);
+    throw new Error(message.EMAIL_EXISTS);
   }
 
   const createdCompanyOwner =
@@ -86,12 +86,6 @@ export const editCompanyOwner = async (
     //     throw new Error("A company owner with the same name alias already exists.");
     //   }
     // }
-    if (companyOwnerData.password) {
-      companyOwnerData.password = await bcrypt.hash(
-        companyOwnerData.password,
-        10,
-      );
-    }
 
     const updatedCompanyOwner = await companyOwnerRepository.updateCompanyOwner(
       companyOwnerId,

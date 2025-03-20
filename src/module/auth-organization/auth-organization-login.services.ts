@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import { customerDocument } from '@models/master-manage-modules-models/customer.models';
 import * as customerAuthLoginRepository from './auth-organization-login.repository';
+import logger from '@src/utils/logger';
 
 export const customerLogin = async (
   email: string,
@@ -14,6 +15,7 @@ export const customerLogin = async (
     customer &&
     (await bcrypt.compare(password, customer.password))
   ) {
+    logger.info('login successfully', customer);
     return customer;
   }
   return null;
