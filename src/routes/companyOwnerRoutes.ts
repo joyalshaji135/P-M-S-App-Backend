@@ -6,9 +6,7 @@ import teamManagerRoutes from '@modules/master-manage-modules/team-managers/team
 import teamMemberRoutes from '@modules/master-manage-modules/team-members/team-members.route';
 import industryProjectRoutes from '@modules/master-workspace-modules/industry-projects/industry-projects.route';
 import taskRolesRoutes from '@modules/master-workspace-modules/task-roles/task-roles.route';
-// import workspaceRoutes from '@modules/master-workspace-modules/workspaces/workspaces.route';
-import todoListsRoutes from '@modules/master-workspace-modules/todo-lists/todo-lists.route';
-import alertModesRoutess from '@modules/master-workspace-modules/alert-modes/alert-modes.route';
+import alertModesRoutes from '@modules/master-workspace-modules/alert-modes/alert-modes.route';
 import clientFeedbacksRoutes from '@modules/master-workspace-modules/clients-feedbacks/clients-feedbacks.route';
 import documentFileRoutes from '@modules/feature-manage-modules/document-files/document-files.route';
 import eventProgramRoutes from '@modules/feature-manage-modules/event-programs/event-programs.route';
@@ -49,21 +47,13 @@ router.use('/task-roles', taskRolesRoutes);
 
 // router.use('/workspaces', workspaceRoutes);
 
-// Todos Routes
-
-router.use('/todo-lists', todoListsRoutes);
-
 // alert modes Routes
 
-router.use('/alert-modes', alertModesRoutess);
+router.use('/alert-modes', alertModesRoutes);
 
 // client feedbacks Routes
 
 router.use('/client-feedback', clientFeedbacksRoutes);
-
-// document routes
-
-router.use('/document-files', documentFileRoutes);
 
 // event programs Routes
 

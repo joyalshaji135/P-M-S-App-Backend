@@ -71,7 +71,7 @@ const customerSchema: Schema<customerModel> = new Schema({
     default: 'admin',
     enum: ['admin', 'company-owners', 'team-managers', 'team-members'],
   },
-  password: { type: String, required: true },
+  password: { type: String },
   isDefault: { type: Boolean, default: false },
   dateOfBirth: { type: Date },
   gender: { type: String, enum: ['male', 'female', 'other'] },
@@ -100,13 +100,7 @@ const customerSchema: Schema<customerModel> = new Schema({
     phone: { type: String, required: false },
     industry: { type: String, required: false },
     website: { type: String, required: false },
-    address: {
-      street: { type: String, required: false },
-      city: { type: String, required: false },
-      state: { type: String, required: false },
-      district: { type: String, required: false },
-      zipCode: { type: String, required: false },
-    },
+
   },
 });
 
