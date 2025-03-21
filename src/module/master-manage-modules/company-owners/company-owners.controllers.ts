@@ -206,7 +206,6 @@ export const getAllCompanyOwnersController = async (
       });
     }
 
-    res.status(200).json({ success: true, companyOwners });
     if (companyOwners) {
       res.status(200).json({ success: true, companyOwners });
     } else {
