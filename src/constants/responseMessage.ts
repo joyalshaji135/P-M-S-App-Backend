@@ -200,4 +200,49 @@ export const message = {
     'Recruitment post status updated successfully',
   FAILED_TO_RETRIEVE_RECRUITMENT_POSTS: 'Failed to retrieve recruitment posts',
   RECRUITMENT_POST_EXISTS: 'Recruitment post with same exists',
+
+  // Domain
+  DOMAIN_CREATED_SUCCESS: 'Domain created successfully',
+  DOMAIN_UPDATED_SUCCESS: 'Domain updated successfully',
+  DOMAIN_DELETED: 'Domain deleted successfully',
+  DOMAIN_NOT_FOUND: 'Domain not found',
+  DOMAIN_STATUS_UPDATED: 'Domain status updated successfully',
+  FAILED_TO_RETRIEVE_DOMAINS: 'Failed to retrieve domains',
+  DOMAIN_EXISTS: 'Domain with same exists',
+
+  // Role
+  ROLE_BASE_CREATED_SUCCESS: 'Role created successfully',
+  ROLE_BASE_UPDATED_SUCCESS: 'Role updated successfully',
+  ROLE_BASE_DELETED: 'Role deleted successfully',
+  ROLE_BASE_NOT_FOUND: 'Role not found',
+  ROLE_BASE_STATUS_UPDATED: 'Role status updated successfully',
+  FAILED_TO_RETRIEVE_ROLES_BASE: 'Failed to retrieve roles',
+  ROLE_BASE_EXISTS: 'Role with same exists',
+
+  // industry nature
+  INDUSTRY_NATURE_CREATES_SUCCESS: 'Industry nature created successfully',
+  INDUSTRY_NATURE_UPDATED_SUCCESS: 'Industry nature updated successfully',
+  INDUSTRY_NATURE_DELETED: 'Industry nature deleted successfully',
+  INDUSTRY_NATURE_NOT_FOUND: 'Industry nature not found',
+  INDUSTRY_NATURE_STATUS_UPDATED: 'Industry nature status updated successfully',
+  INDUSTRY_NATURE_EXISTS: 'Industry nature with same exists',
+  FAILED_TO_RETRIEVE_ROLE_BASES: "Failed to retrieve roles bases",
+
+  // task module
+  TASK_MODULE_CREATED_SUCCESS: 'Task created successfully',
+  TASK_MODULE_UPDATED_SUCCESS: 'Task updated successfully',
+  TASK_MODULE_DELETED: 'Task deleted successfully',
+  TASK_MODULE_NOT_FOUND: 'Task not found',
+  TASK_MODULE_STATUS_UPDATED: 'Task status updated successfully',
+  TASK_MODULE_EXISTS: 'Task with same exists',
+  FAILED_TO_RETRIEVE_TASK_MODULE: 'Failed to retrieve tasks module',
+
+  // priority
+  PRIORITY_CREATED_SUCCESS: 'Priority created successfully',
+  PRIORITY_UPDATED_SUCCESS: 'Priority updated successfully',
+  PRIORITY_DELETED: 'Priority deleted successfully',
+  PRIORITY_NOT_FOUND: 'Priority not found',
+  PRIORITY_STATUS_UPDATED: 'Priority status updated successfully',
+  PRIORITY_EXISTS: 'Priority with same exists',
+  FAILED_TO_RETRIEVE_PRIORITIES: 'Failed to retrieve priorities',
 };

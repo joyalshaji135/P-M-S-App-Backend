@@ -39,7 +39,6 @@ export interface customerModel extends baseDocument {
   company: {
     name: string;
     registrationNumber: string;
-    address: Address;
     website: string;
     email: string;
     phone: string;
