@@ -37,7 +37,8 @@ export const createTaskModuleProfile = async (
     //   return next(respondError(getMessageFromValidationError(error)));
     // }
 
-    const createdTaskModule = await taskModuleService.createTaskModuleProfile(taskModuleData);
+    const createdTaskModule =
+      await taskModuleService.createTaskModuleProfile(taskModuleData);
 
     return res.status(201).json({
       success: true,
@@ -135,7 +136,10 @@ export const deleteTaskModuleProfile = async (
       });
     }
 
-    const deletedTaskModule = await taskModuleService.deleteTaskModule(id, req.userId);
+    const deletedTaskModule = await taskModuleService.deleteTaskModule(
+      id,
+      req.userId,
+    );
 
     if (!deletedTaskModule) {
       return res.status(204).json({

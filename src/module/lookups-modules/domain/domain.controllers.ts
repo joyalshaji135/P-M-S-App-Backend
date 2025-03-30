@@ -40,7 +40,7 @@ export const createDomainProfile = async (
     const createdDomain = await domainService.createDomainProfile(domainData);
 
     return res.status(201).json({
-      success: true,  
+      success: true,
       message: message.DOMAIN_CREATED_SUCCESS,
       domain: createdDomain,
     });

@@ -226,7 +226,7 @@ export const message = {
   INDUSTRY_NATURE_NOT_FOUND: 'Industry nature not found',
   INDUSTRY_NATURE_STATUS_UPDATED: 'Industry nature status updated successfully',
   INDUSTRY_NATURE_EXISTS: 'Industry nature with same exists',
-  FAILED_TO_RETRIEVE_ROLE_BASES: "Failed to retrieve roles bases",
+  FAILED_TO_RETRIEVE_ROLE_BASES: 'Failed to retrieve roles bases',
 
   // task module
   TASK_MODULE_CREATED_SUCCESS: 'Task created successfully',
@@ -245,4 +245,19 @@ export const message = {
   PRIORITY_STATUS_UPDATED: 'Priority status updated successfully',
   PRIORITY_EXISTS: 'Priority with same exists',
   FAILED_TO_RETRIEVE_PRIORITIES: 'Failed to retrieve priorities',
+
+  // Common Drop Down messages
+  GET_TEAM_MEMBER_LIST_SUCCESS: 'Team member list fetched successfully',
+  GET_TEAM_MANAGER_LIST_SUCCESS: 'Team manager list fetched successfully',
+  GET_COMPANY_OWNER_LIST_SUCCESS: 'Team owner list fetched successfully',
+  GET_CUSTOMER_TYPE_LIST_SUCCESS: 'Customer type list fetched successfully',
+  GET_DOMAIN_LIST_SUCCESS: 'Domain list fetched successfully',
+  GET_INDUSTRY_NATURE_LIST_SUCCESS: 'Industry nature list fetched successfully',
+  GET_TASK_MODULE_LIST_SUCCESS: 'Task module list fetched successfully',
+  GET_PRIORITY_LIST_SUCCESS: 'Priority list fetched successfully',
+  GET_ROLE_LIST_SUCCESS: 'Role list fetched successfully',
+  GET_INDUSTRY_PROJECT_LIST_SUCCESS: 'Industry project list fetched successfully',
+  GET_TASK_ROLE_LIST_SUCCESS: 'Task role list fetched successfully',
+  GET_TODO_LIST_LIST_SUCCESS: 'Todo list list fetched successfully',
+  GET_ALERT_MODE_LIST_SUCCESS: 'Alert mode list fetched successfully',
 };

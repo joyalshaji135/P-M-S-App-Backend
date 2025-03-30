@@ -8,7 +8,9 @@ export const createIndustryNatureProfile = async (
   industryNatureData: Partial<industryDocument>,
 ): Promise<industryDocument> => {
   try {
-    logger.info('Creating a new industry nature profile', { industryNatureData });
+    logger.info('Creating a new industry nature profile', {
+      industryNatureData,
+    });
     if (!industryNatureData.name) {
       throw new Error('Industry nature name is required.');
     }
@@ -17,18 +19,25 @@ export const createIndustryNatureProfile = async (
       throw new Error('Industry nature name alias is required.');
     }
 
-    const existingIndustryNatureByName = await industryNatureRepository.isNameExists(industryNatureData.name);
-    const existingIndustryNatureByAlias = await industryNatureRepository.isNameAliasExists(industryNatureData.nameAlias);
+    const existingIndustryNatureByName =
+      await industryNatureRepository.isNameExists(industryNatureData.name);
+    const existingIndustryNatureByAlias =
+      await industryNatureRepository.isNameAliasExists(
+        industryNatureData.nameAlias,
+      );
 
     if (existingIndustryNatureByName) {
       throw new Error('An industry nature with the same name already exists.');
     }
 
     if (existingIndustryNatureByAlias) {
-      throw new Error('An industry nature with the same name alias already exists.');
+      throw new Error(
+        'An industry nature with the same name alias already exists.',
+      );
     }
 
-    const newIndustryNatureProfile = await industryNatureRepository.create(industryNatureData);
+    const newIndustryNatureProfile =
+      await industryNatureRepository.create(industryNatureData);
     await Log.create({
       userId: newIndustryNatureProfile.createdBy,
       module: 'industryNature',
@@ -52,23 +61,41 @@ export const editIndustryNatureProfile = async (
       industryNatureData,
     });
     if (industryNatureData.name) {
-      const existingIndustryNature = await industryNatureRepository.isNameExists(industryNatureData.name, industryNatureId);
+      const existingIndustryNature =
+        await industryNatureRepository.isNameExists(
+          industryNatureData.name,
+          industryNatureId,
+        );
       if (existingIndustryNature) {
-        throw new Error('An industry nature with the same name already exists.');
+        throw new Error(
+          'An industry nature with the same name already exists.',
+        );
       }
     }
 
     if (industryNatureData.nameAlias) {
-      const existingIndustryNature = await industryNatureRepository.isNameAliasExists(industryNatureData.nameAlias, industryNatureId);
+      const existingIndustryNature =
+        await industryNatureRepository.isNameAliasExists(
+          industryNatureData.nameAlias,
+          industryNatureId,
+        );
       if (existingIndustryNature) {
-        throw new Error('An industry nature with the same name alias already exists.');
+        throw new Error(
+          'An industry nature with the same name alias already exists.',
+        );
       }
     }
 
-    const updatedIndustryNatureProfile = await industryNatureRepository.updateById(industryNatureId, industryNatureData);
+    const updatedIndustryNatureProfile =
+      await industryNatureRepository.updateById(
+        industryNatureId,
+        industryNatureData,
+      );
 
     if (!updatedIndustryNatureProfile) {
-      throw new Error(`Industry nature profile with ID ${industryNatureId} not found`);
+      throw new Error(
+        `Industry nature profile with ID ${industryNatureId} not found`,
+      );
     }
 
     await Log.create({
@@ -100,12 +127,20 @@ export const deleteIndustryNature = async (
   deletedBy: mongoose.Types.ObjectId,
 ) => {
   try {
-    logger.info(`Deleting industry nature with ID ${industryNatureId} by user ${deletedBy}`);
+    logger.info(
+      `Deleting industry nature with ID ${industryNatureId} by user ${deletedBy}`,
+    );
 
-    const deletedIndustryNature = await industryNatureRepository.deleteIndustrynature(industryNatureId, deletedBy);
+    const deletedIndustryNature =
+      await industryNatureRepository.deleteIndustrynature(
+        industryNatureId,
+        deletedBy,
+      );
 
     if (!deletedIndustryNature) {
-      throw new Error(`Industry nature profile with ID ${industryNatureId} not found`);
+      throw new Error(
+        `Industry nature profile with ID ${industryNatureId} not found`,
+      );
     }
     return deletedIndustryNature;
   } catch (error: any) {
@@ -122,7 +157,11 @@ export const updateIndustryNatureStatus = async (
       `Updating status for industry nature with ID ${id} to ${updatedData.status} by user ${updatedData.userUpdatedBy}`,
     );
 
-    const updatedStatus = await industryNatureRepository.changeIndustrynatureStatus(id, updatedData);
+    const updatedStatus =
+      await industryNatureRepository.changeIndustrynatureStatus(
+        id,
+        updatedData,
+      );
 
     if (!updatedStatus) {
       throw new Error(`Industry nature profile with ID ${id} not found`);
@@ -138,6 +177,8 @@ export const updateIndustryNatureStatus = async (
 
     return updatedStatus;
   } catch (error: any) {
-    throw new Error(`Error updating industry nature profile status: ${error.message}`);
+    throw new Error(
+      `Error updating industry nature profile status: ${error.message}`,
+    );
   }
 };

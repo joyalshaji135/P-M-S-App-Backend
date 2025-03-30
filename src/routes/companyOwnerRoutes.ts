@@ -12,6 +12,7 @@ import documentFileRoutes from '@modules/feature-manage-modules/document-files/d
 import eventProgramRoutes from '@modules/feature-manage-modules/event-programs/event-programs.route';
 import googleMeetRoutes from '@modules/feature-manage-modules/google-meets/google-meets.route';
 import recruitmentPostsRoutes from '@modules/feature-manage-modules/recruitment-posts/recruitment-posts.route';
+import lookupModulesRoutes from '@modules/lookups-modules/lookupsRoutes';
 const router: Router = Router();
 
 router.use(requireApiKey);
@@ -66,5 +67,9 @@ router.use('/google-meet', googleMeetRoutes);
 // recruitment posts Routes
 
 router.use('/recruitment-posts', recruitmentPostsRoutes);
+
+// common drop downs Routes
+
+router.use('/lookups', lookupModulesRoutes);
 
 export default router;

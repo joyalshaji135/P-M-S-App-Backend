@@ -38,7 +38,9 @@ export const createIndustryNatureProfile = async (
     // }
 
     const createdIndustryNature =
-      await industryNatureService.createIndustryNatureProfile(industryNatureData);
+      await industryNatureService.createIndustryNatureProfile(
+        industryNatureData,
+      );
 
     return res.status(201).json({
       success: true,
@@ -72,7 +74,8 @@ export const editIndustryNatureProfile = async (
       });
     }
     // Get IndustryNature By Id from the database
-    const industryNature = await industryNatureService.getIndustryNatureById(id);
+    const industryNature =
+      await industryNatureService.getIndustryNatureById(id);
 
     if (!industryNature) {
       return res.status(400).json({
@@ -174,7 +177,8 @@ export const getIndustryNatureById = async (
       });
     }
 
-    const industryNature = await industryNatureService.getIndustryNatureById(id);
+    const industryNature =
+      await industryNatureService.getIndustryNatureById(id);
 
     // IndustryNature is not present in the database  400 "IndustryNature Not Found Message"
 
@@ -216,8 +220,7 @@ export const getAllIndustryNatures = async (
       });
     }
 
-    const industryNatures =
-      await industryNatureService.getAllIndustryNatures();
+    const industryNatures = await industryNatureService.getAllIndustryNatures();
 
     // IndustryNature is not present in the database  400 "IndustryNature Not Found Message"
 
@@ -267,7 +270,8 @@ export const updateIndustryNatureStatus = async (
   };
   try {
     // Get IndustryNature By Id from the database
-    const industryNature = await industryNatureService.getIndustryNatureById(id);
+    const industryNature =
+      await industryNatureService.getIndustryNatureById(id);
 
     if (!industryNature) {
       return res.status(400).json({

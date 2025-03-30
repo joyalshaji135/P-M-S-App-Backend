@@ -17,8 +17,11 @@ export const createTaskModuleProfile = async (
       throw new Error('Task module name alias is required.');
     }
 
-    const existingTaskModuleByName = await taskModuleRepository.isNameExists(taskModuleData.name);
-    const existingTaskModuleByAlias = await taskModuleRepository.isNameAliasExists(taskModuleData.nameAlias);
+    const existingTaskModuleByName = await taskModuleRepository.isNameExists(
+      taskModuleData.name,
+    );
+    const existingTaskModuleByAlias =
+      await taskModuleRepository.isNameAliasExists(taskModuleData.nameAlias);
 
     if (existingTaskModuleByName) {
       throw new Error('A task module with the same name already exists.');
@@ -28,7 +31,8 @@ export const createTaskModuleProfile = async (
       throw new Error('A task module with the same name alias already exists.');
     }
 
-    const newTaskModuleProfile = await taskModuleRepository.create(taskModuleData);
+    const newTaskModuleProfile =
+      await taskModuleRepository.create(taskModuleData);
     await Log.create({
       userId: newTaskModuleProfile.createdBy,
       module: 'taskModule',
@@ -52,20 +56,31 @@ export const editTaskModuleProfile = async (
       taskModuleData,
     });
     if (taskModuleData.name) {
-      const existingTaskModule = await taskModuleRepository.isNameExists(taskModuleData.name, taskModuleId);
+      const existingTaskModule = await taskModuleRepository.isNameExists(
+        taskModuleData.name,
+        taskModuleId,
+      );
       if (existingTaskModule) {
         throw new Error('A task module with the same name already exists.');
       }
     }
 
     if (taskModuleData.nameAlias) {
-      const existingTaskModule = await taskModuleRepository.isNameAliasExists(taskModuleData.nameAlias, taskModuleId);
+      const existingTaskModule = await taskModuleRepository.isNameAliasExists(
+        taskModuleData.nameAlias,
+        taskModuleId,
+      );
       if (existingTaskModule) {
-        throw new Error('A task module with the same name alias already exists.');
+        throw new Error(
+          'A task module with the same name alias already exists.',
+        );
       }
     }
 
-    const updatedTaskModuleProfile = await taskModuleRepository.updateById(taskModuleId, taskModuleData);
+    const updatedTaskModuleProfile = await taskModuleRepository.updateById(
+      taskModuleId,
+      taskModuleData,
+    );
 
     if (!updatedTaskModuleProfile) {
       throw new Error(`Task module profile with ID ${taskModuleId} not found`);
@@ -100,9 +115,14 @@ export const deleteTaskModule = async (
   deletedBy: mongoose.Types.ObjectId,
 ) => {
   try {
-    logger.info(`Deleting task module with ID ${taskModuleId} by user ${deletedBy}`);
+    logger.info(
+      `Deleting task module with ID ${taskModuleId} by user ${deletedBy}`,
+    );
 
-    const deletedTaskModule = await taskModuleRepository.deleteTaskModule(taskModuleId, deletedBy);
+    const deletedTaskModule = await taskModuleRepository.deleteTaskModule(
+      taskModuleId,
+      deletedBy,
+    );
 
     if (!deletedTaskModule) {
       throw new Error(`Task module profile with ID ${taskModuleId} not found`);
@@ -122,7 +142,10 @@ export const updateTaskModuleStatus = async (
       `Updating status for task module with ID ${id} to ${updatedData.status} by user ${updatedData.userUpdatedBy}`,
     );
 
-    const updatedStatus = await taskModuleRepository.changeTaskModuleStatus(id, updatedData);
+    const updatedStatus = await taskModuleRepository.changeTaskModuleStatus(
+      id,
+      updatedData,
+    );
 
     if (!updatedStatus) {
       throw new Error(`Task module profile with ID ${id} not found`);
@@ -138,6 +161,8 @@ export const updateTaskModuleStatus = async (
 
     return updatedStatus;
   } catch (error: any) {
-    throw new Error(`Error updating task module profile status: ${error.message}`);
+    throw new Error(
+      `Error updating task module profile status: ${error.message}`,
+    );
   }
 };

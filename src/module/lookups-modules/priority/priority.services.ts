@@ -18,8 +18,12 @@ export const createPriorityProfile = async (
       throw new Error('Priority name alias is required.');
     }
 
-    const existingPriorityByName = await priorityRepository.isNameExists(priorityData.name);
-    const existingPriorityByAlias = await priorityRepository.isNameAliasExists(priorityData.nameAlias);
+    const existingPriorityByName = await priorityRepository.isNameExists(
+      priorityData.name,
+    );
+    const existingPriorityByAlias = await priorityRepository.isNameAliasExists(
+      priorityData.nameAlias,
+    );
 
     if (existingPriorityByName) {
       throw new Error('A priority with the same name already exists.');
@@ -49,23 +53,34 @@ export const editPriorityProfile = async (
   priorityData: Partial<priorityDocument>,
 ): Promise<priorityDocument | null> => {
   try {
-    logger.info(`Editing priority profile with ID ${priorityId}`, { priorityData });
+    logger.info(`Editing priority profile with ID ${priorityId}`, {
+      priorityData,
+    });
 
     if (priorityData.name) {
-      const existingPriority = await priorityRepository.isNameExists(priorityData.name, priorityId);
+      const existingPriority = await priorityRepository.isNameExists(
+        priorityData.name,
+        priorityId,
+      );
       if (existingPriority) {
         throw new Error('A priority with the same name already exists.');
       }
     }
 
     if (priorityData.nameAlias) {
-      const existingPriority = await priorityRepository.isNameAliasExists(priorityData.nameAlias, priorityId);
+      const existingPriority = await priorityRepository.isNameAliasExists(
+        priorityData.nameAlias,
+        priorityId,
+      );
       if (existingPriority) {
         throw new Error('A priority with the same name alias already exists.');
       }
     }
 
-    const updatedPriorityProfile = await priorityRepository.updateById(priorityId, priorityData);
+    const updatedPriorityProfile = await priorityRepository.updateById(
+      priorityId,
+      priorityData,
+    );
 
     if (!updatedPriorityProfile) {
       throw new Error(`Priority profile with ID ${priorityId} not found`);
@@ -102,12 +117,15 @@ export const deletePriority = async (
   try {
     logger.info(`Deleting priority with ID ${priorityId} by user ${deletedBy}`);
 
-    const deletedPriority = await priorityRepository.deletePriority(priorityId, deletedBy);
+    const deletedPriority = await priorityRepository.deletePriority(
+      priorityId,
+      deletedBy,
+    );
 
     if (!deletedPriority) {
       throw new Error(`Priority profile with ID ${priorityId} not found`);
     }
-    
+
     return deletedPriority;
   } catch (error: any) {
     throw new Error(`Error deleting priority profile: ${error.message}`);
@@ -120,10 +138,13 @@ export const updatePriorityStatus = async (
 ): Promise<priorityDocument | null> => {
   try {
     logger.info(
-      `Updating status for priority with ID ${id} to ${updatedData.status} by user ${updatedData.userUpdatedBy}`
+      `Updating status for priority with ID ${id} to ${updatedData.status} by user ${updatedData.userUpdatedBy}`,
     );
 
-    const updatedStatus = await priorityRepository.changePriorityStatus(id, updatedData);
+    const updatedStatus = await priorityRepository.changePriorityStatus(
+      id,
+      updatedData,
+    );
 
     if (!updatedStatus) {
       throw new Error(`Priority profile with ID ${id} not found`);

@@ -37,7 +37,8 @@ export const createRoleBaseProfile = async (
     //   return next(respondError(getMessageFromValidationError(error)));
     // }
 
-    const createdRoleBase = await roleBaseService.createRoleBaseProfile(roleBaseData);
+    const createdRoleBase =
+      await roleBaseService.createRoleBaseProfile(roleBaseData);
 
     return res.status(201).json({
       success: true,
@@ -135,7 +136,10 @@ export const deleteRoleBaseProfile = async (
       });
     }
 
-    const deletedRoleBase = await roleBaseService.deleteRoleBase(id, req.userId);
+    const deletedRoleBase = await roleBaseService.deleteRoleBase(
+      id,
+      req.userId,
+    );
 
     if (!deletedRoleBase) {
       return res.status(204).json({

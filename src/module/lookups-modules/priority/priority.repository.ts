@@ -113,14 +113,13 @@ export const changePriorityStatus = async (
   );
 };
 export function createTaskModuleProfile(taskModuleData: any) {
-    throw new Error('Function not implemented.');
+  throw new Error('Function not implemented.');
 }
 
 export function getPriorityById(id: string) {
-    throw new Error('Function not implemented.');
+  throw new Error('Function not implemented.');
 }
 
 export function editPriorityProfile(id: string, priorityData: any) {
-    throw new Error('Function not implemented.');
+  throw new Error('Function not implemented.');
 }
-

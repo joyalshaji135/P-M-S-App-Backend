@@ -21,6 +21,6 @@ router.delete('/:id/delete-domain', deleteDomainProfile);
 
 router.get('/:id/get-by-id-domain', getDomainById);
 
-router.get('/get-all-domains', getAllDomains);
+router.get('/get-all-domain', getAllDomains);
 
 export default router;

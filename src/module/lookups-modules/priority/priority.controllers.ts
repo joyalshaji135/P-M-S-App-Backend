@@ -31,13 +31,14 @@ export const createPriorityProfile = async (
       ...req.body,
       createdBy: req.userId,
     };
-    
+
     // const { error } = priorityValidation(req.body);
     // if (error) {
     //   return next(respondError(getMessageFromValidationError(error)));
     // }
 
-    const createdPriority = await priorityService.createPriorityProfile(priorityData);
+    const createdPriority =
+      await priorityService.createPriorityProfile(priorityData);
 
     return res.status(201).json({
       success: true,
@@ -81,11 +82,17 @@ export const editPriorityProfile = async (
     }
     if (req.body.name) {
       const name = req.body.name;
-      const nameAlias = name.toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
+      const nameAlias = name
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .replace(/\./g, '');
       priorityData.nameAlias = nameAlias;
     }
 
-    const updatedPriority = await priorityService.editPriorityProfile(id, priorityData);
+    const updatedPriority = await priorityService.editPriorityProfile(
+      id,
+      priorityData,
+    );
 
     if (!updatedPriority) {
       return res.status(204).json({
@@ -121,7 +128,10 @@ export const deletePriorityProfile = async (
       });
     }
 
-    const deletedPriority = await priorityService.deletePriority(id, req.userId);
+    const deletedPriority = await priorityService.deletePriority(
+      id,
+      req.userId,
+    );
 
     if (!deletedPriority) {
       return res.status(204).json({
@@ -239,7 +249,10 @@ export const updatePriorityStatus = async (
       });
     }
 
-    const updatedPriority = await priorityService.updatePriorityStatus(id, statusUpdateData);
+    const updatedPriority = await priorityService.updatePriorityStatus(
+      id,
+      statusUpdateData,
+    );
 
     if (!updatedPriority) {
       return res.status(204).json({

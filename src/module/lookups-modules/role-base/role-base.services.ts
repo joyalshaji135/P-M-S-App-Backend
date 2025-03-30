@@ -17,8 +17,12 @@ export const createRoleBaseProfile = async (
       throw new Error('Role base name alias is required.');
     }
 
-    const existingRoleBaseByName = await roleBaseRepository.isNameExists(roleBaseData.name);
-    const existingRoleBaseByAlias = await roleBaseRepository.isNameAliasExists(roleBaseData.nameAlias);
+    const existingRoleBaseByName = await roleBaseRepository.isNameExists(
+      roleBaseData.name,
+    );
+    const existingRoleBaseByAlias = await roleBaseRepository.isNameAliasExists(
+      roleBaseData.nameAlias,
+    );
 
     if (existingRoleBaseByName) {
       throw new Error('A role base with the same name already exists.');
@@ -52,20 +56,29 @@ export const editRoleBaseProfile = async (
       roleBaseData,
     });
     if (roleBaseData.name) {
-      const existingRoleBase = await roleBaseRepository.isNameExists(roleBaseData.name, roleBaseId);
+      const existingRoleBase = await roleBaseRepository.isNameExists(
+        roleBaseData.name,
+        roleBaseId,
+      );
       if (existingRoleBase) {
         throw new Error('A role base with the same name already exists.');
       }
     }
 
     if (roleBaseData.nameAlias) {
-      const existingRoleBase = await roleBaseRepository.isNameAliasExists(roleBaseData.nameAlias, roleBaseId);
+      const existingRoleBase = await roleBaseRepository.isNameAliasExists(
+        roleBaseData.nameAlias,
+        roleBaseId,
+      );
       if (existingRoleBase) {
         throw new Error('A role base with the same name alias already exists.');
       }
     }
 
-    const updatedRoleBaseProfile = await roleBaseRepository.updateById(roleBaseId, roleBaseData);
+    const updatedRoleBaseProfile = await roleBaseRepository.updateById(
+      roleBaseId,
+      roleBaseData,
+    );
 
     if (!updatedRoleBaseProfile) {
       throw new Error(`Role base profile with ID ${roleBaseId} not found`);
@@ -100,9 +113,14 @@ export const deleteRoleBase = async (
   deletedBy: mongoose.Types.ObjectId,
 ) => {
   try {
-    logger.info(`Deleting role base with ID ${roleBaseId} by user ${deletedBy}`);
+    logger.info(
+      `Deleting role base with ID ${roleBaseId} by user ${deletedBy}`,
+    );
 
-    const deletedRoleBase = await roleBaseRepository.deleteRoleBase(roleBaseId, deletedBy);
+    const deletedRoleBase = await roleBaseRepository.deleteRoleBase(
+      roleBaseId,
+      deletedBy,
+    );
 
     if (!deletedRoleBase) {
       throw new Error(`Role base profile with ID ${roleBaseId} not found`);
@@ -122,7 +140,10 @@ export const updateRoleBaseStatus = async (
       `Updating status for role base with ID ${id} to ${updatedData.status} by user ${updatedData.userUpdatedBy}`,
     );
 
-    const updatedStatus = await roleBaseRepository.changeRoleBaseStatus(id, updatedData);
+    const updatedStatus = await roleBaseRepository.changeRoleBaseStatus(
+      id,
+      updatedData,
+    );
 
     if (!updatedStatus) {
       throw new Error(`Role base profile with ID ${id} not found`);
@@ -138,6 +159,8 @@ export const updateRoleBaseStatus = async (
 
     return updatedStatus;
   } catch (error: any) {
-    throw new Error(`Error updating role base profile status: ${error.message}`);
+    throw new Error(
+      `Error updating role base profile status: ${error.message}`,
+    );
   }
 };
