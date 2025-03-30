@@ -12,7 +12,7 @@ export const createCompanyOwnerServices = async (
   logger.info(`Creating company owner: ${companyOwnerData.email}`);
 
   const {
-    password = 'defaultPassword123',
+    password = '12345',
     email,
     ...otherCompanyOwnerData
   } = companyOwnerData;

@@ -1,15 +1,15 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { baseDocument, baseSchema } from './base.model';
 
-export interface customerTypeModel extends baseDocument {
+export interface priorityModel extends baseDocument {
   code: string;
   name: string;
   nameAlias: string;
 }
 
-export type customerTypeDocument = customerTypeModel & Document;
+export type priorityDocument = priorityModel & Document;
 
-const customerTypeSchema: Schema<customerTypeDocument> = new Schema({
+const prioritySchema: Schema<priorityDocument> = new Schema({
   code: { type: String, required: true },
 
   name: { type: String, required: true, unique: true },
@@ -28,9 +28,6 @@ const customerTypeSchema: Schema<customerTypeDocument> = new Schema({
   },
 });
 
-customerTypeSchema.add(baseSchema);
+prioritySchema.add(baseSchema);
 
-export default mongoose.model<customerTypeDocument>(
-  'customerType',
-  customerTypeSchema,
-);
+export default mongoose.model<priorityDocument>('priority', prioritySchema);
