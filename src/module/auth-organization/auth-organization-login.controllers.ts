@@ -16,7 +16,7 @@ export const customerLogin = async (
       role,
     );
 
-    if (!customer) {
+    if (!customer || customer.role !== role) {
       return res.status(400).json({ message: message.INVALID_LOGIN });
     }
 
