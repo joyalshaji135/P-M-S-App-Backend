@@ -17,7 +17,7 @@ export const customerLogin = async (
     );
 
     if (!customer || customer.role !== role) {
-      return res.status(400).json({ message: message.INVALID_LOGIN });
+      return res.status(400).json({ message: message.INVALID_USER });
     }
 
     const token = generateTokenCustomer(customer);
