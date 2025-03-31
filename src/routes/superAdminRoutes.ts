@@ -16,6 +16,7 @@ import lookupCodeRoutes from '@modules/lookups-modules/lookupsRoutes';
 import lookupModuleRoute from '@modules/lookups-modules/lookupsRoutes';
 // import commonDropDownRoutes from '@modules/common-drop-downs/common-drop-downs.route';
 import commonDropDownRoutes from '@modules/common-drop-downs/common-drop-downs.route';
+import commonCountRoutes from '@modules/common-count-api/common-count-api.route';
 import verifyTokenMiddleware from '@middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
 const router: Router = Router();
@@ -95,5 +96,5 @@ router.use('/lookups-module', lookupModuleRoute);
 
 router.use('/common-drop-downs', commonDropDownRoutes);
 
-
+router.use('/common-counters', commonCountRoutes);
 export default router;

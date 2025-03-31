@@ -14,7 +14,7 @@ router.use('/company-owner', companyOwnerRoutes);
 
 // Team Member Routes
 
-router.use('/team-member', teamManagerRoutes);
+router.use('/team-manager', teamManagerRoutes);
 
 // Team Manager Routes
 

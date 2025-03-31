@@ -51,9 +51,9 @@ export const getAllTeamManagerList = async (
     });
   } catch (error: any) {
     logger.error('Error in getAllTeamManagerList', error.message);
-    return res.status(500).json({
-  
-})}}
+    return res.status(500).json({});
+  }
+};
 
 // Get All Company Owner List Functionality
 export const getAllCompanyOwnerList = async (
@@ -67,7 +67,8 @@ export const getAllCompanyOwnerList = async (
         message: message.UNAUTHORIZED,
       });
     }
-    const companyOwnerList = await CommonDropdownService.getAllCompanyOwnerList();
+    const companyOwnerList =
+      await CommonDropdownService.getAllCompanyOwnerList();
     return res.status(200).json({
       success: true,
       message: message.GET_COMPANY_OWNER_LIST_SUCCESS,
@@ -94,7 +95,8 @@ export const getAllCustomerTypeList = async (
         message: message.UNAUTHORIZED,
       });
     }
-    const customerTypeList = await CommonDropdownService.getAllCustomerTypeList();
+    const customerTypeList =
+      await CommonDropdownService.getAllCustomerTypeList();
     return res.status(200).json({
       success: true,
       message: message.GET_CUSTOMER_TYPE_LIST_SUCCESS,
@@ -102,9 +104,9 @@ export const getAllCustomerTypeList = async (
     });
   } catch (error: any) {
     logger.error('Error in getAllCustomerTypeList', error.message);
-    return res.status(500).json({
-  
-})}}
+    return res.status(500).json({});
+  }
+};
 
 // Get All Domain Lists Functionality
 export const getAllDomainLists = async (
@@ -126,7 +128,7 @@ export const getAllDomainLists = async (
     });
   } catch (error: any) {
     logger.error('Error in getAllDomainLists', error.message);
-    return res.status(500).json({ 
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
@@ -156,7 +158,7 @@ export const getAllIndustryNatures = async (
     return res.status(500).json({
       success: false,
       message: error.message,
-    }); 
+    });
   }
 };
 
@@ -253,7 +255,8 @@ export const getAllIndustryProjects = async (
         message: message.UNAUTHORIZED,
       });
     }
-    const industryProjects = await CommonDropdownService.getAllIndustryProjects();
+    const industryProjects =
+      await CommonDropdownService.getAllIndustryProjects();
     return res.status(200).json({
       success: true,
       message: message.GET_INDUSTRY_PROJECT_LIST_SUCCESS,

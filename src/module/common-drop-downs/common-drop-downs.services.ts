@@ -44,7 +44,9 @@ export const getAllCompanyOwnerList = async (): Promise<customerDocument[]> => {
 };
 
 // Get All Customer Type List Functionality
-export const getAllCustomerTypeList = async (): Promise<customerTypeDocument[]> => {
+export const getAllCustomerTypeList = async (): Promise<
+  customerTypeDocument[]
+> => {
   try {
     const customerTypeList =
       await commonDropDownRepository.getAllCustomerTypeListRepository();
@@ -57,7 +59,8 @@ export const getAllCustomerTypeList = async (): Promise<customerTypeDocument[]> 
 // Get All Domain Lists Functionality
 export const getAllDomainLists = async (): Promise<domainDocument[]> => {
   try {
-    const domainLists = await commonDropDownRepository.getAllDomainListRepository();
+    const domainLists =
+      await commonDropDownRepository.getAllDomainListRepository();
     return domainLists;
   } catch (error) {
     throw new Error('Fail to get domain lists');
@@ -78,7 +81,8 @@ export const getAllIndustryNatures = async (): Promise<industryDocument[]> => {
 // Get All Task Module Functionality
 export const getAllTaskModules = async (): Promise<taskModuleDocument[]> => {
   try {
-    const taskModules = await commonDropDownRepository.getAllTaskModulesRepository();
+    const taskModules =
+      await commonDropDownRepository.getAllTaskModulesRepository();
     return taskModules;
   } catch (error) {
     throw new Error('Fail to get task modules');
@@ -106,9 +110,12 @@ export const getAllRole = async (): Promise<roleBaseDocument[]> => {
 };
 
 // Get all Industry Project Functionality
-export const getAllIndustryProjects = async (): Promise<industryProjectDocument[]> => {
+export const getAllIndustryProjects = async (): Promise<
+  industryProjectDocument[]
+> => {
   try {
-    const industryProjects = await commonDropDownRepository.getAllIndustryProjectsRepository();
+    const industryProjects =
+      await commonDropDownRepository.getAllIndustryProjectsRepository();
     return industryProjects;
   } catch (error) {
     throw new Error('Fail to get industry projects');
