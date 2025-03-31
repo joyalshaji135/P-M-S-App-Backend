@@ -5,7 +5,6 @@ export interface customerTypeModel extends baseDocument {
   code: string;
   name: string;
   nameAlias: string;
-  isDefault: boolean;
 }
 
 export type customerTypeDocument = customerTypeModel & Document;
@@ -14,7 +13,6 @@ const customerTypeSchema: Schema<customerTypeDocument> = new Schema({
   code: { type: String, required: true },
 
   name: { type: String, required: true, unique: true },
-  isDefault: { type: Boolean, default: false },
 
   nameAlias: {
     type: String,

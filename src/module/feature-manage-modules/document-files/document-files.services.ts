@@ -17,25 +17,22 @@ export const createDocumentProfile = async (
       throw new Error('Document name alias is required.');
     }
 
-    const existingDocumentByName =
-      await documentRepository.isNameExists(documentData.name);
-    const existingDocumentByAlias =
-      await documentRepository.isNameAliasExists(
-        documentData.nameAlias,
-      );
+    const existingDocumentByName = await documentRepository.isNameExists(
+      documentData.name,
+    );
+    const existingDocumentByAlias = await documentRepository.isNameAliasExists(
+      documentData.nameAlias,
+    );
 
     if (existingDocumentByName) {
       throw new Error('A document with the same name already exists.');
     }
 
     if (existingDocumentByAlias) {
-      throw new Error(
-        'A document with the same name alias already exists.',
-      );
+      throw new Error('A document with the same name alias already exists.');
     }
 
-    const newDocumentProfile =
-      await documentRepository.create(documentData);
+    const newDocumentProfile = await documentRepository.create(documentData);
     await Log.create({
       userId: newDocumentProfile.createdBy,
       module: 'document',
@@ -69,15 +66,12 @@ export const editDocumentProfile = async (
     }
 
     if (documentData.nameAlias) {
-      const existingDocument =
-        await documentRepository.isNameAliasExists(
-          documentData.nameAlias,
-          documentId,
-        );
+      const existingDocument = await documentRepository.isNameAliasExists(
+        documentData.nameAlias,
+        documentId,
+      );
       if (existingDocument) {
-        throw new Error(
-          'A document with the same name alias already exists.',
-        );
+        throw new Error('A document with the same name alias already exists.');
       }
     }
 
@@ -87,9 +81,7 @@ export const editDocumentProfile = async (
     );
 
     if (!updatedDocumentProfile) {
-      throw new Error(
-        `Document profile with ID ${documentId} not found`,
-      );
+      throw new Error(`Document profile with ID ${documentId} not found`);
     }
 
     await Log.create({
@@ -121,9 +113,7 @@ export const deleteDocument = async (
   deletedBy: mongoose.Types.ObjectId,
 ) => {
   try {
-    logger.info(
-      `Deleting document with ID ${documentId} by user ${deletedBy}`,
-    );
+    logger.info(`Deleting document with ID ${documentId} by user ${deletedBy}`);
 
     const deletedDocument = await documentRepository.deleteDocumentFile(
       documentId,
@@ -131,9 +121,7 @@ export const deleteDocument = async (
     );
 
     if (!deletedDocument) {
-      throw new Error(
-        `Document profile with ID ${documentId} not found`,
-      );
+      throw new Error(`Document profile with ID ${documentId} not found`);
     }
     return deletedDocument;
   } catch (error: any) {
@@ -169,8 +157,6 @@ export const updateDocumentStatus = async (
 
     return updatedStatus;
   } catch (error: any) {
-    throw new Error(
-      `Error updating document profile status: ${error.message}`,
-    );
+    throw new Error(`Error updating document profile status: ${error.message}`);
   }
 };

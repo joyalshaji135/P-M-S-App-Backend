@@ -45,13 +45,6 @@ export const createTeamManagerController = async (
       });
     }
 
-    if (teamManagerData.password !== teamManagerData.confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: message.PASSWORD_MISMATCH,
-      });
-    }
-
     const createdTeamManager =
       await teamManagerServices.createTeamManagerServices(teamManagerData);
 
@@ -93,27 +86,20 @@ export const updateTeamManagerController = async (
         .json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
     }
 
-    const emailExists = await teamManagerServices.isEmailExists(
-      teamManagerData.email,
-    );
-    if (emailExists) {
-      return res.status(400).json({
-        success: false,
-        message: message.EMAIL_EXISTS,
-      });
-    }
+    // const emailExists = await teamManagerServices.isEmailExists(
+    //   teamManagerData.email,
+    // );
+    // if (emailExists) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: message.EMAIL_EXISTS,
+    //   });
+    // }
 
     if (!existingTeamManager) {
       return res
         .status(204)
         .json({ success: false, message: message.TEAM_MANAGER_NOT_FOUND });
-    }
-
-    if (teamManagerData.password !== teamManagerData.confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: message.PASSWORD_MISMATCH,
-      });
     }
 
     const updatedTeamManager = await teamManagerServices.editTeamManager(

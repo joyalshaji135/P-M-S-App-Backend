@@ -4,6 +4,7 @@ export const message = {
   UNAUTHORIZED: 'Unauthorized. Please login',
   PASSWORD_MISMATCH: ' Passwords do not match',
   INVALID_LOGIN: 'Invalid email or password , role is required',
+  INVALID_USER: 'Invalid User',
   LOGIN_SUCCESS: 'Login successful',
   INVALID_TOKEN: 'Invalid token',
   TOKEN_EXPIRED: 'Token expired',
@@ -200,4 +201,90 @@ export const message = {
     'Recruitment post status updated successfully',
   FAILED_TO_RETRIEVE_RECRUITMENT_POSTS: 'Failed to retrieve recruitment posts',
   RECRUITMENT_POST_EXISTS: 'Recruitment post with same exists',
+
+  // Domain
+  DOMAIN_CREATED_SUCCESS: 'Domain created successfully',
+  DOMAIN_UPDATED_SUCCESS: 'Domain updated successfully',
+  DOMAIN_DELETED: 'Domain deleted successfully',
+  DOMAIN_NOT_FOUND: 'Domain not found',
+  DOMAIN_STATUS_UPDATED: 'Domain status updated successfully',
+  FAILED_TO_RETRIEVE_DOMAINS: 'Failed to retrieve domains',
+  DOMAIN_EXISTS: 'Domain with same exists',
+
+  // Role
+  ROLE_BASE_CREATED_SUCCESS: 'Role created successfully',
+  ROLE_BASE_UPDATED_SUCCESS: 'Role updated successfully',
+  ROLE_BASE_DELETED: 'Role deleted successfully',
+  ROLE_BASE_NOT_FOUND: 'Role not found',
+  ROLE_BASE_STATUS_UPDATED: 'Role status updated successfully',
+  FAILED_TO_RETRIEVE_ROLES_BASE: 'Failed to retrieve roles',
+  ROLE_BASE_EXISTS: 'Role with same exists',
+
+  // industry nature
+  INDUSTRY_NATURE_CREATES_SUCCESS: 'Industry nature created successfully',
+  INDUSTRY_NATURE_UPDATED_SUCCESS: 'Industry nature updated successfully',
+  INDUSTRY_NATURE_DELETED: 'Industry nature deleted successfully',
+  INDUSTRY_NATURE_NOT_FOUND: 'Industry nature not found',
+  INDUSTRY_NATURE_STATUS_UPDATED: 'Industry nature status updated successfully',
+  INDUSTRY_NATURE_EXISTS: 'Industry nature with same exists',
+  FAILED_TO_RETRIEVE_ROLE_BASES: 'Failed to retrieve roles bases',
+
+  // task module
+  TASK_MODULE_CREATED_SUCCESS: 'Task created successfully',
+  TASK_MODULE_UPDATED_SUCCESS: 'Task updated successfully',
+  TASK_MODULE_DELETED: 'Task deleted successfully',
+  TASK_MODULE_NOT_FOUND: 'Task not found',
+  TASK_MODULE_STATUS_UPDATED: 'Task status updated successfully',
+  TASK_MODULE_EXISTS: 'Task with same exists',
+  FAILED_TO_RETRIEVE_TASK_MODULE: 'Failed to retrieve tasks module',
+
+  // priority
+  PRIORITY_CREATED_SUCCESS: 'Priority created successfully',
+  PRIORITY_UPDATED_SUCCESS: 'Priority updated successfully',
+  PRIORITY_DELETED: 'Priority deleted successfully',
+  PRIORITY_NOT_FOUND: 'Priority not found',
+  PRIORITY_STATUS_UPDATED: 'Priority status updated successfully',
+  PRIORITY_EXISTS: 'Priority with same exists',
+  FAILED_TO_RETRIEVE_PRIORITIES: 'Failed to retrieve priorities',
+
+  // Common Drop Down messages
+  GET_TEAM_MEMBER_LIST_SUCCESS: 'Team member list fetched successfully',
+  GET_TEAM_MANAGER_LIST_SUCCESS: 'Team manager list fetched successfully',
+  GET_COMPANY_OWNER_LIST_SUCCESS: 'Team owner list fetched successfully',
+  GET_CUSTOMER_TYPE_LIST_SUCCESS: 'Customer type list fetched successfully',
+  GET_DOMAIN_LIST_SUCCESS: 'Domain list fetched successfully',
+  GET_INDUSTRY_NATURE_LIST_SUCCESS: 'Industry nature list fetched successfully',
+  GET_TASK_MODULE_LIST_SUCCESS: 'Task module list fetched successfully',
+  GET_PRIORITY_LIST_SUCCESS: 'Priority list fetched successfully',
+  GET_ROLE_LIST_SUCCESS: 'Role list fetched successfully',
+  GET_INDUSTRY_PROJECT_LIST_SUCCESS:
+    'Industry project list fetched successfully',
+  GET_TASK_ROLE_LIST_SUCCESS: 'Task role list fetched successfully',
+  GET_TODO_LIST_LIST_SUCCESS: 'Todo list list fetched successfully',
+  GET_ALERT_MODE_LIST_SUCCESS: 'Alert mode list fetched successfully',
+
+  // Common Count messages
+  GET_COMPANY_OWNER_COUNT_SUCCESS: 'company owner count fetched successfully',
+  GET_TEAM_MANAGER_COUNT_SUCCESS: 'team manager count fetched successfully',
+  GET_TEAM_MEMBERS_COUNT_SUCCESS: 'team members count fetched successfully',
+  GET_CUSTOMER_COUNT_SUCCESS: 'customer count fetched successfully',
+  GET_INDUSTRY_PROJECT_COUNT_SUCCESS:
+    'industry project count fetched successfully',
+  GET_TASK_COUNT_SUCCESS: 'task count fetched successfully',
+  GET_TODO_LIST_COUNT_SUCCESS: 'todo list count fetched successfully',
+  GET_ALERT_MODE_COUNT_SUCCESS: 'alert mode count fetched successfully',
+  GET_CLIENT_FEEDBACK_COUNT_SUCCESS:
+    'client feedback count fetched successfully',
+  GET_GOOGLE_MEET_COUNT_SUCCESS: 'google meet count fetched successfully',
+  GET_EVENT_PROGRAMS_COUNT_SUCCESS: 'event program count fetched successfully',
+  GET_RECRUITMENT_POST_COUNT_SUCCESS:
+    'recruitment post count fetched successfully',
+  GET_DOMAIN_COUNT_SUCCESS: 'domain count fetched successfully',
+  GET_INDUSTRY_NATURE_COUNT_SUCCESS:
+    'industry nature count fetched successfully',
+  GET_ROLE_BASE_COUNT_SUCCESS: 'role base count fetched successfully',
+  GET_TASK_MODULE_COUNT_SUCCESS: 'task module count fetched successfully',
+  GET_PRIORITY_COUNT_SUCCESS: 'priority count fetched successfully',
+  GET_ROLE_COUNT_SUCCESS: 'role count fetched successfully',
+  GET_DOCUMENT_FILE_COUNT_SUCCESS: 'document file count fetched successfully',
 };

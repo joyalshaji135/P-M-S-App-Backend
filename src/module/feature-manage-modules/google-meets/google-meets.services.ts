@@ -17,21 +17,18 @@ export const createGoogleMeetProfile = async (
       throw new Error('Google meet name alias is required.');
     }
 
-    const existingGoogleMeetByName =
-      await googleMeetRepository.isNameExists(googleMeetData.name);
+    const existingGoogleMeetByName = await googleMeetRepository.isNameExists(
+      googleMeetData.name,
+    );
     const existingGoogleMeetByAlias =
-      await googleMeetRepository.isNameAliasExists(
-        googleMeetData.nameAlias,
-      );
+      await googleMeetRepository.isNameAliasExists(googleMeetData.nameAlias);
 
     if (existingGoogleMeetByName) {
       throw new Error('A google meet with the same name already exists.');
     }
 
     if (existingGoogleMeetByAlias) {
-      throw new Error(
-        'A google meet with the same name alias already exists.',
-      );
+      throw new Error('A google meet with the same name alias already exists.');
     }
 
     const newGoogleMeetProfile =
@@ -69,11 +66,10 @@ export const editGoogleMeetProfile = async (
     }
 
     if (googleMeetData.nameAlias) {
-      const existingGoogleMeet =
-        await googleMeetRepository.isNameAliasExists(
-          googleMeetData.nameAlias,
-          googleMeetId,
-        );
+      const existingGoogleMeet = await googleMeetRepository.isNameAliasExists(
+        googleMeetData.nameAlias,
+        googleMeetId,
+      );
       if (existingGoogleMeet) {
         throw new Error(
           'A google meet with the same name alias already exists.',
@@ -87,9 +83,7 @@ export const editGoogleMeetProfile = async (
     );
 
     if (!updatedGoogleMeetProfile) {
-      throw new Error(
-        `Google meet profile with ID ${googleMeetId} not found`,
-      );
+      throw new Error(`Google meet profile with ID ${googleMeetId} not found`);
     }
 
     await Log.create({
@@ -131,9 +125,7 @@ export const deleteGoogleMeet = async (
     );
 
     if (!deletedGoogleMeet) {
-      throw new Error(
-        `Google meet profile with ID ${googleMeetId} not found`,
-      );
+      throw new Error(`Google meet profile with ID ${googleMeetId} not found`);
     }
     return deletedGoogleMeet;
   } catch (error: any) {

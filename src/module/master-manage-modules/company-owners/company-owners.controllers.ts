@@ -47,13 +47,6 @@ export const createCompanyOwnerController = async (
       });
     }
 
-    if (companyOwnerData.password !== companyOwnerData.confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: message.PASSWORD_MISMATCH,
-      });
-    }
-
     const createdCompanyOwner =
       await companyOwnerServices.createCompanyOwnerServices(companyOwnerData);
 
@@ -85,15 +78,15 @@ export const updateCompanyOwnerController = async (
         .json({ success: false, message: message.UNAUTHORIZED });
     }
 
-    const emailExists = await companyOwnerServices.isEmailExists(
-      companyOwnerData.email,
-    );
-    if (emailExists) {
-      return res.status(400).json({
-        success: false,
-        message: message.EMAIL_EXISTS,
-      });
-    }
+    // const emailExists = await companyOwnerServices.isEmailExists(
+    //   companyOwnerData.email,
+    // );
+    // if (emailExists) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: message.EMAIL_EXISTS,
+    //   });
+    // }
     const existingCompanyOwner =
       await companyOwnerServices.getCompanyOwnerById(id);
     if (!existingCompanyOwner) {
@@ -102,12 +95,12 @@ export const updateCompanyOwnerController = async (
         .json({ success: false, message: message.COMPANY_OWNER_NOT_FOUND });
     }
 
-    if (companyOwnerData.password !== companyOwnerData.confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: message.PASSWORD_MISMATCH,
-      });
-    }
+    // if (companyOwnerData.password !== companyOwnerData.confirmPassword) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: message.PASSWORD_MISMATCH,
+    //   });
+    // }
 
     const updatedCompanyOwner = await companyOwnerServices.editCompanyOwner(
       id,
@@ -206,7 +199,6 @@ export const getAllCompanyOwnersController = async (
       });
     }
 
-    res.status(200).json({ success: true, companyOwners });
     if (companyOwners) {
       res.status(200).json({ success: true, companyOwners });
     } else {

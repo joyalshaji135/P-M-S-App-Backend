@@ -89,8 +89,7 @@ export const editGoogleMeetProfile = async (
       googleMeetData.nameAlias = nameAlias;
     }
 
-    const existingGoogleMeet =
-      await googleMeetService.getGoogleMeetById(id);
+    const existingGoogleMeet = await googleMeetService.getGoogleMeetById(id);
     if (!existingGoogleMeet) {
       return res.status(204).json({
         success: false,
@@ -98,8 +97,10 @@ export const editGoogleMeetProfile = async (
       });
     }
 
-    const updatedGoogleMeet =
-      await googleMeetService.editGoogleMeetProfile(id, googleMeetData);
+    const updatedGoogleMeet = await googleMeetService.editGoogleMeetProfile(
+      id,
+      googleMeetData,
+    );
 
     if (!updatedGoogleMeet) {
       return res.status(204).json({
@@ -159,136 +160,135 @@ export const deleteGoogleMeetProfile = async (
   }
 };
 export const getGoogleMeetById = async (
-    req: RequestWithAuthData,
-    res: Response,
-  ): Promise<any> => {
-    const { id } = req.params;
-  
-    try {
-      if (!req.userId) {
-        return res.status(401).json({
-          success: false,
-          message: message.UNAUTHORIZED,
-        });
-      }
-  
-      const googleMeet = await googleMeetService.getGoogleMeetById(id);
-  
-      if (googleMeet === null) {
-        return res.status(400).json({
-          success: false,
-          message: message.GOOGLE_MEET_NOT_FOUND,
-        });
-      }
-  
-      if (!googleMeet) {
-        return res.status(204).json({
-          success: false,
-          message: message.GOOGLE_MEET_NOT_FOUND,
-        });
-      }
-  
-      return res.status(200).json({
-        success: true,
-        googleMeet,
-      });
-    } catch (error: any) {
-      return res.status(500).json({
-        success: false,
-        message: error.message,
-      });
-    }
-  };
-  
-  export const getAllGoogleMeets = async (
-    req: RequestWithAuthData,
-    res: Response,
-  ): Promise<any> => {
-    try {
-      if (!req.userId) {
-        return res.status(401).json({
-          success: false,
-          message: message.UNAUTHORIZED,
-        });
-      }
-  
-      const googleMeets = await googleMeetService.getAllGoogleMeets();
-  
-      if (googleMeets.length === 0) {
-        return res.status(400).json({
-          success: false,
-          message: message.GOOGLE_MEET_NOT_FOUND,
-        });
-      }
-  
-      if (!googleMeets) {
-        return res.status(204).json({
-          success: false,
-          message: message.FAILED_TO_RETRIEVE_GOOGLE_MEETS,
-        });
-      }
-  
-      return res.status(200).json({
-        success: true,
-        googleMeets,
-      });
-    } catch (error: any) {
-      return res.status(500).json({
-        success: false,
-        message: error.message,
-      });
-    }
-  };
-  
-  export const updateGoogleMeetStatus = async (
-    req: RequestWithAuthData,
-    res: Response,
-  ): Promise<any> => {
-    const { id } = req.params;
-  
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  const { id } = req.params;
+
+  try {
     if (!req.userId) {
       return res.status(401).json({
         success: false,
         message: message.UNAUTHORIZED,
       });
     }
-    console.log(req.userId);
-    const userStatusUpdateData = {
-      ...req.body,
-      userUpdatedBy: req.userId,
-      userUpdatedDate: new Date(),
-    };
-    try {
-      const googleMeet = await googleMeetService.getGoogleMeetById(id);
-  
-      if (!googleMeet) {
-        return res.status(400).json({
-          success: false,
-          message: message.GOOGLE_MEET_NOT_FOUND,
-        });
-      }
-      const updatedGoogleMeet =
-        await googleMeetService.updateGoogleMeetStatus(
-          id,
-          userStatusUpdateData,
-        );
-  
-      if (!updatedGoogleMeet) {
-        return res.status(204).json({
-          success: false,
-          message: message.GOOGLE_MEET_NOT_FOUND,
-        });
-      }
-  
-      return res.status(200).json({
-        success: true,
-        message: message.GOOGLE_MEET_STATUS_UPDATED,
-        googleMeet: updatedGoogleMeet,
-      });
-    } catch (error: any) {
-      return res.status(500).json({
+
+    const googleMeet = await googleMeetService.getGoogleMeetById(id);
+
+    if (googleMeet === null) {
+      return res.status(400).json({
         success: false,
-        message: error.message,
+        message: message.GOOGLE_MEET_NOT_FOUND,
       });
     }
+
+    if (!googleMeet) {
+      return res.status(204).json({
+        success: false,
+        message: message.GOOGLE_MEET_NOT_FOUND,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      googleMeet,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const getAllGoogleMeets = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: message.UNAUTHORIZED,
+      });
+    }
+
+    const googleMeets = await googleMeetService.getAllGoogleMeets();
+
+    if (googleMeets.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: message.GOOGLE_MEET_NOT_FOUND,
+      });
+    }
+
+    if (!googleMeets) {
+      return res.status(204).json({
+        success: false,
+        message: message.FAILED_TO_RETRIEVE_GOOGLE_MEETS,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      googleMeets,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const updateGoogleMeetStatus = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  const { id } = req.params;
+
+  if (!req.userId) {
+    return res.status(401).json({
+      success: false,
+      message: message.UNAUTHORIZED,
+    });
+  }
+  console.log(req.userId);
+  const userStatusUpdateData = {
+    ...req.body,
+    userUpdatedBy: req.userId,
+    userUpdatedDate: new Date(),
   };
+  try {
+    const googleMeet = await googleMeetService.getGoogleMeetById(id);
+
+    if (!googleMeet) {
+      return res.status(400).json({
+        success: false,
+        message: message.GOOGLE_MEET_NOT_FOUND,
+      });
+    }
+    const updatedGoogleMeet = await googleMeetService.updateGoogleMeetStatus(
+      id,
+      userStatusUpdateData,
+    );
+
+    if (!updatedGoogleMeet) {
+      return res.status(204).json({
+        success: false,
+        message: message.GOOGLE_MEET_NOT_FOUND,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: message.GOOGLE_MEET_STATUS_UPDATED,
+      googleMeet: updatedGoogleMeet,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

@@ -39,4 +39,7 @@ const eventProgramsSchema: Schema<eventProgramsDocument> = new Schema({
 
 eventProgramsSchema.add(baseSchema);
 
-export default mongoose.model<eventProgramsDocument>('eventPrograms', eventProgramsSchema);
+export default mongoose.model<eventProgramsDocument>(
+  'eventPrograms',
+  eventProgramsSchema,
+);

@@ -5,7 +5,6 @@ export interface industryModel extends baseDocument {
   code: string;
   name: string;
   nameAlias: string;
-  isDefault: boolean;
 }
 
 export type industryDocument = industryModel & Document;
@@ -14,7 +13,6 @@ const industrySchema: Schema<industryDocument> = new Schema({
   code: { type: String, required: true },
 
   name: { type: String, required: true, unique: true },
-  isDefault: { type: Boolean, default: false },
 
   nameAlias: {
     type: String,

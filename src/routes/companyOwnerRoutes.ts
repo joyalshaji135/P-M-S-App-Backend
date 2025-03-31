@@ -2,6 +2,17 @@ import { Router } from 'express';
 import verifyTokenMiddleware from '@middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
 import companyOwnerAuthLoginRoutes from '@modules/auth-organization/auth-organization-login.route';
+import teamManagerRoutes from '@modules/master-manage-modules/team-managers/team-managers.route';
+import teamMemberRoutes from '@modules/master-manage-modules/team-members/team-members.route';
+import industryProjectRoutes from '@modules/master-workspace-modules/industry-projects/industry-projects.route';
+import taskRolesRoutes from '@modules/master-workspace-modules/task-roles/task-roles.route';
+import alertModesRoutes from '@modules/master-workspace-modules/alert-modes/alert-modes.route';
+import clientFeedbacksRoutes from '@modules/master-workspace-modules/clients-feedbacks/clients-feedbacks.route';
+import documentFileRoutes from '@modules/feature-manage-modules/document-files/document-files.route';
+import eventProgramRoutes from '@modules/feature-manage-modules/event-programs/event-programs.route';
+import googleMeetRoutes from '@modules/feature-manage-modules/google-meets/google-meets.route';
+import recruitmentPostsRoutes from '@modules/feature-manage-modules/recruitment-posts/recruitment-posts.route';
+import lookupModulesRoutes from '@modules/lookups-modules/lookupsRoutes';
 
 const router: Router = Router();
 
@@ -9,7 +20,7 @@ router.use(requireApiKey);
 
 // Company Owner Login Routes
 
-router.use('/auth-company-owner', companyOwnerAuthLoginRoutes);
+router.use('/auth', companyOwnerAuthLoginRoutes);
 
 router.use(requireAuthToken);
 
@@ -18,20 +29,48 @@ router.use(verifyTokenMiddleware);
 
 // // Define routes
 
-// Common Functionality
+// Team Manager Routes
 
-// Auth
+router.use('/team-managers', teamManagerRoutes);
 
-// Team Members
+// Team Member Routes
 
-// Team Managers
+router.use('/team-members', teamMemberRoutes);
 
-// Company Owners
+// Projects Routes
 
-// Projects
+router.use('/industry-projects', industryProjectRoutes);
 
-// Tasks
+// Tasks Routes
 
-// WorkSpaces
+router.use('/task-roles', taskRolesRoutes);
+
+// WorkSpaces Routes
+
+// router.use('/workspaces', workspaceRoutes);
+
+// alert modes Routes
+
+router.use('/alert-modes', alertModesRoutes);
+
+// client feedbacks Routes
+
+router.use('/client-feedback', clientFeedbacksRoutes);
+
+// event programs Routes
+
+router.use('/event-programs', eventProgramRoutes);
+
+// google Meet Routes
+
+router.use('/google-meet', googleMeetRoutes);
+
+// recruitment posts Routes
+
+router.use('/recruitment-posts', recruitmentPostsRoutes);
+
+// common drop downs Routes
+
+router.use('/lookups', lookupModulesRoutes);
 
 export default router;

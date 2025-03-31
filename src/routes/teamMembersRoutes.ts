@@ -1,19 +1,21 @@
-// Common Functionality
+import { Router } from 'express';
+import verifyTokenMiddleware from '@middleware/verifyToken';
+import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
+import teamMemberAuthLoginRoutes from '@modules/auth-organization/auth-organization-login.route';
 
-// Auth
+const router: Router = Router();
 
-// View All Team Members
+router.use(requireApiKey);
 
-// View Team Manager Profile
+// Company Owner Login Routes
 
-// View Company Owner Profile
+router.use('/auth', teamMemberAuthLoginRoutes);
 
-// View Project Details
+router.use(requireAuthToken);
 
-// View Task Details
+// Middleware
+router.use(verifyTokenMiddleware);
 
-// Update Task Details
+// // Define routes
 
-// View WorkSpace Details
-
-// Chatting Functionality
+export default router;

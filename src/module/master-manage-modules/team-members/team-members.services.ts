@@ -11,7 +11,7 @@ export const createTeamMemberServices = async (
 ): Promise<Partial<customerDocument>> => {
   logger.info(`Creating team member: ${teamMemberData.email}`);
 
-  const { password, email, ...otherTeamMemberData } = teamMemberData;
+  const { password = '12345', email, ...otherTeamMemberData } = teamMemberData;
 
   if (!password) {
     throw new Error(message.PASSWORD_REQUIRED);
@@ -76,10 +76,6 @@ export const editTeamMember = async (
       if (existingTeamMember) {
         throw new Error('A team member with the same name already exists.');
       }
-    }
-
-    if (teamMemberData.password) {
-      teamMemberData.password = await bcrypt.hash(teamMemberData.password, 10);
     }
 
     const updatedTeamMember = await teamMemberRepository.updateTeamMember(

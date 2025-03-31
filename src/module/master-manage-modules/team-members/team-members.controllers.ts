@@ -46,13 +46,6 @@ export const createTeamMemberController = async (
       });
     }
 
-    if (teamMemberData.password !== teamMemberData.confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: message.PASSWORD_MISMATCH,
-      });
-    }
-
     const createdTeamMember =
       await teamMemberServices.createTeamMemberServices(teamMemberData);
 
@@ -79,10 +72,10 @@ export const updateTeamMemberController = async (
     userUpdatedBy: req.userId,
   };
 
-  const { error } = teamMembersValidation(req.body);
-  if (error) {
-    return next(respondError(getMessageFromValidationError(error)));
-  }
+  // const { error } = teamMembersValidation(req.body);
+  // if (error) {
+  //   return next(respondError(getMessageFromValidationError(error)));
+  // }
   try {
     if (!req.userId) {
       return res
@@ -97,22 +90,15 @@ export const updateTeamMemberController = async (
         .json({ success: false, message: message.TEAM_MEMBER_NOT_FOUND });
     }
 
-    const emailExists = await teamMemberServices.isEmailExists(
-      teamMemberData.email,
-    );
-    if (emailExists) {
-      return res.status(400).json({
-        success: false,
-        message: message.EMAIL_EXISTS,
-      });
-    }
-
-    if (teamMemberData.password !== teamMemberData.confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: message.PASSWORD_MISMATCH,
-      });
-    }
+    // const emailExists = await teamMemberServices.isEmailExists(
+    //   teamMemberData.email,
+    // );
+    // if (emailExists) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: message.EMAIL_EXISTS,
+    //   });
+    // }
 
     const updatedTeamMember = await teamMemberServices.editTeamMember(
       id,

@@ -87,9 +87,7 @@ export const editEventProgram = async (
     );
 
     if (!updatedEventProgram) {
-      throw new Error(
-        `Event program with ID ${eventProgramId} not found`,
-      );
+      throw new Error(`Event program with ID ${eventProgramId} not found`);
     }
 
     await Log.create({
@@ -125,15 +123,14 @@ export const deleteEventProgram = async (
       `Deleting event program with ID ${eventProgramId} by user ${deletedBy}`,
     );
 
-    const deletedEventProgram = await eventProgramsRepository.deleteEventProgram(
-      eventProgramId,
-      deletedBy,
-    );
+    const deletedEventProgram =
+      await eventProgramsRepository.deleteEventProgram(
+        eventProgramId,
+        deletedBy,
+      );
 
     if (!deletedEventProgram) {
-      throw new Error(
-        `Event program with ID ${eventProgramId} not found`,
-      );
+      throw new Error(`Event program with ID ${eventProgramId} not found`);
     }
     return deletedEventProgram;
   } catch (error: any) {
@@ -150,10 +147,8 @@ export const updateEventProgramStatus = async (
       `Updating status for event program with ID ${id} to ${updatedData.status} by user ${updatedData.userUpdatedBy}`,
     );
 
-    const updatedStatus = await eventProgramsRepository.changeEventProgramStatus(
-      id,
-      updatedData,
-    );
+    const updatedStatus =
+      await eventProgramsRepository.changeEventProgramStatus(id, updatedData);
 
     if (!updatedStatus) {
       throw new Error(`Event program with ID ${id} not found`);
@@ -169,8 +164,6 @@ export const updateEventProgramStatus = async (
 
     return updatedStatus;
   } catch (error: any) {
-    throw new Error(
-      `Error updating event program status: ${error.message}`,
-    );
+    throw new Error(`Error updating event program status: ${error.message}`);
   }
 };

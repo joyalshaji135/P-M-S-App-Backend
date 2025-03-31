@@ -22,7 +22,11 @@ const googleMeetSchema: Schema<googleMeetDocument> = new Schema({
   code: { type: String, required: true },
   name: { type: String, required: true, unique: true },
   description: { type: String },
-  industryProject: { type: Schema.Types.ObjectId, ref: 'industryProject', required: true },
+  industryProject: {
+    type: Schema.Types.ObjectId,
+    ref: 'industryProject',
+    required: true,
+  },
   customer: { type: Schema.Types.ObjectId, ref: 'customer', required: true },
   meetingDate: { type: Date },
   meetingTime: { type: String },
@@ -44,4 +48,7 @@ const googleMeetSchema: Schema<googleMeetDocument> = new Schema({
 
 googleMeetSchema.add(baseSchema);
 
-export default mongoose.model<googleMeetDocument>('googleMeet', googleMeetSchema);
+export default mongoose.model<googleMeetDocument>(
+  'googleMeet',
+  googleMeetSchema,
+);

@@ -37,4 +37,7 @@ const documentFileSchema: Schema<documentFileDocument> = new Schema({
 
 documentFileSchema.add(baseSchema);
 
-export default mongoose.model<documentFileDocument>('documentFile', documentFileSchema);
+export default mongoose.model<documentFileDocument>(
+  'documentFile',
+  documentFileSchema,
+);

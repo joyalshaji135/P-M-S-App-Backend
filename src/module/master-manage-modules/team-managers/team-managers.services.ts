@@ -11,7 +11,11 @@ export const createTeamManagerServices = async (
 ): Promise<Partial<customerDocument>> => {
   logger.info(`Creating team manager: ${teamManagerData.email}`);
 
-  const { password, email, ...otherTeamManagerData } = teamManagerData;
+  const {
+    password = '12345',
+    email,
+    ...otherTeamManagerData
+  } = teamManagerData;
 
   if (!password) {
     throw new Error(message.PASSWORD_REQUIRED);
@@ -76,13 +80,6 @@ export const editTeamManager = async (
       if (existingTeamManager) {
         throw new Error('A team manager with the same name already exists.');
       }
-    }
-
-    if (teamManagerData.password) {
-      teamManagerData.password = await bcrypt.hash(
-        teamManagerData.password,
-        10,
-      );
     }
 
     const updatedTeamManager = await teamManagerRepository.updateTeamManager(
