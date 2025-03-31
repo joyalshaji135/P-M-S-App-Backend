@@ -12,7 +12,7 @@ export const createTeamManagerServices = async (
   logger.info(`Creating team manager: ${teamManagerData.email}`);
 
   const {
-    password = 'defaultPassword123',
+    password = '12345',
     email,
     ...otherTeamManagerData
   } = teamManagerData;

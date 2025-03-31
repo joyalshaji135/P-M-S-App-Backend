@@ -11,53 +11,52 @@ import documentFileModel from '@src/models/feature-manage-modules-models/documen
 
 // Company Owner Count Functions
 export const getCompanyOwnersCount = async (): Promise<number> => {
-    return customerModel.countDocuments({
-      isDeleted: false,
-      role: "company-owners" // Add role filter
-    });
-  };
+  return customerModel.countDocuments({
+    isDeleted: false,
+    role: 'company-owners', // Add role filter
+  });
+};
 
 // Team Manager Count Functions
 export const getTeamManagersCount = async (): Promise<number> => {
   return customerModel.countDocuments({
-    role: "team-managers",
+    role: 'team-managers',
     isDeleted: false,
   });
-}
-
+};
 
 // Team Member Count Functions
 export const getTeamMemberCount = async (): Promise<number> => {
-    return customerModel.countDocuments({
-        role: "team-members",
-        isDeleted: false,
-    });
-}
+  return customerModel.countDocuments({
+    role: 'team-members',
+    isDeleted: false,
+  });
+};
 
 // Event Count Functions
 export const getEventCount = async (): Promise<number> => {
-    return eventProgramsModels.countDocuments({
-        isDeleted: false,
-    });
-}
+  return eventProgramsModels.countDocuments({
+    isDeleted: false,
+  });
+};
 
 // Google Meet Count Functions
 export const getGoogleMeetCount = async (): Promise<number> => {
-    return googleMeetsModels.countDocuments({
-        isDeleted: false,
-    });
-}
+  return googleMeetsModels.countDocuments({
+    isDeleted: false,
+  });
+};
 
 // Recruitment Count Functions
 export const RecruitmentCount = async (): Promise<number> => {
-    return recruitmentPostsModels.countDocuments({
-        isDeleted: false,
-    });
-}
+  return recruitmentPostsModels.countDocuments({
+    isDeleted: false,
+  });
+};
 
 // File Document Count Functions
 export const documentFileCount = async (): Promise<number> => {
-    return documentFileModel.countDocuments({
-        isDeleted: false,
-    });
-}
+  return documentFileModel.countDocuments({
+    isDeleted: false,
+  });
+};

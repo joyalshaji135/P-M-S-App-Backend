@@ -15,66 +15,62 @@ export const getAllCompanyOwnerCount = async (): Promise<number> => {
 
 // Team Manager Count Functions
 export const getAllTeamManagerCount = async (): Promise<number> => {
-    try {
-      const teamManagerCount =
-        await commonCountApiRepository.getTeamManagersCount();
-      return teamManagerCount;
-    } catch (error) {
-      throw new Error('Fail to get Team Manager Count');
-    }
+  try {
+    const teamManagerCount =
+      await commonCountApiRepository.getTeamManagersCount();
+    return teamManagerCount;
+  } catch (error) {
+    throw new Error('Fail to get Team Manager Count');
+  }
 };
 
 // Team Member Count Functions
 export const getAllTeamMemberCount = async (): Promise<number> => {
-    try {
-        const teamMemberCount =
-          await commonCountApiRepository.getTeamMemberCount();
-        return teamMemberCount;
-    } catch (error) {
-        throw new Error('Fail to get Team Member Count');
-    }
+  try {
+    const teamMemberCount = await commonCountApiRepository.getTeamMemberCount();
+    return teamMemberCount;
+  } catch (error) {
+    throw new Error('Fail to get Team Member Count');
+  }
 };
 
 // Event Count Functions
 export const getAllEventCount = async (): Promise<number> => {
-    try {
-        const eventCount =
-          await commonCountApiRepository.getEventCount();
-        return eventCount;
-    } catch (error) {
-        throw new Error('Fail to get Event Count');
-    }
-}
+  try {
+    const eventCount = await commonCountApiRepository.getEventCount();
+    return eventCount;
+  } catch (error) {
+    throw new Error('Fail to get Event Count');
+  }
+};
 
 // Google Meet Count Functions
 export const getAllGoogleMeetCount = async (): Promise<number> => {
-    try {
-        const googleMeetCount =
-          await commonCountApiRepository.getGoogleMeetCount();
-        return googleMeetCount;
-    } catch (error) {
-        throw new Error('Fail to get Google Meet Count');
-    }
-}
+  try {
+    const googleMeetCount = await commonCountApiRepository.getGoogleMeetCount();
+    return googleMeetCount;
+  } catch (error) {
+    throw new Error('Fail to get Google Meet Count');
+  }
+};
 
 // Recruitment Count Functions
 export const getAllRecruitmentCount = async (): Promise<number> => {
-    try {
-        const recruitmentCount =
-          await commonCountApiRepository.RecruitmentCount();
-        return recruitmentCount;
-    } catch (error) {
-        throw new Error('Fail to get Recruitment Count');
-    }
-}
+  try {
+    const recruitmentCount = await commonCountApiRepository.RecruitmentCount();
+    return recruitmentCount;
+  } catch (error) {
+    throw new Error('Fail to get Recruitment Count');
+  }
+};
 
 // File Document Count Functions
 export const getAllDocumentFileCount = async (): Promise<number> => {
-    try {
-        const documentFileCount =
-            await commonCountApiRepository.documentFileCount();
-        return documentFileCount;
-    } catch(error){
-        throw new Error('Fail to get Document File Count');
-    }
-}
+  try {
+    const documentFileCount =
+      await commonCountApiRepository.documentFileCount();
+    return documentFileCount;
+  } catch (error) {
+    throw new Error('Fail to get Document File Count');
+  }
+};

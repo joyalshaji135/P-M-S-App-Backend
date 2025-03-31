@@ -18,6 +18,4 @@ router.use(verifyTokenMiddleware);
 
 // // Define routes
 
-
-
 export default router;

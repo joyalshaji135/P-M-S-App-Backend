@@ -11,11 +11,7 @@ export const createTeamMemberServices = async (
 ): Promise<Partial<customerDocument>> => {
   logger.info(`Creating team member: ${teamMemberData.email}`);
 
-  const {
-    password = 'defaultPassword123',
-    email,
-    ...otherTeamMemberData
-  } = teamMemberData;
+  const { password = '12345', email, ...otherTeamMemberData } = teamMemberData;
 
   if (!password) {
     throw new Error(message.PASSWORD_REQUIRED);
