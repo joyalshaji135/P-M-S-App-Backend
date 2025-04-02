@@ -287,4 +287,6 @@ export const message = {
   GET_PRIORITY_COUNT_SUCCESS: 'priority count fetched successfully',
   GET_ROLE_COUNT_SUCCESS: 'role count fetched successfully',
   GET_DOCUMENT_FILE_COUNT_SUCCESS: 'document file count fetched successfully',
+  GET_GOOGLE_MEETING_LIST_SUCCESS: 'google meeting list fetched successfully',
+  GET_FILE_DOCUMENT_LIST_SUCCESS: 'file document list fetched successfully',
 };

@@ -48,7 +48,9 @@ export const findById = async (
   return taskRoleModel
     .findById(id)
     .where({ isDeleted: false })
-    .populate('customer', 'name email role phone')
+    .populate('resourceName', 'name email role phone')
+    .populate('project', 'projectName industry description projectStatus')
+    .populate('taskModule', 'name code')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .exec();
@@ -70,7 +72,6 @@ export const updateById = async (
       },
       { new: true, runValidators: true },
     )
-    .populate('customer', 'name email role phone')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .exec();
@@ -80,6 +81,7 @@ export const getAllTaskRoles = async () => {
   return taskRoleModel
     .find({ isDeleted: false })
     .populate('resourceName', 'name email role phone')
+    .populate('taskModule', 'name code')
     .populate('project', 'projectName industry description projectStatus')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')

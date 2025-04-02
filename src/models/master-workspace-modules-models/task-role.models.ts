@@ -2,13 +2,14 @@ import mongoose, { Schema, Document } from 'mongoose';
 import { baseDocument, baseSchema } from '../lookups-models/base.model';
 import { customerDocument } from '../master-manage-modules-models/customer.models';
 import { industryProjectDocument } from './industry-projects.models';
+import { taskModuleDocument } from '../lookups-models/task-module.model';
 
 export interface taskRoleModel extends baseDocument {
   code: string;
   taskName: string;
   resourceName: mongoose.Types.ObjectId | customerDocument;
   project: mongoose.Types.ObjectId | industryProjectDocument;
-  taskModule: string;
+  taskModule: mongoose.Types.ObjectId | taskModuleDocument;
   startDate: Date;
   endDate: Date;
   taskTitle: string;
@@ -36,7 +37,9 @@ const taskRoleSchema: Schema<taskRoleDocument> = new Schema({
     required: true,
   },
   //   taskModule: { type: Schema.Types.ObjectId, ref: 'taskModule', required: true },
-  taskModule: { type: String, required: true },
+  taskModule: { type: Schema.Types.ObjectId,
+    ref: 'taskModule',
+    required: true, },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   taskTitle: { type: String, required: true },

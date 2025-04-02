@@ -4,7 +4,7 @@ import { message } from '@constants/responseMessage';
 import { RequestWithAuthData } from '../../../@types/express';
 import { LookupTypes } from '@constants/lookup';
 import { generateNewLookupCode } from '@utils/lookupCodeGenerator';
-import { industryProjectValidation } from '@validation/industry-projects/industry-projects.validation';
+// import { industryProjectValidation } from '@validation/industry-projects/industry-projects.validation';
 import { respondError } from '@helper/response';
 import { getMessageFromValidationError } from '@helper/utils';
 import { getTeamManagerById } from '@src/module/master-manage-modules/team-managers/team-managers.services';
@@ -37,10 +37,10 @@ export const createIndustryProject = async (
       createdBy: req.userId,
     };
 
-    const { error } = industryProjectValidation(req.body);
-    if (error) {
-      return next(respondError(getMessageFromValidationError(error)));
-    }
+    // const { error } = industryProjectValidation(req.body);
+    // if (error) {
+    //   return next(respondError(getMessageFromValidationError(error)));
+    // }
     // Validate the getTeamMemberById and getTeamManagerById
 
     const teamManager = await getTeamManagerById(req.body.customer);
@@ -86,10 +86,10 @@ export const editIndustryProject = async (
     userUpdatedDate: new Date(),
     userUpdatedBy: req.userId,
   };
-  const { error } = industryProjectValidation(req.body);
-  if (error) {
-    return next(respondError(getMessageFromValidationError(error)));
-  }
+  // const { error } = industryProjectValidation(req.body);
+  // if (error) {
+  //   return next(respondError(getMessageFromValidationError(error)));
+  // }
   try {
     if (!req.userId) {
       return res.status(401).json({
