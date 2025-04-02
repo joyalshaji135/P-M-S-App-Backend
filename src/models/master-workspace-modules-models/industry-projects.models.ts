@@ -1,14 +1,16 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { baseDocument, baseSchema } from '../lookups-models/base.model';
 import { customerDocument } from '../master-manage-modules-models/customer.models';
+import { industryDocument } from '../lookups-models/industry.model';
+import { priorityDocument } from '../lookups-models/priority.model';
 
 export interface industryProjectModel extends baseDocument {
   code: string;
   projectName: string;
   customer: Schema.Types.ObjectId | customerDocument;
   //   industry: Schema.Types.ObjectId | industryDocument;
-  industry: string;
-  priority: string;
+  industry: mongoose.Types.ObjectId | industryDocument;
+  priority: mongoose.Types.ObjectId | priorityDocument;
   description: string;
   projectStatus: string;
   startDate: Date;
@@ -22,10 +24,8 @@ const industryProjectSchema: Schema<industryProjectDocument> = new Schema({
   code: { type: String, required: true },
   projectName: { type: String, required: true },
   customer: { type: Schema.Types.ObjectId, ref: 'customer', required: true },
-  //     industry: { type: Schema.Types.ObjectId, ref: 'industry', required: true },
-  industry: { type: String, required: true },
-  //   priority: {  type: Schema.Types.ObjectId, ref: 'priority' required: true}
-  priority: { type: String, required: true },
+  industry: { type: Schema.Types.ObjectId, ref: 'industry', required: true },
+  priority: {  type: Schema.Types.ObjectId, ref: 'priority', required: true},
   description: { type: String, required: true },
   projectStatus: { type: String, required: true },
   startDate: { type: Date, required: true },

@@ -27,7 +27,6 @@ router.use('/task-wise', segmentationApiRoutes);
 
 router.use('/task-roles', taskRolesRoutes);
 
-// 
-
+//
 
 export default router;

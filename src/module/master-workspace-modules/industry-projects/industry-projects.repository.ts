@@ -49,6 +49,8 @@ export const findById = async (
     .findById(id)
     .where({ isDeleted: false })
     .populate('customer', 'name email role phone')
+    .populate('industry', 'name code')
+    .populate('priority', 'name code')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .exec();
@@ -80,6 +82,8 @@ export const getAllIndustryProjects = async () => {
   return industryProjectModel
     .find({ isDeleted: false })
     .populate('customer', 'name email role phone')
+    .populate('industry', 'name code')
+    .populate('priority', 'name code')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .sort({ createdAt: -1 });
