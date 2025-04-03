@@ -294,7 +294,7 @@ export const updateTaskRoleStatus = async (
 //   try {
 //       const taskId = req.params.id;
 //       const { percentageOfCompleted, taskStatus } = req.body;
-      
+
 //       if (!percentageOfCompleted && !taskStatus) {
 //           return res.status(400).json({
 //               success: false,
@@ -303,7 +303,7 @@ export const updateTaskRoleStatus = async (
 //       }
 
 //       const updatedTask = await taskService.updateTaskStatus(
-//           taskId, 
+//           taskId,
 //           { percentageOfCompleted, taskStatus }
 //       );
 

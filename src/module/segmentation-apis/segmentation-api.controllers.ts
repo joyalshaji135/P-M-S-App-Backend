@@ -159,10 +159,10 @@ export const getAllFileDocuments = async (
   }
 };
 
-// updateProjectTask
+// updateProjectTask this function using only two fields update
 export const updateProjectTask = async (
   req: RequestWithAuthData,
-  res: Response
+  res: Response,
 ): Promise<any> => {
   const { id } = req.params;
   const taskRoleData = {
@@ -170,6 +170,7 @@ export const updateProjectTask = async (
     userUpdatedDate: new Date(),
     userUpdatedBy: req.userId,
   };
+
   try {
     if (!req.userId) {
       return res.status(401).json({
@@ -177,25 +178,22 @@ export const updateProjectTask = async (
         message: message.UNAUTHORIZED,
       });
     }
-
-    if (req.body.taskName) {
-      const taskName = req.body.taskName;
-      const nameAlias = taskName
-        .toLowerCase()
-        .replace(/\s+/g, '')
-        .replace(/\./g, '');
-      taskRoleData.nameAlias = nameAlias;
-    }
-
-    const updatedTaskRole = await segmentationService.updateProjectTask(
+    console.log(taskRoleData)
+    const projectTask = await segmentationService.updateProjectTaskPatch(
       id,
       taskRoleData,
-    );
+    ); 
+
+    if (!projectTask) {
+      return res.status(204).json({
+        success: false,
+        message: message.TODO_LIST_NOT_FOUND,
+      });
+    }
 
     return res.status(200).json({
       success: true,
-      message: message.TASK_ROLE_UPDATED_SUCCESS,
-      taskRole: updatedTaskRole,
+      projectTask,
     });
   } catch (error: any) {
     return res.status(500).json({
@@ -203,4 +201,4 @@ export const updateProjectTask = async (
       message: error.message,
     });
   }
-};
+}

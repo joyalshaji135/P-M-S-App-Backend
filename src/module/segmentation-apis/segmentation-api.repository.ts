@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
-import taskRoleModels, { taskRoleDocument } from '@src/models/master-workspace-modules-models/task-role.models';
+import taskRoleModels, {
+  taskRoleDocument,
+} from '@src/models/master-workspace-modules-models/task-role.models';
 import logger from '@src/utils/logger';
 import industryProjectsModels from '@src/models/master-workspace-modules-models/industry-projects.models';
 import googleMeetsModels from '@src/models/feature-manage-modules-models/google-meets.models';
@@ -58,32 +60,26 @@ export const getAllGoogleMeetings = async () => {
 export const getAllFileDocuments = async () => {
   return documentFilesModels
     .find({ isDeleted: false })
-    .populate('customer', 'name email role phone')
-    .populate('industryProject', 'projectName code')
+    .populate('industry', 'name code')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .sort({ createdAt: -1 });
 };
 
-// updateProjectTask
-
-export const updateProjectTask = async (
+// updateProjectTask this function using only two fields update using patch
+export const updateProjectTaskPatch = async (
   id: string,
-  updateData: Partial<taskRoleDocument>,
-): Promise<taskRoleDocument | null> => {
-  return taskRoleModels
-    .findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          ...updateData,
-          userUpdatedBy: updateData.userUpdatedBy,
-          userUpdatedDate: new Date(),
-        },
-      },
-      { new: true, runValidators: true },
-    )
-    .populate('createdBy', 'name email')
-    .populate('userUpdatedBy', 'name email')
-    .exec();
+  updates: Partial<taskRoleDocument>
+) => {
+  const updatedTask = await taskRoleModels.findOneAndUpdate(
+    { _id: id },
+    { $set: updates },
+    { new: true, lean: true }
+  );
+  console.log(updatedTask);
+  if (!updatedTask) {
+    throw new Error(`Task with ID ${id} not found`);
+  }
+
+  return updatedTask;
 };

@@ -32,10 +32,13 @@ export const getAllFileDocuments = async () => {
   return segmentationApiRepository.getAllFileDocuments();
 };
 
-// updateProjectTask
-export const updateProjectTask = async (
+
+
+// updateProjectTask this function using only two fields update using patch
+export const updateProjectTaskPatch = async (
   id: string,
   updateData: Partial<taskRoleDocument>,
 ) => {
-  return segmentationApiRepository.updateProjectTask(id, updateData);
+  console.log('Updating project', updateData)
+  return segmentationApiRepository.updateProjectTaskPatch(id, updateData);
 };

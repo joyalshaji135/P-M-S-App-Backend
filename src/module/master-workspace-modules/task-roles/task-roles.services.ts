@@ -182,7 +182,7 @@ export const updateTaskRoleStatus = async (
 //       fieldsToUpdate.updatedAt = new Date();
 
 //       const updatedTask = await taskRepository.findByIdAndUpdate(
-//           taskId, 
+//           taskId,
 //           fieldsToUpdate,
 //           { new: true }
 //       );

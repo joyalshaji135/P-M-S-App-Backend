@@ -74,3 +74,33 @@ export const getAllDocumentFileCount = async (): Promise<number> => {
     throw new Error('Fail to get Document File Count');
   }
 };
+
+// getAllProjectCount
+export const getAllProjectCount = async (): Promise<number> => {
+  try {
+    const projectCount = await commonCountApiRepository.getProjectCount();
+    return projectCount;
+  } catch (error) {
+    throw new Error('Fail to get Project Count');
+  }
+};
+
+// getAllTaskCount
+export const getAllTaskCount = async (): Promise<number> => {
+  try {
+    const taskCount = await commonCountApiRepository.getTaskCount();
+    return taskCount;
+  } catch (error) {
+    throw new Error('Fail to get Task Count');
+  }
+};
+
+// getAllFeedbackCount
+export const getAllFeedbackCount = async (): Promise<number> => {
+  try {
+    const feedbackCount = await commonCountApiRepository.getFeedbackCount();
+    return feedbackCount;
+  } catch (error) {
+    throw new Error('Fail to get Feedback Count');
+  }
+};

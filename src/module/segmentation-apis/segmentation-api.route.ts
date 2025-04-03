@@ -15,10 +15,6 @@ router.get(
   segmentationRoutes.projectAssignedClientController,
 );
 
-// Update Project Task 
-router.put('/:task/update-project-task', segmentationRoutes.updateProjectTask);
-
-
 // Get All Industry Projects
 router.get(
   '/get-all-industry-projects',
@@ -28,12 +24,9 @@ router.get(
 // Get All Google Meeting
 router.get('/get-all-google-meetings', segmentationRoutes.getAllGoogleMeetings);
 
-
 // Get All File Documents Api
 router.get('/get-all-file-documents', segmentationRoutes.getAllFileDocuments);
 
-
-// router.patch('/:id/status', taskController.updateTaskStatus);
+router.patch('/:id/update-project-task', segmentationRoutes.updateProjectTask);
 
 export default router;
-

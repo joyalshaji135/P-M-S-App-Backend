@@ -97,4 +97,5 @@ router.use('/lookups-module', lookupModuleRoute);
 router.use('/common-drop-downs', commonDropDownRoutes);
 
 router.use('/common-counters', commonCountRoutes);
+
 export default router;
