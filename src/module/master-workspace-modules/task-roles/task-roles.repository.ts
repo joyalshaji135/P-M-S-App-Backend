@@ -121,3 +121,15 @@ export const changeTaskRoleStatus = async (
     { new: true, runValidators: true },
   );
 };
+
+// exports.findByIdAndUpdate = async (taskId, updateData, options = {}) => {
+//   try {
+//       return await Task.findByIdAndUpdate(
+//           taskId,
+//           updateData,
+//           { ...options }
+//       ).lean();
+//   } catch (error) {
+//       throw error;
+//   }
+// };

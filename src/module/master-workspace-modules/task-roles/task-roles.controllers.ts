@@ -289,3 +289,33 @@ export const updateTaskRoleStatus = async (
     });
   }
 };
+
+// exports.updateTaskStatus = async (req, res) => {
+//   try {
+//       const taskId = req.params.id;
+//       const { percentageOfCompleted, taskStatus } = req.body;
+      
+//       if (!percentageOfCompleted && !taskStatus) {
+//           return res.status(400).json({
+//               success: false,
+//               message: 'At least one field (percentageOfCompleted or taskStatus) is required'
+//           });
+//       }
+
+//       const updatedTask = await taskService.updateTaskStatus(
+//           taskId, 
+//           { percentageOfCompleted, taskStatus }
+//       );
+
+//       res.status(200).json({
+//           success: true,
+//           data: updatedTask,
+//           message: 'Task status updated successfully'
+//       });
+//   } catch (error) {
+//       res.status(500).json({
+//           success: false,
+//           message: error.message
+//       });
+//   }
+// };

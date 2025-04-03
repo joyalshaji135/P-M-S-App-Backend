@@ -37,9 +37,11 @@ const taskRoleSchema: Schema<taskRoleDocument> = new Schema({
     required: true,
   },
   //   taskModule: { type: Schema.Types.ObjectId, ref: 'taskModule', required: true },
-  taskModule: { type: Schema.Types.ObjectId,
+  taskModule: {
+    type: Schema.Types.ObjectId,
     ref: 'taskModule',
-    required: true, },
+    required: true,
+  },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   taskTitle: { type: String, required: true },

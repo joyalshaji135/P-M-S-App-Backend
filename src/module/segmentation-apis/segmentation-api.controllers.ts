@@ -2,6 +2,7 @@ import { Response } from 'express';
 import { message } from '@constants/responseMessage';
 import { RequestWithAuthData } from '../../@types/express';
 import * as segmentationService from './segmentation-api.services';
+import { getTaskRoleById } from '../master-workspace-modules/task-roles/task-roles.services';
 
 // taskAssignedClient this function
 export const taskAssignedClientController = async (
@@ -40,7 +41,7 @@ export const taskAssignedClientController = async (
   }
 };
 
-// projectAssignedClientController 
+// projectAssignedClientController
 export const projectAssignedClientController = async (
   req: RequestWithAuthData,
   res: Response,
@@ -90,8 +91,7 @@ export const getAllIndustryProjects = async (
       });
     }
 
-    const industryProjects =
-      await segmentationService.getAllIndustryProjects();
+    const industryProjects = await segmentationService.getAllIndustryProjects();
     return res.status(200).json({
       success: true,
       message: message.GET_INDUSTRY_PROJECT_LIST_SUCCESS,
@@ -118,8 +118,7 @@ export const getAllGoogleMeetings = async (
       });
     }
 
-    const googleMeetings =
-      await segmentationService.getAllGoogleMeetings();
+    const googleMeetings = await segmentationService.getAllGoogleMeetings();
     return res.status(200).json({
       success: true,
       message: message.GET_GOOGLE_MEETING_LIST_SUCCESS,
@@ -151,6 +150,52 @@ export const getAllFileDocuments = async (
       success: true,
       message: message.GET_FILE_DOCUMENT_LIST_SUCCESS,
       fileDocuments,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// updateProjectTask
+export const updateProjectTask = async (
+  req: RequestWithAuthData,
+  res: Response
+): Promise<any> => {
+  const { id } = req.params;
+  const taskRoleData = {
+    ...req.body,
+    userUpdatedDate: new Date(),
+    userUpdatedBy: req.userId,
+  };
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: message.UNAUTHORIZED,
+      });
+    }
+
+    if (req.body.taskName) {
+      const taskName = req.body.taskName;
+      const nameAlias = taskName
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .replace(/\./g, '');
+      taskRoleData.nameAlias = nameAlias;
+    }
+
+    const updatedTaskRole = await segmentationService.updateProjectTask(
+      id,
+      taskRoleData,
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: message.TASK_ROLE_UPDATED_SUCCESS,
+      taskRole: updatedTaskRole,
     });
   } catch (error: any) {
     return res.status(500).json({

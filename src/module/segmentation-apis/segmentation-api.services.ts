@@ -1,5 +1,6 @@
 import logger from '@src/utils/logger';
 import * as segmentationApiRepository from './segmentation-api.repository';
+import { taskRoleDocument } from '@src/models/master-workspace-modules-models/task-role.models';
 
 // taskAssignedClientServices
 export const taskAssignedClientServices = async (client_id: string) => {
@@ -29,4 +30,12 @@ export const getAllGoogleMeetings = async () => {
 export const getAllFileDocuments = async () => {
   logger.info('Getting all file documents');
   return segmentationApiRepository.getAllFileDocuments();
+};
+
+// updateProjectTask
+export const updateProjectTask = async (
+  id: string,
+  updateData: Partial<taskRoleDocument>,
+) => {
+  return segmentationApiRepository.updateProjectTask(id, updateData);
 };

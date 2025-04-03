@@ -2,7 +2,7 @@ import { Router } from 'express';
 import verifyTokenMiddleware from '@middleware/verifyToken';
 import { requireApiKey, requireAuthToken } from '@middleware/apiRequest';
 import teamMemberAuthLoginRoutes from '@modules/auth-organization/auth-organization-login.route';
-import segmentationApiRoutes from '@modules/segmentation-apis/segmentation-api.route';
+import segmentationApiRoutes from '@src/module/segmentation-apis/segmentation-api.route';
 import taskRolesRoutes from '@modules/master-workspace-modules/task-roles/task-roles.route';
 
 const router: Router = Router();
