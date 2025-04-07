@@ -5,5 +5,4 @@
 
 // app.post("/contact-us", contactUsControllers.sendContactUsEmail);
 
-
 // export default app;

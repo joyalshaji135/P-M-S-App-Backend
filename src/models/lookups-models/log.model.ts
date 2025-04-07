@@ -10,7 +10,7 @@ export interface UserLogDocument extends Document {
 }
 
 const UserLogSchema = new Schema<UserLogDocument>({
-  userId: { type: Schema.Types.ObjectId, required: true , ref: 'customer' },
+  userId: { type: Schema.Types.ObjectId, required: true, ref: 'customer' },
   module: { type: String, required: true },
   action: { type: String, required: true },
   actionId: { type: Schema.Types.ObjectId, required: true, ref: 'customer' },

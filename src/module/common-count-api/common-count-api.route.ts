@@ -47,7 +47,10 @@ router.get(
 router.get('/task-count', commonCountApiControllers.getAllTaskCount);
 
 // project Count Functions
-router.get('/industry-project-count', commonCountApiControllers.getAllProjectCount);
+router.get(
+  '/industry-project-count',
+  commonCountApiControllers.getAllProjectCount,
+);
 
 // feedback Count Functions
 router.get('/feedback-count', commonCountApiControllers.getAllFeedbackCount);

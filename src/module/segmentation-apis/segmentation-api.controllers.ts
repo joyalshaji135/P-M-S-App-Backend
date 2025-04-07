@@ -178,11 +178,11 @@ export const updateProjectTask = async (
         message: message.UNAUTHORIZED,
       });
     }
-    console.log(taskRoleData)
+    console.log(taskRoleData);
     const projectTask = await segmentationService.updateProjectTaskPatch(
       id,
       taskRoleData,
-    ); 
+    );
 
     if (!projectTask) {
       return res.status(204).json({
@@ -201,4 +201,4 @@ export const updateProjectTask = async (
       message: error.message,
     });
   }
-}
+};

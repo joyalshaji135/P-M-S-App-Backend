@@ -14,7 +14,7 @@ const contactUsSchema: Schema<contactUsDocument> = new Schema({
   code: { type: String, required: true },
   name: { type: String, required: true, unique: true },
   email: { type: String, required: true },
-  message: { type: String, required: true }
+  message: { type: String, required: true },
 });
 
 contactUsSchema.add(baseSchema);

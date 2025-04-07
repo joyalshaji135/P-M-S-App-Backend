@@ -69,12 +69,12 @@ export const getAllFileDocuments = async () => {
 // updateProjectTask this function using only two fields update using patch
 export const updateProjectTaskPatch = async (
   id: string,
-  updates: Partial<taskRoleDocument>
+  updates: Partial<taskRoleDocument>,
 ) => {
   const updatedTask = await taskRoleModels.findOneAndUpdate(
     { _id: id },
     { $set: updates },
-    { new: true, lean: true }
+    { new: true, lean: true },
   );
   console.log(updatedTask);
   if (!updatedTask) {

@@ -219,9 +219,9 @@ export const getAllTaskCount = async (
     });
   } catch (error: any) {
     logger.error('Error in Task Count', error.message);
-    return res.status(500).json({
-  
-})}}
+    return res.status(500).json({});
+  }
+};
 
 // getAllProjectCount
 export const getAllProjectCount = async (
@@ -243,9 +243,9 @@ export const getAllProjectCount = async (
     });
   } catch (error: any) {
     logger.error('Error in Project Count', error.message);
-    return res.status(500).json({
-  
-})}}
+    return res.status(500).json({});
+  }
+};
 
 // getAllFeedbackCount
 export const getAllFeedbackCount = async (
@@ -267,6 +267,6 @@ export const getAllFeedbackCount = async (
     });
   } catch (error: any) {
     logger.error('Error in Feedback Count', error.message);
-    return res.status(500).json({
-  
-})}}
+    return res.status(500).json({});
+  }
+};
