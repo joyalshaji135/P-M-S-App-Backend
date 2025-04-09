@@ -270,3 +270,45 @@ export const getAllIndustryProjects = async (
     });
   }
 };
+
+export const getDDAllStates = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  try {
+    const states = await CommonDropdownService.fetchStates();
+    if (states.length === 0) {
+      return res
+        .status(204)
+        .json({ success: false, message: 'No states types found' });
+    }
+
+    res.status(200).json({ success: true, data: states });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export async function fetchDistricts(
+  req: Request,
+  res: Response,
+): Promise<void> {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      res.status(400).json({ message: 'state id required' });
+    }
+    const result = await CommonDropdownService.fetchDistrict(id);
+    res.status(200).json({
+      message: 'district fetched successfully',
+      result,
+    });
+  } catch (error: any) {
+    console.error('Error in fetchAndStore:', error);
+    res.status(500).json({
+      message: 'Error fetching or storing data',
+      error: error,
+    });
+  }
+}

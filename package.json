@@ -44,6 +44,7 @@
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
+    "@coffeebeanslabs/country_state_district": "^1.0.1",
     "@types/joi": "^17.2.2",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.1",

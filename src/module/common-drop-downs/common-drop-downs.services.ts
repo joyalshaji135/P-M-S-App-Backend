@@ -7,10 +7,15 @@ import { roleBaseDocument } from '@src/models/lookups-models/role.model';
 import { taskModuleDocument } from '@src/models/lookups-models/task-module.model';
 import { priorityDocument } from '@src/models/lookups-models/priority.model';
 import { industryProjectDocument } from '@src/models/master-workspace-modules-models/industry-projects.models';
+const country_state_district = require('@coffeebeanslabs/country_state_district');
 
 // Get All Team Member List Functionality
 import * as commonDropDownRepository from './common-drop-downs.repositorys';
-
+interface StateData {
+  stateCode: string;
+  stateName: string;
+  countryCode: string;
+}
 export const getAllTeamMemberList = async (): Promise<customerDocument[]> => {
   try {
     const teamMemberList =
@@ -121,3 +126,31 @@ export const getAllIndustryProjects = async (): Promise<
     throw new Error('Fail to get industry projects');
   }
 };
+
+export async function fetchStates(): Promise<StateData[]> {
+  try {
+    const states = country_state_district.getAllStates();
+    return states;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error fetching states:', error.message);
+    } else {
+      console.error('Unknown error fetching states');
+    }
+    throw new Error('Failed to fetch states');
+  }
+}
+
+export async function fetchDistrict(id: string): Promise<StateData[]> {
+  try {
+    const district = country_state_district.getDistrictsByStateId(id);
+    return district;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error fetching districts:', error.message);
+    } else {
+      console.error('Unknown error fetching districts');
+    }
+    throw new Error('Failed to fetch states');
+  }
+}

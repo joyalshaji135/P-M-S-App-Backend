@@ -45,4 +45,10 @@ router.get(
   commonDropDownController.getAllIndustryProjects,
 );
 
+// Get all State Functionality
+router.get('/dd-states', commonDropDownController.getDDAllStates);
+
+// Get all Districts Functionality
+router.get('/dd-states/:id', commonDropDownController.fetchDistricts);
+
 export default router;

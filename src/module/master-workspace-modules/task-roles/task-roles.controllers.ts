@@ -61,6 +61,27 @@ export const createTaskRole = async (
       });
     }
 
+    // getTaskCustomerCount Validate the resourceName in taskRole
+    const taskCustomerCount = await taskRoleService.getTaskCustomerCount(
+      req.body.resourceName,
+    );
+
+    const count =
+      typeof taskCustomerCount === 'object' &&
+      taskCustomerCount !== null &&
+      'count' in taskCustomerCount
+        ? taskCustomerCount
+        : taskCustomerCount;
+
+    console.log('Parsed count:', count, 'Type:', typeof count);
+
+    if (Number(count) > 3) {
+      return res.status(400).json({
+        success: false,
+        message: message.TASK_ROLE_RESOURCE_TASK_ALREADY_THREE,
+      });
+    }
+
     const createdTaskRole = await taskRoleService.createTaskRole(taskRoleData);
 
     return res.status(201).json({

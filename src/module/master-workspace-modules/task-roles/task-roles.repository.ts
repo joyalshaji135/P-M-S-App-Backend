@@ -10,6 +10,14 @@ export const create = async (
   return await taskRole.save();
 };
 
+// getAllTaskCount
+export const getTaskCustomerCount = async (id: string): Promise<number> => {
+  return taskRoleModel.countDocuments({
+    isDeleted: false,
+    resourceName: id,
+  });
+};
+
 export const isNameExists = async (
   taskRoleName: string,
   idToExclude?: string,

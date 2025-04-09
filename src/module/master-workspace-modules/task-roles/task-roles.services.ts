@@ -49,6 +49,11 @@ export const createTaskRole = async (
   }
 };
 
+// getTaskCustomerCount
+export const getTaskCustomerCount = async (id: string): Promise<number> => {
+  return taskRoleRepository.getTaskCustomerCount(id);
+};
+
 export const editTaskRole = async (
   taskRoleId: string,
   taskRoleData: Partial<taskRoleDocument>,

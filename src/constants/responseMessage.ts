@@ -295,4 +295,17 @@ export const message = {
   // active log
   GET_ALL_ACTIVE_LOGS_SUCCESS: 'all active logs fetched successfully',
   GET_ALL_ACTIVE_LOGS_ERROR: 'fail to get all active logs',
+
+  // contact us
+  GET_ALL_CONTACT_US_SUCCESS: 'Contact us fetched successfully',
+  CONTACT_US_CREATED_SUCCESS: 'Contact us created successfully',
+  CONTACT_US_UPDATED_SUCCESS: 'Contact us updated successfully',
+  CONTACT_US_DELETED: 'Contact us deleted successfully',
+  CONTACT_US_NOT_FOUND: 'Contact us not found',
+  CONTACT_US_STATUS_UPDATED: 'Contact us status updated successfully',
+  CONTACT_US_EXISTS: 'Contact us with same exists',
+  FAILED_TO_RETRIEVE_CONTACT_US: 'Failed to retrieve contact us',
+  GET_CONTACT_US_SUCCESS: 'Contact us fetched successfully',
+  CONTACT_US_DELETED_SUCCESS: 'Contact us deleted successfully',
+  TASK_ROLE_RESOURCE_TASK_ALREADY_THREE: 'Already 3 Task are Assigned',
 };
