@@ -1,12 +1,13 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { baseDocument, baseSchema } from '../lookups-models/base.model';
 import { industryDocument } from '../lookups-models/industry.model';
+import { priorityDocument } from '../lookups-models/priority.model';
 
 export interface recruitmentPostModel extends baseDocument {
   code: string;
   name: string;
   industry: mongoose.Types.ObjectId | industryDocument;
-  priority: string;
+  priority: mongoose.Types.ObjectId | priorityDocument;
   recruitmentPost: string;
   recruitmentPosition: string;
   recruitmentLocation: string;
@@ -25,7 +26,7 @@ const recruitmentPostSchema: Schema<recruitmentPostDocument> = new Schema({
   code: { type: String, required: true },
   name: { type: String, required: true, unique: true },
   industry: { type: Schema.Types.ObjectId, ref: 'industry', required: true },
-  priority: { type: String },
+  priority: { type: Schema.Types.ObjectId, ref: 'priority', required: true },
   recruitmentPost: { type: String },
   recruitmentPosition: { type: String },
   recruitmentLocation: { type: String },

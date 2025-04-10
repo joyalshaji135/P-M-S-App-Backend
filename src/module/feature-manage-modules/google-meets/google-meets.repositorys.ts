@@ -45,6 +45,8 @@ export const findById = async (
   return googleMeetModel
     .findById(id)
     .where({ isDeleted: false })
+    .populate('industryProject', 'name code')
+    .populate('customer', 'name email phone address')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .exec();
@@ -74,6 +76,8 @@ export const updateById = async (
 export const getAllGoogleMeets = async () => {
   return googleMeetModel
     .find({ isDeleted: false })
+    .populate('industryProject', 'name code projectName')
+    .populate('customer', 'name email phone address')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .sort({ createdAt: -1 });

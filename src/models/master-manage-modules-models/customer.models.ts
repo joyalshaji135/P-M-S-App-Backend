@@ -5,6 +5,7 @@ import { baseDocument, baseSchema } from '../lookups-models/base.model';
 interface Address {
   street: string;
   city: string;
+  stateId: string;
   state: string;
   district: string;
   zipCode: string;
@@ -13,7 +14,7 @@ interface Address {
 // Skill Interface
 interface Skill {
   skillName: string;
-  proficiency: 'beginner' | 'intermediate' | 'advanced' | 'expert';
+  proficiency: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
   yearsOfExperience: number;
   certification?: string;
 }
@@ -53,7 +54,7 @@ const skillSchema = new Schema<Skill>({
   skillName: { type: String, required: false },
   proficiency: {
     type: String,
-    enum: ['beginner', 'intermediate', 'advanced', 'expert'],
+    enum: ['Beginner', 'Intermediate', 'Advanced', 'Expert'],
     required: false,
   },
   yearsOfExperience: { type: Number, required: false },
@@ -84,6 +85,7 @@ const customerSchema: Schema<customerModel> = new Schema({
   address: {
     street: { type: String, required: true },
     city: { type: String, required: true },
+    stateId: { type: String },
     state: { type: String, required: true },
     district: { type: String, required: true },
     zipCode: { type: String, required: true },
