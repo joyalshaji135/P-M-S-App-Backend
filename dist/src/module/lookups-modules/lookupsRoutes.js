@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const customer_type_route_1 = __importDefault(require("./customer-type/customer-type.route"));
+const domain_route_1 = __importDefault(require("./domain/domain.route"));
+const industry_nature_route_1 = __importDefault(require("./industry-nature/industry-nature.route"));
+const priority_route_1 = __importDefault(require("./priority/priority.route"));
+const task_module_route_1 = __importDefault(require("./task-module/task-module.route"));
+const role_base_route_1 = __importDefault(require("./role-base/role-base.route"));
+const lookup_code_route_1 = __importDefault(require("./lookup-code/lookup-code.route"));
+const router = (0, express_1.Router)();
+router.use('/customer-type', customer_type_route_1.default);
+router.use('/domain', domain_route_1.default);
+router.use('/industry-nature', industry_nature_route_1.default);
+router.use('/priority', priority_route_1.default);
+router.use('/task-module', task_module_route_1.default);
+router.use('/role-base', role_base_route_1.default);
+router.use('/lookup-code', lookup_code_route_1.default);
+exports.default = router;
