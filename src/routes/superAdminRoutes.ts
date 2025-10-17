@@ -14,6 +14,7 @@ import googleMeetRoutes from '@modules/feature-manage-modules/google-meets/googl
 import recruitmentPostsRoutes from '@modules/feature-manage-modules/recruitment-posts/recruitment-posts.route';
 import lookupCodeRoutes from '@modules/lookups-modules/lookupsRoutes';
 import lookupModuleRoute from '@modules/lookups-modules/lookupsRoutes';
+import contactUsRoutes from '@modules/feature-manage-modules/contact-us/contact-us.route';
 // import commonDropDownRoutes from '@modules/common-drop-downs/common-drop-downs.route';
 import commonDropDownRoutes from '@modules/common-drop-downs/common-drop-downs.route';
 import commonCountRoutes from '@modules/common-count-api/common-count-api.route';
@@ -97,4 +98,6 @@ router.use('/lookups-module', lookupModuleRoute);
 router.use('/common-drop-downs', commonDropDownRoutes);
 
 router.use('/common-counters', commonCountRoutes);
+
+router.use('/contact-us', contactUsRoutes);
 export default router;

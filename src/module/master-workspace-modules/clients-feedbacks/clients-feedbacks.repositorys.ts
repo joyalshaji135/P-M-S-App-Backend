@@ -36,7 +36,7 @@ export const findClientFeedbackById = async (
     .findById(id)
     .where({ isDeleted: false })
     .populate('customer', 'name email') // Assuming customer has 'name' and 'email' fields
-    .populate('industryProject', 'name code') // Assuming industryProject has 'name' and 'code' fields
+    .populate('industryProject', 'projectName code') // Assuming industryProject has 'name' and 'code' fields
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .exec();
@@ -60,7 +60,7 @@ export const updateClientFeedbackById = async (
       { new: true, runValidators: true },
     )
     .populate('customer', 'name email')
-    .populate('industryProject', 'name code')
+    .populate('industryProject', 'projectName code')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .exec();
@@ -71,7 +71,7 @@ export const getAllClientFeedbacks = async () => {
   return clientFeedbackModel
     .find({ isDeleted: false })
     .populate('customer', 'name email')
-    .populate('industryProject', 'name code')
+    .populate('industryProject', 'projectName code')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .sort({ createdAt: -1 });

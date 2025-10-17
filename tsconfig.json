@@ -3,12 +3,13 @@
     "target": "ES6",
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
+    "typeRoots": ["./src/@types", "./node_modules/@types"],
     "baseUrl": "./",
     "paths": {
       "@src/*": ["src/*"],
@@ -24,6 +25,12 @@
       "@validation/*": ["src/validation/*"]
     }
   },
-  "include": ["src/**/*", "types/**/*"],
+  "include": [
+    "src/**/*",
+    "app.ts",
+    "server.ts",
+    "tsconfig.json",
+    "package.json"
+  ],
   "exclude": ["node_modules"]
 }

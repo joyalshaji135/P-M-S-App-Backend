@@ -2,11 +2,21 @@ import { Request, Response } from 'express';
 import * as customerAuthLoginServices from './auth-organization-login.services';
 import generateTokenCustomer from '@middleware/generateAuthToken';
 import { message } from '@constants/responseMessage';
+import { loginFormValidation } from '@src/validation/login-form/loginFormValidation';
+import { respondError } from '@src/helper/response';
+import { getMessageFromValidationError } from '@src/helper/utils';
 
 export const customerLogin = async (
   req: Request,
   res: Response,
+  next: (error: any) => void,
 ): Promise<any> => {
+  // Add Validation for Login Validation
+  const { error } = loginFormValidation(req.body);
+  if (error) {
+    return next(respondError(getMessageFromValidationError(error)));
+  }
+
   const { email, password, role } = req.body;
 
   try {

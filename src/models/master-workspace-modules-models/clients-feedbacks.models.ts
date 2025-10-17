@@ -26,7 +26,7 @@ const clientFeedbackSchema: Schema<clientFeedbackDocument> = new Schema({
   rating: { type: Number, required: true },
   comment: { type: String, required: true },
   submittedAt: { type: Date, required: true },
-  feedbackStatus: { type: String, default: "Active" },
+  feedbackStatus: { type: String, default: 'Active' },
 });
 
 clientFeedbackSchema.add(baseSchema);

@@ -49,6 +49,11 @@ export const createTaskRole = async (
   }
 };
 
+// getTaskCustomerCount
+export const getTaskCustomerCount = async (id: string): Promise<number> => {
+  return taskRoleRepository.getTaskCustomerCount(id);
+};
+
 export const editTaskRole = async (
   taskRoleId: string,
   taskRoleData: Partial<taskRoleDocument>,
@@ -166,3 +171,33 @@ export const updateTaskRoleStatus = async (
     );
   }
 };
+
+// exports.updateTaskStatus = async (taskId, updateFields) => {
+//   try {
+//       // Filter out undefined fields
+//       const fieldsToUpdate = {};
+//       if (updateFields.percentageOfCompleted !== undefined) {
+//           fieldsToUpdate.percentageOfCompleted = updateFields.percentageOfCompleted;
+//       }
+//       if (updateFields.taskStatus !== undefined) {
+//           fieldsToUpdate.taskStatus = updateFields.taskStatus;
+//       }
+
+//       // Add updatedAt timestamp
+//       fieldsToUpdate.updatedAt = new Date();
+
+//       const updatedTask = await taskRepository.findByIdAndUpdate(
+//           taskId,
+//           fieldsToUpdate,
+//           { new: true }
+//       );
+
+//       if (!updatedTask) {
+//           throw new Error('Task not found');
+//       }
+
+//       return updatedTask;
+//   } catch (error) {
+//       throw error;
+//   }
+// };

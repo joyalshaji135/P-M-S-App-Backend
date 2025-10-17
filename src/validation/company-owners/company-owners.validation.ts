@@ -25,6 +25,7 @@ export const companyOwnersValidation = (data: any) => {
     address: Joi.object({
       street: Joi.string().required(),
       city: Joi.string().required(),
+      stateId: Joi.string().required(),
       state: Joi.string().required(),
       district: Joi.string().required(),
       zipCode: Joi.string()
