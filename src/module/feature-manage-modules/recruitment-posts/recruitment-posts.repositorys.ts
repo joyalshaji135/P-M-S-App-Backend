@@ -45,6 +45,8 @@ export const findById = async (
   return recruitmentPostModel
     .findById(id)
     .where({ isDeleted: false })
+    .populate('industry', 'name code')
+    .populate('priority', 'name code')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .exec();
@@ -74,6 +76,8 @@ export const updateById = async (
 export const getAllRecruitmentPosts = async () => {
   return recruitmentPostModel
     .find({ isDeleted: false })
+    .populate('industry', 'name code')
+    .populate('priority', 'name code')
     .populate('createdBy', 'name email')
     .populate('userUpdatedBy', 'name email')
     .sort({ createdAt: -1 });

@@ -198,3 +198,75 @@ export const getAllDocumentFileCount = async (
     });
   }
 };
+
+// getAllTaskCount
+export const getAllTaskCount = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: message.UNAUTHORIZED,
+      });
+    }
+    const taskCount = await commonCountApiServices.getAllTaskCount();
+    return res.status(200).json({
+      success: true,
+      message: message.GET_TASK_COUNT_SUCCESS,
+      taskCount,
+    });
+  } catch (error: any) {
+    logger.error('Error in Task Count', error.message);
+    return res.status(500).json({});
+  }
+};
+
+// getAllProjectCount
+export const getAllProjectCount = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: message.UNAUTHORIZED,
+      });
+    }
+    const projectCount = await commonCountApiServices.getAllProjectCount();
+    return res.status(200).json({
+      success: true,
+      message: message.GET_PROJECT_COUNT_SUCCESS,
+      projectCount,
+    });
+  } catch (error: any) {
+    logger.error('Error in Project Count', error.message);
+    return res.status(500).json({});
+  }
+};
+
+// getAllFeedbackCount
+export const getAllFeedbackCount = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: message.UNAUTHORIZED,
+      });
+    }
+    const feedbackCount = await commonCountApiServices.getAllFeedbackCount();
+    return res.status(200).json({
+      success: true,
+      message: message.GET_FEEDBACK_COUNT_SUCCESS,
+      feedbackCount,
+    });
+  } catch (error: any) {
+    logger.error('Error in Feedback Count', error.message);
+    return res.status(500).json({});
+  }
+};

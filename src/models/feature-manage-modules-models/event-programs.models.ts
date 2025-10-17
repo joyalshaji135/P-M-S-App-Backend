@@ -1,13 +1,14 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { baseDocument, baseSchema } from '../lookups-models/base.model';
 import { industryDocument } from '../lookups-models/industry.model';
+import { priorityDocument } from '../lookups-models/priority.model';
 
 export interface eventProgramsModel extends baseDocument {
   code: string;
   name: string;
   description: string;
   industry: mongoose.Types.ObjectId | industryDocument;
-  priority: string;
+  priority: mongoose.Types.ObjectId | priorityDocument;
   eventPost: string;
   Domain: string;
   nameAlias: string;
@@ -20,7 +21,7 @@ const eventProgramsSchema: Schema<eventProgramsDocument> = new Schema({
   name: { type: String, required: true, unique: true },
   description: { type: String },
   industry: { type: Schema.Types.ObjectId, ref: 'industry' },
-  priority: { type: String },
+  priority: { type: Schema.Types.ObjectId, ref: 'priority' },
   eventPost: { type: String },
   Domain: { type: String },
   nameAlias: {

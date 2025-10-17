@@ -8,6 +8,9 @@ import googleMeetsModels from '@src/models/feature-manage-modules-models/google-
 import recruitmentPostsModels from '@src/models/feature-manage-modules-models/recruitment-posts.models';
 
 import documentFileModel from '@src/models/feature-manage-modules-models/document-files.models';
+import taskRoleModels from '@src/models/master-workspace-modules-models/task-role.models';
+import industryProjectsModels from '@src/models/master-workspace-modules-models/industry-projects.models';
+import clientsFeedbacksModels from '@src/models/master-workspace-modules-models/clients-feedbacks.models';
 
 // Company Owner Count Functions
 export const getCompanyOwnersCount = async (): Promise<number> => {
@@ -57,6 +60,27 @@ export const RecruitmentCount = async (): Promise<number> => {
 // File Document Count Functions
 export const documentFileCount = async (): Promise<number> => {
   return documentFileModel.countDocuments({
+    isDeleted: false,
+  });
+};
+
+// getAllTaskCount
+export const getTaskCount = async (): Promise<number> => {
+  return taskRoleModels.countDocuments({
+    isDeleted: false,
+  });
+};
+
+// getAllProjectCount
+export const getProjectCount = async (): Promise<number> => {
+  return industryProjectsModels.countDocuments({
+    isDeleted: false,
+  });
+};
+
+// getFeedbackCount
+export const getFeedbackCount = async (): Promise<number> => {
+  return clientsFeedbacksModels.countDocuments({
     isDeleted: false,
   });
 };

@@ -10,6 +10,14 @@ export const create = async (
   return await taskRole.save();
 };
 
+// getAllTaskCount
+export const getTaskCustomerCount = async (id: string): Promise<number> => {
+  return taskRoleModel.countDocuments({
+    isDeleted: false,
+    resourceName: id,
+  });
+};
+
 export const isNameExists = async (
   taskRoleName: string,
   idToExclude?: string,
@@ -121,3 +129,15 @@ export const changeTaskRoleStatus = async (
     { new: true, runValidators: true },
   );
 };
+
+// exports.findByIdAndUpdate = async (taskId, updateData, options = {}) => {
+//   try {
+//       return await Task.findByIdAndUpdate(
+//           taskId,
+//           updateData,
+//           { ...options }
+//       ).lean();
+//   } catch (error) {
+//       throw error;
+//   }
+// };

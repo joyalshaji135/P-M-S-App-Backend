@@ -1,13 +1,14 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { baseDocument, baseSchema } from '../lookups-models/base.model';
 import { industryDocument } from '../lookups-models/industry.model';
+import { priorityDocument } from '../lookups-models/priority.model';
 
 export interface documentFileModel extends baseDocument {
   code: string;
   name: string;
   description: string;
   industry: mongoose.Types.ObjectId | industryDocument;
-  priority: string;
+  priority: mongoose.Types.ObjectId | priorityDocument;
   fileDocument: string;
   nameAlias: string;
 }
@@ -19,7 +20,7 @@ const documentFileSchema: Schema<documentFileDocument> = new Schema({
   name: { type: String, required: true, unique: true },
   description: { type: String },
   industry: { type: Schema.Types.ObjectId, ref: 'industry', required: true },
-  priority: { type: String },
+  priority: { type: Schema.Types.ObjectId, ref: 'priority', required: true },
   fileDocument: { type: String },
   nameAlias: {
     type: String,

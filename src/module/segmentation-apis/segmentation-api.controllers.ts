@@ -2,6 +2,7 @@ import { Response } from 'express';
 import { message } from '@constants/responseMessage';
 import { RequestWithAuthData } from '../../@types/express';
 import * as segmentationService from './segmentation-api.services';
+import { getTaskRoleById } from '../master-workspace-modules/task-roles/task-roles.services';
 
 // taskAssignedClient this function
 export const taskAssignedClientController = async (
@@ -149,6 +150,50 @@ export const getAllFileDocuments = async (
       success: true,
       message: message.GET_FILE_DOCUMENT_LIST_SUCCESS,
       fileDocuments,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// updateProjectTask this function using only two fields update
+export const updateProjectTask = async (
+  req: RequestWithAuthData,
+  res: Response,
+): Promise<any> => {
+  const { id } = req.params;
+  const taskRoleData = {
+    ...req.body,
+    userUpdatedDate: new Date(),
+    userUpdatedBy: req.userId,
+  };
+
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: message.UNAUTHORIZED,
+      });
+    }
+    console.log(taskRoleData);
+    const projectTask = await segmentationService.updateProjectTaskPatch(
+      id,
+      taskRoleData,
+    );
+
+    if (!projectTask) {
+      return res.status(204).json({
+        success: false,
+        message: message.TODO_LIST_NOT_FOUND,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      projectTask,
     });
   } catch (error: any) {
     return res.status(500).json({

@@ -23,7 +23,10 @@ router.get(
 
 // Get All Google Meeting
 router.get('/get-all-google-meetings', segmentationRoutes.getAllGoogleMeetings);
-export default router;
 
 // Get All File Documents Api
 router.get('/get-all-file-documents', segmentationRoutes.getAllFileDocuments);
+
+router.patch('/:id/update-project-task', segmentationRoutes.updateProjectTask);
+
+export default router;
