@@ -40,7 +40,7 @@ export const taskAssignedClientController = async (
   }
 };
 
-// projectAssignedClientController 
+// projectAssignedClientController
 export const projectAssignedClientController = async (
   req: RequestWithAuthData,
   res: Response,
@@ -90,8 +90,7 @@ export const getAllIndustryProjects = async (
       });
     }
 
-    const industryProjects =
-      await segmentationService.getAllIndustryProjects();
+    const industryProjects = await segmentationService.getAllIndustryProjects();
     return res.status(200).json({
       success: true,
       message: message.GET_INDUSTRY_PROJECT_LIST_SUCCESS,
@@ -118,8 +117,7 @@ export const getAllGoogleMeetings = async (
       });
     }
 
-    const googleMeetings =
-      await segmentationService.getAllGoogleMeetings();
+    const googleMeetings = await segmentationService.getAllGoogleMeetings();
     return res.status(200).json({
       success: true,
       message: message.GET_GOOGLE_MEETING_LIST_SUCCESS,

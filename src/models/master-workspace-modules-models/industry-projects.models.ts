@@ -25,7 +25,7 @@ const industryProjectSchema: Schema<industryProjectDocument> = new Schema({
   projectName: { type: String, required: true },
   customer: { type: Schema.Types.ObjectId, ref: 'customer', required: true },
   industry: { type: Schema.Types.ObjectId, ref: 'industry', required: true },
-  priority: {  type: Schema.Types.ObjectId, ref: 'priority', required: true},
+  priority: { type: Schema.Types.ObjectId, ref: 'priority', required: true },
   description: { type: String, required: true },
   projectStatus: { type: String, required: true },
   startDate: { type: Date, required: true },

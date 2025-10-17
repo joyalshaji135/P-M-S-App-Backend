@@ -46,7 +46,7 @@ const clientFeedbackSchema = new mongoose_1.Schema({
     rating: { type: Number, required: true },
     comment: { type: String, required: true },
     submittedAt: { type: Date, required: true },
-    feedbackStatus: { type: String, default: "Active" },
+    feedbackStatus: { type: String, default: 'Active' },
 });
 clientFeedbackSchema.add(base_model_1.baseSchema);
 exports.default = mongoose_1.default.model('clientFeedback', clientFeedbackSchema);

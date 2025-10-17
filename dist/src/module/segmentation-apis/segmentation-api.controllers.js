@@ -75,7 +75,7 @@ const taskAssignedClientController = (req, res) => __awaiter(void 0, void 0, voi
     }
 });
 exports.taskAssignedClientController = taskAssignedClientController;
-// projectAssignedClientController 
+// projectAssignedClientController
 const projectAssignedClientController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { client_id } = req.params;
     try {
