@@ -49,9 +49,11 @@ const taskRoleSchema = new mongoose_1.Schema({
         required: true,
     },
     //   taskModule: { type: Schema.Types.ObjectId, ref: 'taskModule', required: true },
-    taskModule: { type: mongoose_1.Schema.Types.ObjectId,
+    taskModule: {
+        type: mongoose_1.Schema.Types.ObjectId,
         ref: 'taskModule',
-        required: true, },
+        required: true,
+    },
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     taskTitle: { type: String, required: true },

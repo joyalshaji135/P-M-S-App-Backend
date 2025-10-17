@@ -42,7 +42,7 @@ router.get('/:client_id/task-wise-client', segmentationRoutes.taskAssignedClient
 router.get('/:client_id/project-wise-client', segmentationRoutes.projectAssignedClientController);
 // Get All Industry Projects
 router.get('/get-all-industry-projects', segmentationRoutes.getAllIndustryProjects);
-// Get All Google Meeting 
+// Get All Google Meeting
 router.get('/get-all-google-meetings', segmentationRoutes.getAllGoogleMeetings);
 exports.default = router;
 // Get All File Documents Api
