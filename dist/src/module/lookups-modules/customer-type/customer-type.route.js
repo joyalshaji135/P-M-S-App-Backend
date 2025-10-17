@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const customer_type_controllers_1 = require("./customer-type.controllers");
+const router = (0, express_1.Router)();
+router.post('/create-customer-type', customer_type_controllers_1.createCustomerTypeProfile);
+router.patch('/:id/status-change-customer-type', customer_type_controllers_1.updateCustomerTypeStatus);
+router.put('/:id/update-customer-type', customer_type_controllers_1.editCustomerTypeProfile);
+router.delete('/:id/delete-customer-type', customer_type_controllers_1.deleteCustomerTypeProfile);
+router.get('/:id/get-by-id-customer-type', customer_type_controllers_1.getCustomerTypeById);
+router.get('/get-all-customer-types', customer_type_controllers_1.getAllCustomerTypes);
+exports.default = router;

@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "outDir": "./dist",
+        "rootDir": ".",
+        "strict": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "typeRoots": ["./src/@types", "./node_modules/@types"],
+        "baseUrl": "./",
+        "paths": {
+            "@src/*": ["src/*"],
+            "@config/*": ["src/config/*"],
+            "@models/*": ["src/models/*"],
+            "@middleware/*": ["src/middleware/*"],
+            "@modules/*": ["src/module/*"],
+            "@utils/*": ["src/utils/*"],
+            "@constants/*": ["src/constants/*"],
+            "@types/*": ["src/@types/*"],
+            "@routes/*": ["src/routes/*"],
+            "@helper/*": ["src/helper/*"],
+            "@validation/*": ["src/validation/*"]
+        }
+    },
+    "include": [
+        "src/**/*",
+        "app.ts",
+        "server.ts",
+        "tsconfig.json",
+        "package.json"
+    ],
+    "exclude": ["node_modules"]
+}
