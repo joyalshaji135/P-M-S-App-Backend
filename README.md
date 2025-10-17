@@ -1,190 +1,197 @@
-# Project Management System
+# Project Management System - Backend
 
-A full-stack project management application built with the MERN stack (MongoDB, Express.js, React, Node.js).
-
-## 📋 Overview
-
-This Project Management System provides a comprehensive solution for managing projects, tasks, team members, and workflows. Built with modern web technologies, it offers a robust and scalable platform for project collaboration.
+A robust backend API for a project management system built with the MERN stack (MongoDB, Express.js, React, Node.js).
 
 ## 🚀 Features
 
-- **User Authentication & Authorization** - Secure JWT-based authentication
-- **Project Management** - Create, update, and manage multiple projects
-- **Task Tracking** - Assign and track tasks with status updates
-- **Team Collaboration** - Manage team members and roles
-- **Dashboard Analytics** - Visual insights into project progress
-- **Real-time Updates** - Stay synchronized with project changes
+- RESTful API architecture
+- JWT-based authentication
+- MongoDB database integration
+- Secure environment configuration
+- CORS enabled for client communication
+
+## 📋 Prerequisites
+
+Before running this project, make sure you have the following installed:
+
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB Atlas account (or local MongoDB)
+- Git
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- **React** - UI library for building interactive interfaces
-- **Vite** - Fast build tool and development server
-- **React Router** - Client-side routing
-- **Axios** - HTTP client for API requests
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **MongoDB** - Database
+- **Mongoose** - ODM for MongoDB
+- **JWT** - Authentication
+- **dotenv** - Environment variable management
 
-### Backend
-- **Node.js** - JavaScript runtime environment
-- **Express.js** - Web application framework
-- **MongoDB** - NoSQL database
-- **Mongoose** - MongoDB object modeling
-- **JWT** - JSON Web Tokens for authentication
-- **bcrypt** - Password hashing
+## ⚙️ Installation
 
-## 📦 Installation
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd project-management-system/backend
+   ```
 
-### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB Atlas account or local MongoDB installation
-- npm or yarn package manager
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### Clone the Repository
-```bash
-git clone <your-repository-url>
-cd project-management-system
-```
+3. **Environment Setup**
+   
+   Create a `.env` file in the root directory with the following variables:
+   ```env
+   APP_NAME=project-management-system
+   NODE_ENV=dev
+   PORT=3000
+   MONGO_URI=mongodb+srv://<username>:<password>@cluster0.7stuzzk.mongodb.net/
+   DB_NAME=project-management-system
+   JWT_SECRET=<your-secure-jwt-secret>
+   API_KEY=<your-secure-api-key>
+   CLIENT_API=http://localhost:5173
+   ```
 
-### Backend Setup
+   **Important:** Replace the placeholder values with your actual credentials.
 
-1. Navigate to the backend directory:
-```bash
-cd backend
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Create a `.env` file in the backend root directory:
-```env
-APP_NAME=project-management-system
-NODE_ENV=dev
-PORT=3000
-MONGO_URI=your_mongodb_connection_string
-DB_NAME=project-management-system
-JWT_SECRET=your_jwt_secret_key
-API_KEY=your_api_key
-CLIENT_API=http://localhost:5173
-```
-
-4. Start the backend server:
-```bash
-npm run dev
-```
-
-### Frontend Setup
-
-1. Navigate to the frontend directory:
-```bash
-cd frontend
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Create a `.env` file in the frontend root directory:
-```env
-VITE_API_URL=http://localhost:3000
-```
-
-4. Start the development server:
-```bash
-npm run dev
-```
-
-## 🌐 Environment Variables
-
-### Backend (.env)
-| Variable | Description |
-|----------|-------------|
-| `APP_NAME` | Application name |
-| `NODE_ENV` | Environment (dev/production) |
-| `PORT` | Backend server port |
-| `MONGO_URI` | MongoDB connection string |
-| `DB_NAME` | Database name |
-| `JWT_SECRET` | Secret key for JWT token generation |
-| `API_KEY` | API authentication key |
-| `CLIENT_API` | Frontend URL for CORS |
-
-### Frontend (.env)
-| Variable | Description |
-|----------|-------------|
-| `VITE_API_URL` | Backend API base URL |
+4. **Start the server**
+   
+   Development mode:
+   ```bash
+   npm run dev
+   ```
+   
+   Production mode:
+   ```bash
+   npm start
+   ```
 
 ## 📁 Project Structure
 
 ```
-project-management-system/
-├── backend/
-│   ├── config/
-│   │   └── database.js
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   ├── utils/
-│   ├── server.js
-│   └── package.json
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── context/
-│   │   ├── hooks/
-│   │   ├── utils/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── public/
-│   ├── index.html
-│   └── package.json
-└── README.md
+backend/
+├── config/
+│   └── db.js              # Database configuration
+├── controllers/
+│   ├── authController.js  # Authentication logic
+│   ├── projectController.js
+│   └── userController.js
+├── models/
+│   ├── User.js
+│   ├── Project.js
+│   └── Task.js
+├── routes/
+│   ├── authRoutes.js
+│   ├── projectRoutes.js
+│   └── userRoutes.js
+├── middleware/
+│   ├── auth.js            # JWT verification
+│   └── errorHandler.js
+├── utils/
+│   └── helpers.js
+├── .env                   # Environment variables
+├── .gitignore
+├── server.js              # Entry point
+└── package.json
 ```
 
-## 🔧 Available Scripts
+## 🔌 API Endpoints
 
-### Backend
-- `npm run dev` - Start development server with nodemon
-- `npm start` - Start production server
-- `npm test` - Run tests
+### Authentication
+```
+POST   /api/auth/register  - Register new user
+POST   /api/auth/login     - Login user
+GET    /api/auth/me        - Get current user
+```
 
-### Frontend
-- `npm run dev` - Start Vite development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+### Projects
+```
+GET    /api/projects       - Get all projects
+POST   /api/projects       - Create new project
+GET    /api/projects/:id   - Get project by ID
+PUT    /api/projects/:id   - Update project
+DELETE /api/projects/:id   - Delete project
+```
 
-## 🔐 Security Notes
+### Tasks
+```
+GET    /api/tasks          - Get all tasks
+POST   /api/tasks          - Create new task
+GET    /api/tasks/:id      - Get task by ID
+PUT    /api/tasks/:id      - Update task
+DELETE /api/tasks/:id      - Delete task
+```
 
-⚠️ **Important**: The current configuration includes sensitive credentials. Before deploying to production:
+## 🔐 Environment Variables
 
-1. **Remove hardcoded credentials** from version control
-2. **Generate new secrets** for JWT and API keys
-3. **Use environment-specific** .env files
-4. **Enable MongoDB IP whitelist** for production
-5. **Implement rate limiting** and input validation
-6. **Use HTTPS** in production
-7. **Add helmet.js** for security headers
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `APP_NAME` | Application name | project-management-system |
+| `NODE_ENV` | Environment mode | dev/production |
+| `PORT` | Server port | 3000 |
+| `MONGO_URI` | MongoDB connection string | mongodb+srv://... |
+| `DB_NAME` | Database name | project-management-system |
+| `JWT_SECRET` | Secret key for JWT | your-secret-key |
+| `API_KEY` | API authentication key | your-api-key |
+| `CLIENT_API` | Frontend URL | http://localhost:5173 |
 
-## 🚀 Deployment
+## 🧪 Testing
 
-### Backend Deployment (Heroku/Railway/Render)
-1. Set all environment variables in your hosting platform
-2. Ensure MongoDB Atlas is configured with proper IP whitelist
-3. Update `CLIENT_API` to your production frontend URL
-4. Deploy the backend directory
+Run tests with:
+```bash
+npm test
+```
 
-### Frontend Deployment (Vercel/Netlify)
-1. Update `VITE_API_URL` to your production backend URL
-2. Build the production bundle
-3. Deploy the `dist` folder
+## 📦 Dependencies
+
+```json
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "cors": "^2.8.5",
+    "express-validator": "^7.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
+```
+
+## 🚦 Running Scripts
+
+```bash
+# Start development server with auto-reload
+npm run dev
+
+# Start production server
+npm start
+
+# Run tests
+npm test
+
+# Lint code
+npm run lint
+```
+
+## 🔒 Security Notes
+
+- Never commit `.env` file to version control
+- Always use strong JWT secrets and API keys
+- Implement rate limiting for production
+- Use HTTPS in production
+- Regularly update dependencies
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
@@ -195,20 +202,15 @@ This project is licensed under the MIT License.
 
 ## 👥 Authors
 
-Your Name - Your Email
-
-## 🐛 Known Issues
-
-- None currently reported
+- Your Name - Initial work
 
 ## 📞 Support
 
 For support, email your-email@example.com or open an issue in the repository.
 
-## 🔄 Changelog
+## 🙏 Acknowledgments
 
-### Version 1.0.0
-- Initial release
-- Basic project and task management functionality
-- User authentication and authorization
-- Dashboard with analytics
+- Express.js documentation
+- MongoDB documentation
+- JWT.io
+- All contributors who helped with the project
