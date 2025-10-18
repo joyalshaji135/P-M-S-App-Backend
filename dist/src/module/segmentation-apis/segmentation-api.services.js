@@ -45,7 +45,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllFileDocuments = exports.getAllGoogleMeetings = exports.getAllIndustryProjects = exports.projectAssignedClientServices = exports.taskAssignedClientServices = void 0;
+exports.updateProjectTaskPatch = exports.getAllFileDocuments = exports.getAllGoogleMeetings = exports.getAllIndustryProjects = exports.projectAssignedClientServices = exports.taskAssignedClientServices = void 0;
 const logger_1 = __importDefault(require("@src/utils/logger"));
 const segmentationApiRepository = __importStar(require("./segmentation-api.repository"));
 // taskAssignedClientServices
@@ -78,3 +78,9 @@ const getAllFileDocuments = () => __awaiter(void 0, void 0, void 0, function* ()
     return segmentationApiRepository.getAllFileDocuments();
 });
 exports.getAllFileDocuments = getAllFileDocuments;
+// updateProjectTask this function using only two fields update using patch
+const updateProjectTaskPatch = (id, updateData) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('Updating project', updateData);
+    return segmentationApiRepository.updateProjectTaskPatch(id, updateData);
+});
+exports.updateProjectTaskPatch = updateProjectTaskPatch;

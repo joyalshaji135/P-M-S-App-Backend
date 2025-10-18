@@ -42,7 +42,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllDocumentFileCount = exports.getAllRecruitmentCount = exports.getAllGoogleMeetCount = exports.getAllEventCount = exports.getAllTeamMemberCount = exports.getAllTeamManagerCount = exports.getAllCompanyOwnerCount = void 0;
+exports.getAllFeedbackCount = exports.getAllTaskCount = exports.getAllProjectCount = exports.getAllDocumentFileCount = exports.getAllRecruitmentCount = exports.getAllGoogleMeetCount = exports.getAllEventCount = exports.getAllTeamMemberCount = exports.getAllTeamManagerCount = exports.getAllCompanyOwnerCount = void 0;
 const commonCountApiRepository = __importStar(require("./common-count-api.repositors"));
 // Company Owner Count Functions
 const getAllCompanyOwnerCount = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -121,3 +121,36 @@ const getAllDocumentFileCount = () => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.getAllDocumentFileCount = getAllDocumentFileCount;
+// getAllProjectCount
+const getAllProjectCount = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const projectCount = yield commonCountApiRepository.getProjectCount();
+        return projectCount;
+    }
+    catch (error) {
+        throw new Error('Fail to get Project Count');
+    }
+});
+exports.getAllProjectCount = getAllProjectCount;
+// getAllTaskCount
+const getAllTaskCount = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const taskCount = yield commonCountApiRepository.getTaskCount();
+        return taskCount;
+    }
+    catch (error) {
+        throw new Error('Fail to get Task Count');
+    }
+});
+exports.getAllTaskCount = getAllTaskCount;
+// getAllFeedbackCount
+const getAllFeedbackCount = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const feedbackCount = yield commonCountApiRepository.getFeedbackCount();
+        return feedbackCount;
+    }
+    catch (error) {
+        throw new Error('Fail to get Feedback Count');
+    }
+});
+exports.getAllFeedbackCount = getAllFeedbackCount;

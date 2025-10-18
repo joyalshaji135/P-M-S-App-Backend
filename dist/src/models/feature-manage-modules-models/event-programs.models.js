@@ -40,7 +40,7 @@ const eventProgramsSchema = new mongoose_1.Schema({
     name: { type: String, required: true, unique: true },
     description: { type: String },
     industry: { type: mongoose_1.Schema.Types.ObjectId, ref: 'industry' },
-    priority: { type: String },
+    priority: { type: mongoose_1.Schema.Types.ObjectId, ref: 'priority' },
     eventPost: { type: String },
     Domain: { type: String },
     nameAlias: {

@@ -54,4 +54,10 @@ router.get('/google-meet-count', commonCountApiControllers.getAllGoogleMeetCount
 router.get('/recruitment-count', commonCountApiControllers.getAllRecruitmentCount);
 // File Document Count Functions
 router.get('/file-document-count', commonCountApiControllers.getAllDocumentFileCount);
+// Task Count Functions
+router.get('/task-count', commonCountApiControllers.getAllTaskCount);
+// project Count Functions
+router.get('/industry-project-count', commonCountApiControllers.getAllProjectCount);
+// feedback Count Functions
+router.get('/feedback-count', commonCountApiControllers.getAllFeedbackCount);
 exports.default = router;

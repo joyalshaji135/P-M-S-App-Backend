@@ -40,7 +40,7 @@ const documentFileSchema = new mongoose_1.Schema({
     name: { type: String, required: true, unique: true },
     description: { type: String },
     industry: { type: mongoose_1.Schema.Types.ObjectId, ref: 'industry', required: true },
-    priority: { type: String },
+    priority: { type: mongoose_1.Schema.Types.ObjectId, ref: 'priority', required: true },
     fileDocument: { type: String },
     nameAlias: {
         type: String,

@@ -21,4 +21,5 @@ exports.LookupTypes = {
     ROLE_BASE: 'ROLE_BASE',
     TASK_MODULE: 'TASK_MODULE',
     PRIORITY: 'PRIORITY',
+    CONTACT_US: 'CONTACT_US',
 };

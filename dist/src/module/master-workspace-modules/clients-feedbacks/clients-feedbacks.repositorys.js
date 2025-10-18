@@ -39,7 +39,7 @@ const findClientFeedbackById = (id) => __awaiter(void 0, void 0, void 0, functio
         .findById(id)
         .where({ isDeleted: false })
         .populate('customer', 'name email') // Assuming customer has 'name' and 'email' fields
-        .populate('industryProject', 'name code') // Assuming industryProject has 'name' and 'code' fields
+        .populate('industryProject', 'projectName code') // Assuming industryProject has 'name' and 'code' fields
         .populate('createdBy', 'name email')
         .populate('userUpdatedBy', 'name email')
         .exec();
@@ -52,7 +52,7 @@ const updateClientFeedbackById = (id, updateData) => __awaiter(void 0, void 0, v
         $set: Object.assign(Object.assign({}, updateData), { userUpdatedBy: updateData.userUpdatedBy, userUpdatedDate: new Date() }),
     }, { new: true, runValidators: true })
         .populate('customer', 'name email')
-        .populate('industryProject', 'name code')
+        .populate('industryProject', 'projectName code')
         .populate('createdBy', 'name email')
         .populate('userUpdatedBy', 'name email')
         .exec();
@@ -63,7 +63,7 @@ const getAllClientFeedbacks = () => __awaiter(void 0, void 0, void 0, function* 
     return clients_feedbacks_models_1.default
         .find({ isDeleted: false })
         .populate('customer', 'name email')
-        .populate('industryProject', 'name code')
+        .populate('industryProject', 'projectName code')
         .populate('createdBy', 'name email')
         .populate('userUpdatedBy', 'name email')
         .sort({ createdAt: -1 });

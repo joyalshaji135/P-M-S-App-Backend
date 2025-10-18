@@ -24,6 +24,10 @@ const router: Router = Router();
 
 router.use(requireApiKey);
 
+// Super Admin Creating Functionality Routes
+
+router.use('/super-admin-module', superAdminRoutes);
+
 // Super Admin Login Routes
 
 router.use('/auth', authOrganizationRoutes);
@@ -32,10 +36,6 @@ router.use(requireAuthToken);
 
 // Middleware
 router.use(verifyTokenMiddleware);
-
-// Super Admin Creating Functionality Routes
-
-router.use('/super-admin-module', superAdminRoutes);
 
 // Create Lookups Routes
 

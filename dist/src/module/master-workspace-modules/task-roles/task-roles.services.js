@@ -45,7 +45,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateTaskRoleStatus = exports.deleteTaskRole = exports.getTaskRoleById = exports.getAllTaskRoles = exports.editTaskRole = exports.createTaskRole = void 0;
+exports.updateTaskRoleStatus = exports.deleteTaskRole = exports.getTaskRoleById = exports.getAllTaskRoles = exports.editTaskRole = exports.getTaskCustomerCount = exports.createTaskRole = void 0;
 const logger_1 = __importDefault(require("@utils/logger"));
 const log_model_1 = __importDefault(require("@models/lookups-models/log.model"));
 const taskRoleRepository = __importStar(require("./task-roles.repository"));
@@ -83,6 +83,11 @@ const createTaskRole = (taskRoleData) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.createTaskRole = createTaskRole;
+// getTaskCustomerCount
+const getTaskCustomerCount = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return taskRoleRepository.getTaskCustomerCount(id);
+});
+exports.getTaskCustomerCount = getTaskCustomerCount;
 const editTaskRole = (taskRoleId, taskRoleData) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         logger_1.default.info(`Editing task role profile with ID ${taskRoleId}`, {
@@ -163,3 +168,28 @@ const updateTaskRoleStatus = (id, updatedData) => __awaiter(void 0, void 0, void
     }
 });
 exports.updateTaskRoleStatus = updateTaskRoleStatus;
+// exports.updateTaskStatus = async (taskId, updateFields) => {
+//   try {
+//       // Filter out undefined fields
+//       const fieldsToUpdate = {};
+//       if (updateFields.percentageOfCompleted !== undefined) {
+//           fieldsToUpdate.percentageOfCompleted = updateFields.percentageOfCompleted;
+//       }
+//       if (updateFields.taskStatus !== undefined) {
+//           fieldsToUpdate.taskStatus = updateFields.taskStatus;
+//       }
+//       // Add updatedAt timestamp
+//       fieldsToUpdate.updatedAt = new Date();
+//       const updatedTask = await taskRepository.findByIdAndUpdate(
+//           taskId,
+//           fieldsToUpdate,
+//           { new: true }
+//       );
+//       if (!updatedTask) {
+//           throw new Error('Task not found');
+//       }
+//       return updatedTask;
+//   } catch (error) {
+//       throw error;
+//   }
+// };

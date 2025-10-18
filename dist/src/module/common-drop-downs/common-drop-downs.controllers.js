@@ -45,7 +45,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllIndustryProjects = exports.getAllRole = exports.getAllPriority = exports.getAllTaskModules = exports.getAllIndustryNatures = exports.getAllDomainLists = exports.getAllCustomerTypeList = exports.getAllCompanyOwnerList = exports.getAllTeamManagerList = exports.getAllTeamMemberList = void 0;
+exports.getDDAllStates = exports.getAllIndustryProjects = exports.getAllRole = exports.getAllPriority = exports.getAllTaskModules = exports.getAllIndustryNatures = exports.getAllDomainLists = exports.getAllCustomerTypeList = exports.getAllCompanyOwnerList = exports.getAllTeamManagerList = exports.getAllTeamMemberList = void 0;
+exports.fetchDistricts = fetchDistricts;
 const CommonDropdownService = __importStar(require("./common-drop-downs.services"));
 const responseMessage_1 = require("@constants/responseMessage");
 const logger_1 = __importDefault(require("@utils/logger"));
@@ -293,3 +294,40 @@ const getAllIndustryProjects = (req, res) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.getAllIndustryProjects = getAllIndustryProjects;
+const getDDAllStates = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const states = yield CommonDropdownService.fetchStates();
+        if (states.length === 0) {
+            return res
+                .status(204)
+                .json({ success: false, message: 'No states types found' });
+        }
+        res.status(200).json({ success: true, data: states });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+exports.getDDAllStates = getDDAllStates;
+function fetchDistricts(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const { id } = req.params;
+            if (!id) {
+                res.status(400).json({ message: 'state id required' });
+            }
+            const result = yield CommonDropdownService.fetchDistrict(id);
+            res.status(200).json({
+                message: 'district fetched successfully',
+                result,
+            });
+        }
+        catch (error) {
+            console.error('Error in fetchAndStore:', error);
+            res.status(500).json({
+                message: 'Error fetching or storing data',
+                error: error,
+            });
+        }
+    });
+}

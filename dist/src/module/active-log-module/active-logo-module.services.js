@@ -32,19 +32,29 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const segmentationRoutes = __importStar(require("./segmentation-api.controllers"));
-const router = (0, express_1.Router)();
-// Task Wise Client Get Api Methods
-router.get('/:client_id/task-wise-client', segmentationRoutes.taskAssignedClientController);
-// Project Wise Client Get Api Methods
-router.get('/:client_id/project-wise-client', segmentationRoutes.projectAssignedClientController);
-// Get All Industry Projects
-router.get('/get-all-industry-projects', segmentationRoutes.getAllIndustryProjects);
-// Get All Google Meeting
-router.get('/get-all-google-meetings', segmentationRoutes.getAllGoogleMeetings);
-// Get All File Documents Api
-router.get('/get-all-file-documents', segmentationRoutes.getAllFileDocuments);
-router.patch('/:id/update-project-task', segmentationRoutes.updateProjectTask);
-exports.default = router;
+exports.getAllActiveLogs = void 0;
+const logger_1 = __importDefault(require("@src/utils/logger"));
+const activeLogRepository = __importStar(require("./active-logo-module.repository"));
+const getAllActiveLogs = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        return yield activeLogRepository.getAllUserLog();
+    }
+    catch (error) {
+        logger_1.default.error('Error in Get All Active Logs', error.message);
+        throw error;
+    }
+});
+exports.getAllActiveLogs = getAllActiveLogs;

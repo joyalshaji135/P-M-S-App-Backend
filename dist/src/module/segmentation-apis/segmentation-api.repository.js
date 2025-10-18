@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllFileDocuments = exports.getAllGoogleMeetings = exports.getAllIndustryProjects = exports.projectAssignedClientRepository = exports.taskAssignedClientRepository = void 0;
+exports.updateProjectTaskPatch = exports.getAllFileDocuments = exports.getAllGoogleMeetings = exports.getAllIndustryProjects = exports.projectAssignedClientRepository = exports.taskAssignedClientRepository = void 0;
 const task_role_models_1 = __importDefault(require("@src/models/master-workspace-modules-models/task-role.models"));
 const logger_1 = __importDefault(require("@src/utils/logger"));
 const industry_projects_models_1 = __importDefault(require("@src/models/master-workspace-modules-models/industry-projects.models"));
@@ -70,10 +70,19 @@ exports.getAllGoogleMeetings = getAllGoogleMeetings;
 const getAllFileDocuments = () => __awaiter(void 0, void 0, void 0, function* () {
     return document_files_models_1.default
         .find({ isDeleted: false })
-        .populate('customer', 'name email role phone')
-        .populate('industryProject', 'projectName code')
+        .populate('industry', 'name code')
         .populate('createdBy', 'name email')
         .populate('userUpdatedBy', 'name email')
         .sort({ createdAt: -1 });
 });
 exports.getAllFileDocuments = getAllFileDocuments;
+// updateProjectTask this function using only two fields update using patch
+const updateProjectTaskPatch = (id, updates) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedTask = yield task_role_models_1.default.findOneAndUpdate({ _id: id }, { $set: updates }, { new: true, lean: true });
+    console.log(updatedTask);
+    if (!updatedTask) {
+        throw new Error(`Task with ID ${id} not found`);
+    }
+    return updatedTask;
+});
+exports.updateProjectTaskPatch = updateProjectTaskPatch;

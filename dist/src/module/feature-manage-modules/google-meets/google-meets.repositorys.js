@@ -46,6 +46,8 @@ const findById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return google_meets_models_1.default
         .findById(id)
         .where({ isDeleted: false })
+        .populate('industryProject', 'name code')
+        .populate('customer', 'name email phone address')
         .populate('createdBy', 'name email')
         .populate('userUpdatedBy', 'name email')
         .exec();
@@ -64,6 +66,8 @@ exports.updateById = updateById;
 const getAllGoogleMeets = () => __awaiter(void 0, void 0, void 0, function* () {
     return google_meets_models_1.default
         .find({ isDeleted: false })
+        .populate('industryProject', 'name code projectName')
+        .populate('customer', 'name email phone address')
         .populate('createdBy', 'name email')
         .populate('userUpdatedBy', 'name email')
         .sort({ createdAt: -1 });

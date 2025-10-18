@@ -35,10 +35,10 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
 const UserLogSchema = new mongoose_1.Schema({
-    userId: { type: mongoose_1.Schema.Types.ObjectId, required: true },
+    userId: { type: mongoose_1.Schema.Types.ObjectId, required: true, ref: 'customer' },
     module: { type: String, required: true },
     action: { type: String, required: true },
-    actionId: { type: mongoose_1.Schema.Types.ObjectId, required: true },
+    actionId: { type: mongoose_1.Schema.Types.ObjectId, required: true, ref: 'customer' },
     description: { type: String, required: true },
     timestamp: { type: Date, default: Date.now },
 });

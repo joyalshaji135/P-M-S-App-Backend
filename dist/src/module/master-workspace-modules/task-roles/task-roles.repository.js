@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.changeTaskRoleStatus = exports.deleteTaskRole = exports.getAllTaskRoles = exports.updateById = exports.findById = exports.isNameAliasExists = exports.isNameExists = exports.create = void 0;
+exports.changeTaskRoleStatus = exports.deleteTaskRole = exports.getAllTaskRoles = exports.updateById = exports.findById = exports.isNameAliasExists = exports.isNameExists = exports.getTaskCustomerCount = exports.create = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const task_role_models_1 = __importDefault(require("@models/master-workspace-modules-models/task-role.models"));
 const create = (taskRoleData) => __awaiter(void 0, void 0, void 0, function* () {
@@ -20,6 +20,14 @@ const create = (taskRoleData) => __awaiter(void 0, void 0, void 0, function* () 
     return yield taskRole.save();
 });
 exports.create = create;
+// getAllTaskCount
+const getTaskCustomerCount = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return task_role_models_1.default.countDocuments({
+        isDeleted: false,
+        resourceName: id,
+    });
+});
+exports.getTaskCustomerCount = getTaskCustomerCount;
 const isNameExists = (taskRoleName, idToExclude) => __awaiter(void 0, void 0, void 0, function* () {
     const filter = {
         taskRoleName: taskRoleName,
@@ -95,3 +103,14 @@ const changeTaskRoleStatus = (id, updatedData) => __awaiter(void 0, void 0, void
     }, { new: true, runValidators: true });
 });
 exports.changeTaskRoleStatus = changeTaskRoleStatus;
+// exports.findByIdAndUpdate = async (taskId, updateData, options = {}) => {
+//   try {
+//       return await Task.findByIdAndUpdate(
+//           taskId,
+//           updateData,
+//           { ...options }
+//       ).lean();
+//   } catch (error) {
+//       throw error;
+//   }
+// };
