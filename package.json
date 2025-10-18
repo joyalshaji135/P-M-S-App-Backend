@@ -4,6 +4,7 @@
   "description": "Manage the Industry Projects",
   "main": "./server.ts",
   "scripts": {
+    "develop": "npm run prettier-format && nodemon",
     "dev": "npm run prettier-format && nodemon -r tsconfig-paths/register --exec",
     "prettier-format": "prettier --write . && prettier --check .",
     "build": "rimraf build && tsc",

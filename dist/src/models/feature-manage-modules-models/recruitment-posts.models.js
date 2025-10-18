@@ -39,7 +39,7 @@ const recruitmentPostSchema = new mongoose_1.Schema({
     code: { type: String, required: true },
     name: { type: String, required: true, unique: true },
     industry: { type: mongoose_1.Schema.Types.ObjectId, ref: 'industry', required: true },
-    priority: { type: String },
+    priority: { type: mongoose_1.Schema.Types.ObjectId, ref: 'priority', required: true },
     recruitmentPost: { type: String },
     recruitmentPosition: { type: String },
     recruitmentLocation: { type: String },

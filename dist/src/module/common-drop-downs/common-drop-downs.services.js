@@ -43,6 +43,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllIndustryProjects = exports.getAllRole = exports.getAllPriority = exports.getAllTaskModules = exports.getAllIndustryNatures = exports.getAllDomainLists = exports.getAllCustomerTypeList = exports.getAllCompanyOwnerList = exports.getAllTeamManagerList = exports.getAllTeamMemberList = void 0;
+exports.fetchStates = fetchStates;
+exports.fetchDistrict = fetchDistrict;
+const country_state_district = require('@coffeebeanslabs/country_state_district');
 // Get All Team Member List Functionality
 const commonDropDownRepository = __importStar(require("./common-drop-downs.repositorys"));
 const getAllTeamMemberList = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -154,3 +157,37 @@ const getAllIndustryProjects = () => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getAllIndustryProjects = getAllIndustryProjects;
+function fetchStates() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const states = country_state_district.getAllStates();
+            return states;
+        }
+        catch (error) {
+            if (error instanceof Error) {
+                console.error('Error fetching states:', error.message);
+            }
+            else {
+                console.error('Unknown error fetching states');
+            }
+            throw new Error('Failed to fetch states');
+        }
+    });
+}
+function fetchDistrict(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const district = country_state_district.getDistrictsByStateId(id);
+            return district;
+        }
+        catch (error) {
+            if (error instanceof Error) {
+                console.error('Error fetching districts:', error.message);
+            }
+            else {
+                console.error('Unknown error fetching districts');
+            }
+            throw new Error('Failed to fetch states');
+        }
+    });
+}

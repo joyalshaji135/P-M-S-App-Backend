@@ -28,15 +28,7 @@ const teamMembersValidation = (data) => {
             'date.iso': 'Date of birth must be in ISO format (YYYY-MM-DD).',
         }),
         gender: joi_1.default.string().valid('male', 'female', 'other').required(),
-        lastLogin: joi_1.default.date().iso().optional().messages({
-            'date.base': 'Invalid date format.',
-            'date.iso': 'Last login must be in ISO format (YYYY-MM-DDTHH:MM:SS.SSSZ).',
-        }),
         status: joi_1.default.string().required(),
-        preferences: joi_1.default.object({
-            newsletter: joi_1.default.boolean().required(),
-            notifications: joi_1.default.boolean().required(),
-        }).required(),
         address: joi_1.default.object({
             street: joi_1.default.string().required(),
             city: joi_1.default.string().required(),
@@ -51,10 +43,9 @@ const teamMembersValidation = (data) => {
         }).required(),
         skills: joi_1.default.array()
             .items(joi_1.default.object({
-            _id: joi_1.default.string().optional(),
             skillName: joi_1.default.string().required(),
             proficiency: joi_1.default.string()
-                .valid('beginner', 'intermediate', 'advanced', 'expert')
+                .valid('Beginner', 'Intermediate', 'Advanced', 'Expert')
                 .required(),
             yearsOfExperience: joi_1.default.number().min(0).required(),
             certification: joi_1.default.string().optional(),

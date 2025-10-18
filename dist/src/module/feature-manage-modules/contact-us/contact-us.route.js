@@ -32,19 +32,15 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const segmentationRoutes = __importStar(require("./segmentation-api.controllers"));
-const router = (0, express_1.Router)();
-// Task Wise Client Get Api Methods
-router.get('/:client_id/task-wise-client', segmentationRoutes.taskAssignedClientController);
-// Project Wise Client Get Api Methods
-router.get('/:client_id/project-wise-client', segmentationRoutes.projectAssignedClientController);
-// Get All Industry Projects
-router.get('/get-all-industry-projects', segmentationRoutes.getAllIndustryProjects);
-// Get All Google Meeting
-router.get('/get-all-google-meetings', segmentationRoutes.getAllGoogleMeetings);
-// Get All File Documents Api
-router.get('/get-all-file-documents', segmentationRoutes.getAllFileDocuments);
-router.patch('/:id/update-project-task', segmentationRoutes.updateProjectTask);
-exports.default = router;
+const express_1 = __importDefault(require("express"));
+const contactUsControllers = __importStar(require("./contact-us.controllers"));
+const app = (0, express_1.default)();
+app.post('/contact-us', contactUsControllers.addContactUs);
+app.get('/get-all-contact-us', contactUsControllers.getAllContactUs);
+app.get('/get-contact-us/:contactUsId', contactUsControllers.getContactUsById);
+app.delete('/delete-contact-us/:contactUsId', contactUsControllers.deleteContactUs);
+exports.default = app;

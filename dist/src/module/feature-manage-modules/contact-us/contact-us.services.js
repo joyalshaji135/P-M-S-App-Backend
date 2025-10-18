@@ -41,51 +41,64 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.customerLogin = void 0;
-const customerAuthLoginServices = __importStar(require("./auth-organization-login.services"));
-const generateAuthToken_1 = __importDefault(require("@middleware/generateAuthToken"));
-const responseMessage_1 = require("@constants/responseMessage");
-const loginFormValidation_1 = require("@src/validation/login-form/loginFormValidation");
-const response_1 = require("@src/helper/response");
-const utils_1 = require("@src/helper/utils");
-const customerLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    // Add Validation for Login Validation
-    const { error } = (0, loginFormValidation_1.loginFormValidation)(req.body);
-    if (error) {
-        return next((0, response_1.respondError)((0, utils_1.getMessageFromValidationError)(error)));
-    }
-    const { email, password, role } = req.body;
+exports.deleteContactUs = exports.getContactUsById = exports.getAllContactUsProfile = exports.createContactUsProfile = void 0;
+const logger_1 = __importDefault(require("@utils/logger"));
+const contactUsRepository = __importStar(require("./contact-us.repository"));
+// addContactUs
+const createContactUsProfile = (contactUsData) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const customer = yield customerAuthLoginServices.customerLogin(email, password, role);
-        if (!customer || customer.role !== role) {
-            return res.status(400).json({ message: responseMessage_1.message.INVALID_USER });
-        }
-        const token = (0, generateAuthToken_1.default)(customer);
-        const _a = customer.toObject(), { password: _ } = _a, customerWithoutPassword = __rest(_a, ["password"]);
-        res.cookie('token', token).status(200).json({
-            success: true,
-            message: responseMessage_1.message.LOGIN_SUCCESS,
-            token,
-            customer: customerWithoutPassword,
-        });
+        const createdContactUs = yield contactUsRepository.createContactUs(contactUsData);
+        logger_1.default.info('Contact Us created successfully', { createdContactUs });
+        return createdContactUs;
     }
     catch (error) {
-        res.status(500).json({ message: error.message });
+        logger_1.default.error(error);
+        throw error;
     }
 });
-exports.customerLogin = customerLogin;
+exports.createContactUsProfile = createContactUsProfile;
+// getAllContactUsProfile
+const getAllContactUsProfile = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const contactUs = yield contactUsRepository.getAllContactUs();
+        logger_1.default.info('Fetched all Contact Us profiles successfully', { contactUs });
+        return contactUs;
+    }
+    catch (error) {
+        logger_1.default.error(error);
+        throw error;
+    }
+});
+exports.getAllContactUsProfile = getAllContactUsProfile;
+// getContactUsById
+const getContactUsById = (contactUsId) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const contactUs = yield contactUsRepository.getContactUsById(contactUsId);
+        logger_1.default.info('Fetched Contact Us profile successfully', { contactUs });
+        return contactUs;
+    }
+    catch (error) {
+        logger_1.default.error(error);
+        throw error;
+    }
+});
+exports.getContactUsById = getContactUsById;
+// deleteContactUs
+const deleteContactUs = (contactUsId) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const deletedContactUs = yield contactUsRepository.deleteContactUs(contactUsId);
+        logger_1.default.info('Deleted Contact Us profile successfully', {
+            deletedContactUs,
+        });
+        return deletedContactUs;
+    }
+    catch (error) {
+        logger_1.default.error(error);
+        throw error;
+    }
+});
+exports.deleteContactUs = deleteContactUs;

@@ -45,7 +45,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllDocumentFileCount = exports.getAllRecruitmentCount = exports.getAllGoogleMeetCount = exports.getAllEventCount = exports.getAllTeamMemberCount = exports.getAllTeamManagerCount = exports.getAllCompanyOwnerCount = void 0;
+exports.getAllFeedbackCount = exports.getAllProjectCount = exports.getAllTaskCount = exports.getAllDocumentFileCount = exports.getAllRecruitmentCount = exports.getAllGoogleMeetCount = exports.getAllEventCount = exports.getAllTeamMemberCount = exports.getAllTeamManagerCount = exports.getAllCompanyOwnerCount = void 0;
 const commonCountApiServices = __importStar(require("./common-count-api.services"));
 const responseMessage_1 = require("@constants/responseMessage");
 const logger_1 = __importDefault(require("@utils/logger"));
@@ -224,3 +224,69 @@ const getAllDocumentFileCount = (req, res) => __awaiter(void 0, void 0, void 0, 
     }
 });
 exports.getAllDocumentFileCount = getAllDocumentFileCount;
+// getAllTaskCount
+const getAllTaskCount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!req.userId) {
+            return res.status(401).json({
+                success: false,
+                message: responseMessage_1.message.UNAUTHORIZED,
+            });
+        }
+        const taskCount = yield commonCountApiServices.getAllTaskCount();
+        return res.status(200).json({
+            success: true,
+            message: responseMessage_1.message.GET_TASK_COUNT_SUCCESS,
+            taskCount,
+        });
+    }
+    catch (error) {
+        logger_1.default.error('Error in Task Count', error.message);
+        return res.status(500).json({});
+    }
+});
+exports.getAllTaskCount = getAllTaskCount;
+// getAllProjectCount
+const getAllProjectCount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!req.userId) {
+            return res.status(401).json({
+                success: false,
+                message: responseMessage_1.message.UNAUTHORIZED,
+            });
+        }
+        const projectCount = yield commonCountApiServices.getAllProjectCount();
+        return res.status(200).json({
+            success: true,
+            message: responseMessage_1.message.GET_PROJECT_COUNT_SUCCESS,
+            projectCount,
+        });
+    }
+    catch (error) {
+        logger_1.default.error('Error in Project Count', error.message);
+        return res.status(500).json({});
+    }
+});
+exports.getAllProjectCount = getAllProjectCount;
+// getAllFeedbackCount
+const getAllFeedbackCount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!req.userId) {
+            return res.status(401).json({
+                success: false,
+                message: responseMessage_1.message.UNAUTHORIZED,
+            });
+        }
+        const feedbackCount = yield commonCountApiServices.getAllFeedbackCount();
+        return res.status(200).json({
+            success: true,
+            message: responseMessage_1.message.GET_FEEDBACK_COUNT_SUCCESS,
+            feedbackCount,
+        });
+    }
+    catch (error) {
+        logger_1.default.error('Error in Feedback Count', error.message);
+        return res.status(500).json({});
+    }
+});
+exports.getAllFeedbackCount = getAllFeedbackCount;

@@ -40,7 +40,7 @@ const skillSchema = new mongoose_1.Schema({
     skillName: { type: String, required: false },
     proficiency: {
         type: String,
-        enum: ['beginner', 'intermediate', 'advanced', 'expert'],
+        enum: ['Beginner', 'Intermediate', 'Advanced', 'Expert'],
         required: false,
     },
     yearsOfExperience: { type: Number, required: false },
@@ -69,6 +69,7 @@ const customerSchema = new mongoose_1.Schema({
     address: {
         street: { type: String, required: true },
         city: { type: String, required: true },
+        stateId: { type: String },
         state: { type: String, required: true },
         district: { type: String, required: true },
         zipCode: { type: String, required: true },

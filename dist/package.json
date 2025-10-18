@@ -4,6 +4,7 @@
     "description": "Manage the Industry Projects",
     "main": "./server.ts",
     "scripts": {
+        "develop": "npm run prettier-format && nodemon",
         "dev": "npm run prettier-format && nodemon -r tsconfig-paths/register --exec",
         "prettier-format": "prettier --write . && prettier --check .",
         "build": "rimraf build && tsc",
@@ -42,6 +43,7 @@
         "webpack-cli": "^6.0.1"
     },
     "dependencies": {
+        "@coffeebeanslabs/country_state_district": "^1.0.1",
         "@types/joi": "^17.2.2",
         "bcrypt": "^5.1.1",
         "bcryptjs": "^3.0.1",

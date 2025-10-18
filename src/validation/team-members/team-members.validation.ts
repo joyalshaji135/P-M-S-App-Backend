@@ -45,20 +45,20 @@ export const teamMembersValidation = (data: any) => {
     }).required(),
 
     skills: Joi.array()
-          .items(
-            Joi.object({
-              skillName: Joi.string().required(),
-              proficiency: Joi.string()
-                .valid('Beginner', 'Intermediate', 'Advanced', 'Expert')
-                .required(),
-              yearsOfExperience: Joi.number().min(0).required(),
-              certification: Joi.string().optional(),
-            }),
-          )
-          .required()
-          .messages({
-            'array.base': 'Skills must be an array of objects.',
-          }),
+      .items(
+        Joi.object({
+          skillName: Joi.string().required(),
+          proficiency: Joi.string()
+            .valid('Beginner', 'Intermediate', 'Advanced', 'Expert')
+            .required(),
+          yearsOfExperience: Joi.number().min(0).required(),
+          certification: Joi.string().optional(),
+        }),
+      )
+      .required()
+      .messages({
+        'array.base': 'Skills must be an array of objects.',
+      }),
 
     company: Joi.object({
       name: Joi.string().required(),
@@ -71,7 +71,6 @@ export const teamMembersValidation = (data: any) => {
       }),
     }).required(),
   });
-  
 
   // Validate data
   return schema.validate(data, { abortEarly: false });

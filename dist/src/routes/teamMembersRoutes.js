@@ -7,7 +7,7 @@ const express_1 = require("express");
 const verifyToken_1 = __importDefault(require("@middleware/verifyToken"));
 const apiRequest_1 = require("@middleware/apiRequest");
 const auth_organization_login_route_1 = __importDefault(require("@modules/auth-organization/auth-organization-login.route"));
-const segmentation_api_route_1 = __importDefault(require("@modules/segmentation-apis/segmentation-api.route"));
+const segmentation_api_route_1 = __importDefault(require("@src/module/segmentation-apis/segmentation-api.route"));
 const task_roles_route_1 = __importDefault(require("@modules/master-workspace-modules/task-roles/task-roles.route"));
 const router = (0, express_1.Router)();
 router.use(apiRequest_1.requireApiKey);

@@ -42,12 +42,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProjectTask = exports.getAllFileDocuments = exports.getAllGoogleMeetings = exports.getAllIndustryProjects = exports.projectAssignedClientController = exports.taskAssignedClientController = void 0;
+exports.deleteContactUs = exports.getContactUsById = exports.getAllContactUs = exports.addContactUs = void 0;
+const contactUsService = __importStar(require("./contact-us.services"));
 const responseMessage_1 = require("@constants/responseMessage");
-const segmentationService = __importStar(require("./segmentation-api.services"));
-// taskAssignedClient this function
-const taskAssignedClientController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { client_id } = req.params;
+const lookup_1 = require("@constants/lookup");
+const lookupCodeGenerator_1 = require("@utils/lookupCodeGenerator");
+// addContactUs
+const addContactUs = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!req.userId) {
             return res.status(401).json({
@@ -55,16 +56,17 @@ const taskAssignedClientController = (req, res) => __awaiter(void 0, void 0, voi
                 message: responseMessage_1.message.UNAUTHORIZED,
             });
         }
-        const taskAssigned = yield segmentationService.taskAssignedClientServices(client_id);
-        if (!taskAssigned) {
-            return res.status(204).json({
-                success: false,
-                message: responseMessage_1.message.TODO_LIST_NOT_FOUND,
-            });
-        }
-        return res.status(200).json({
+        const name = req.body.name;
+        const nameAlias = name.toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
+        const lookupType = lookup_1.LookupTypes.CONTACT_US;
+        const code = yield (0, lookupCodeGenerator_1.generateNewLookupCode)(lookupType);
+        const contactUsData = Object.assign(Object.assign({ code,
+            nameAlias }, req.body), { createdBy: req.userId });
+        const createdContactUs = yield contactUsService.createContactUsProfile(contactUsData);
+        return res.status(201).json({
             success: true,
-            taskAssigned,
+            message: responseMessage_1.message.CONTACT_US_CREATED_SUCCESS,
+            contactUs: createdContactUs,
         });
     }
     catch (error) {
@@ -74,10 +76,9 @@ const taskAssignedClientController = (req, res) => __awaiter(void 0, void 0, voi
         });
     }
 });
-exports.taskAssignedClientController = taskAssignedClientController;
-// projectAssignedClientController
-const projectAssignedClientController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { client_id } = req.params;
+exports.addContactUs = addContactUs;
+// getAllContactUs
+const getAllContactUs = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!req.userId) {
             return res.status(401).json({
@@ -85,16 +86,11 @@ const projectAssignedClientController = (req, res) => __awaiter(void 0, void 0, 
                 message: responseMessage_1.message.UNAUTHORIZED,
             });
         }
-        const projectAssigned = yield segmentationService.projectAssignedClientServices(client_id);
-        if (!projectAssigned) {
-            return res.status(204).json({
-                success: false,
-                message: responseMessage_1.message.TODO_LIST_NOT_FOUND,
-            });
-        }
+        const contactUs = yield contactUsService.getAllContactUsProfile();
         return res.status(200).json({
             success: true,
-            projectAssigned,
+            message: responseMessage_1.message.GET_ALL_CONTACT_US_SUCCESS,
+            contactUs,
         });
     }
     catch (error) {
@@ -104,9 +100,9 @@ const projectAssignedClientController = (req, res) => __awaiter(void 0, void 0, 
         });
     }
 });
-exports.projectAssignedClientController = projectAssignedClientController;
-// getAllIndustryProjects
-const getAllIndustryProjects = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getAllContactUs = getAllContactUs;
+// getContactUsById
+const getContactUsById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!req.userId) {
             return res.status(401).json({
@@ -114,11 +110,18 @@ const getAllIndustryProjects = (req, res) => __awaiter(void 0, void 0, void 0, f
                 message: responseMessage_1.message.UNAUTHORIZED,
             });
         }
-        const industryProjects = yield segmentationService.getAllIndustryProjects();
+        const contactUsId = req.params.contactUsId;
+        const contactUs = yield contactUsService.getContactUsById(contactUsId);
+        if (!contactUs) {
+            return res.status(404).json({
+                success: false,
+                message: responseMessage_1.message.CONTACT_US_NOT_FOUND,
+            });
+        }
         return res.status(200).json({
             success: true,
-            message: responseMessage_1.message.GET_INDUSTRY_PROJECT_LIST_SUCCESS,
-            industryProjects,
+            message: responseMessage_1.message.GET_CONTACT_US_SUCCESS,
+            contactUs,
         });
     }
     catch (error) {
@@ -128,9 +131,9 @@ const getAllIndustryProjects = (req, res) => __awaiter(void 0, void 0, void 0, f
         });
     }
 });
-exports.getAllIndustryProjects = getAllIndustryProjects;
-// getAllGoogleMeetings
-const getAllGoogleMeetings = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getContactUsById = getContactUsById;
+// deleteContactUs
+const deleteContactUs = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!req.userId) {
             return res.status(401).json({
@@ -138,11 +141,24 @@ const getAllGoogleMeetings = (req, res) => __awaiter(void 0, void 0, void 0, fun
                 message: responseMessage_1.message.UNAUTHORIZED,
             });
         }
-        const googleMeetings = yield segmentationService.getAllGoogleMeetings();
+        if (!req.userId) {
+            return res.status(401).json({
+                success: false,
+                message: responseMessage_1.message.UNAUTHORIZED,
+            });
+        }
+        const contactUsId = req.params.contactUsId;
+        const deletedContactUs = yield contactUsService.deleteContactUs(contactUsId);
+        if (!deletedContactUs) {
+            return res.status(404).json({
+                success: false,
+                message: responseMessage_1.message.CONTACT_US_NOT_FOUND,
+            });
+        }
         return res.status(200).json({
             success: true,
-            message: responseMessage_1.message.GET_GOOGLE_MEETING_LIST_SUCCESS,
-            googleMeetings,
+            message: responseMessage_1.message.CONTACT_US_DELETED_SUCCESS,
+            contactUs: deletedContactUs,
         });
     }
     catch (error) {
@@ -152,60 +168,4 @@ const getAllGoogleMeetings = (req, res) => __awaiter(void 0, void 0, void 0, fun
         });
     }
 });
-exports.getAllGoogleMeetings = getAllGoogleMeetings;
-// getAllFileDocuments
-const getAllFileDocuments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        if (!req.userId) {
-            return res.status(401).json({
-                success: false,
-                message: responseMessage_1.message.UNAUTHORIZED,
-            });
-        }
-        const fileDocuments = yield segmentationService.getAllFileDocuments();
-        return res.status(200).json({
-            success: true,
-            message: responseMessage_1.message.GET_FILE_DOCUMENT_LIST_SUCCESS,
-            fileDocuments,
-        });
-    }
-    catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: error.message,
-        });
-    }
-});
-exports.getAllFileDocuments = getAllFileDocuments;
-// updateProjectTask this function using only two fields update
-const updateProjectTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const taskRoleData = Object.assign(Object.assign({}, req.body), { userUpdatedDate: new Date(), userUpdatedBy: req.userId });
-    try {
-        if (!req.userId) {
-            return res.status(401).json({
-                success: false,
-                message: responseMessage_1.message.UNAUTHORIZED,
-            });
-        }
-        console.log(taskRoleData);
-        const projectTask = yield segmentationService.updateProjectTaskPatch(id, taskRoleData);
-        if (!projectTask) {
-            return res.status(204).json({
-                success: false,
-                message: responseMessage_1.message.TODO_LIST_NOT_FOUND,
-            });
-        }
-        return res.status(200).json({
-            success: true,
-            projectTask,
-        });
-    }
-    catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: error.message,
-        });
-    }
-});
-exports.updateProjectTask = updateProjectTask;
+exports.deleteContactUs = deleteContactUs;

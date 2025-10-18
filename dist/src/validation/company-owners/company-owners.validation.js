@@ -26,6 +26,7 @@ const companyOwnersValidation = (data) => {
         address: joi_1.default.object({
             street: joi_1.default.string().required(),
             city: joi_1.default.string().required(),
+            stateId: joi_1.default.string().required(),
             state: joi_1.default.string().required(),
             district: joi_1.default.string().required(),
             zipCode: joi_1.default.string()

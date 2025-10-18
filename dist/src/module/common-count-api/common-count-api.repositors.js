@@ -12,13 +12,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.documentFileCount = exports.RecruitmentCount = exports.getGoogleMeetCount = exports.getEventCount = exports.getTeamMemberCount = exports.getTeamManagersCount = exports.getCompanyOwnersCount = void 0;
+exports.getFeedbackCount = exports.getProjectCount = exports.getTaskCount = exports.documentFileCount = exports.RecruitmentCount = exports.getGoogleMeetCount = exports.getEventCount = exports.getTeamMemberCount = exports.getTeamManagersCount = exports.getCompanyOwnersCount = void 0;
 // import this Models
 const customer_models_1 = __importDefault(require("@src/models/master-manage-modules-models/customer.models"));
 const event_programs_models_1 = __importDefault(require("@src/models/feature-manage-modules-models/event-programs.models"));
 const google_meets_models_1 = __importDefault(require("@src/models/feature-manage-modules-models/google-meets.models"));
 const recruitment_posts_models_1 = __importDefault(require("@src/models/feature-manage-modules-models/recruitment-posts.models"));
 const document_files_models_1 = __importDefault(require("@src/models/feature-manage-modules-models/document-files.models"));
+const task_role_models_1 = __importDefault(require("@src/models/master-workspace-modules-models/task-role.models"));
+const industry_projects_models_1 = __importDefault(require("@src/models/master-workspace-modules-models/industry-projects.models"));
+const clients_feedbacks_models_1 = __importDefault(require("@src/models/master-workspace-modules-models/clients-feedbacks.models"));
 // Company Owner Count Functions
 const getCompanyOwnersCount = () => __awaiter(void 0, void 0, void 0, function* () {
     return customer_models_1.default.countDocuments({
@@ -71,3 +74,24 @@ const documentFileCount = () => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 exports.documentFileCount = documentFileCount;
+// getAllTaskCount
+const getTaskCount = () => __awaiter(void 0, void 0, void 0, function* () {
+    return task_role_models_1.default.countDocuments({
+        isDeleted: false,
+    });
+});
+exports.getTaskCount = getTaskCount;
+// getAllProjectCount
+const getProjectCount = () => __awaiter(void 0, void 0, void 0, function* () {
+    return industry_projects_models_1.default.countDocuments({
+        isDeleted: false,
+    });
+});
+exports.getProjectCount = getProjectCount;
+// getFeedbackCount
+const getFeedbackCount = () => __awaiter(void 0, void 0, void 0, function* () {
+    return clients_feedbacks_models_1.default.countDocuments({
+        isDeleted: false,
+    });
+});
+exports.getFeedbackCount = getFeedbackCount;

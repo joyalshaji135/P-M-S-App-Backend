@@ -19,6 +19,7 @@ const google_meets_route_1 = __importDefault(require("@modules/feature-manage-mo
 const recruitment_posts_route_1 = __importDefault(require("@modules/feature-manage-modules/recruitment-posts/recruitment-posts.route"));
 const lookupsRoutes_1 = __importDefault(require("@modules/lookups-modules/lookupsRoutes"));
 const lookupsRoutes_2 = __importDefault(require("@modules/lookups-modules/lookupsRoutes"));
+const contact_us_route_1 = __importDefault(require("@modules/feature-manage-modules/contact-us/contact-us.route"));
 // import commonDropDownRoutes from '@modules/common-drop-downs/common-drop-downs.route';
 const common_drop_downs_route_1 = __importDefault(require("@modules/common-drop-downs/common-drop-downs.route"));
 const common_count_api_route_1 = __importDefault(require("@modules/common-count-api/common-count-api.route"));
@@ -26,13 +27,13 @@ const verifyToken_1 = __importDefault(require("@middleware/verifyToken"));
 const apiRequest_1 = require("@middleware/apiRequest");
 const router = (0, express_1.Router)();
 router.use(apiRequest_1.requireApiKey);
+// Super Admin Creating Functionality Routes
+router.use('/super-admin-module', super_admins_route_1.default);
 // Super Admin Login Routes
 router.use('/auth', auth_organization_login_route_1.default);
 router.use(apiRequest_1.requireAuthToken);
 // Middleware
 router.use(verifyToken_1.default);
-// Super Admin Creating Functionality Routes
-router.use('/super-admin-module', super_admins_route_1.default);
 // Create Lookups Routes
 router.use('/lookups-code', lookupsRoutes_1.default);
 // Create Customer Type Routes
@@ -64,4 +65,5 @@ router.use('/lookups-module', lookupsRoutes_2.default);
 // Common Drop Down routes
 router.use('/common-drop-downs', common_drop_downs_route_1.default);
 router.use('/common-counters', common_count_api_route_1.default);
+router.use('/contact-us', contact_us_route_1.default);
 exports.default = router;

@@ -34,17 +34,7 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const segmentationRoutes = __importStar(require("./segmentation-api.controllers"));
+const activeLogControllers = __importStar(require("./active-logo-module.controllers"));
 const router = (0, express_1.Router)();
-// Task Wise Client Get Api Methods
-router.get('/:client_id/task-wise-client', segmentationRoutes.taskAssignedClientController);
-// Project Wise Client Get Api Methods
-router.get('/:client_id/project-wise-client', segmentationRoutes.projectAssignedClientController);
-// Get All Industry Projects
-router.get('/get-all-industry-projects', segmentationRoutes.getAllIndustryProjects);
-// Get All Google Meeting
-router.get('/get-all-google-meetings', segmentationRoutes.getAllGoogleMeetings);
-// Get All File Documents Api
-router.get('/get-all-file-documents', segmentationRoutes.getAllFileDocuments);
-router.patch('/:id/update-project-task', segmentationRoutes.updateProjectTask);
+router.get('/get-all-active-logs', activeLogControllers.getAllActiveLogs);
 exports.default = router;

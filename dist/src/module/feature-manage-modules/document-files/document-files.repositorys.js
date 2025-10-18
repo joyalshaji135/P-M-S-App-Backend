@@ -46,6 +46,8 @@ const findById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return document_files_models_1.default
         .findById(id)
         .where({ isDeleted: false })
+        .populate('industry', 'name code')
+        .populate('priority', 'name code')
         .populate('createdBy', 'name email')
         .populate('userUpdatedBy', 'name email')
         .exec();
@@ -64,6 +66,8 @@ exports.updateById = updateById;
 const getAllDocumentFiles = () => __awaiter(void 0, void 0, void 0, function* () {
     return document_files_models_1.default
         .find({ isDeleted: false })
+        .populate('industry', 'name code')
+        .populate('priority', 'name code')
         .populate('createdBy', 'name email')
         .populate('userUpdatedBy', 'name email')
         .sort({ createdAt: -1 });

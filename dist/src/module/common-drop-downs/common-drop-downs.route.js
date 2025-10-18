@@ -59,4 +59,8 @@ router.get('/priority-list', commonDropDownController.getAllPriority);
 router.get('/role-list', commonDropDownController.getAllRole);
 // Get all Industry Project Functionality
 router.get('/industry-project-list', commonDropDownController.getAllIndustryProjects);
+// Get all State Functionality
+router.get('/dd-states', commonDropDownController.getDDAllStates);
+// Get all Districts Functionality
+router.get('/dd-states/:id', commonDropDownController.fetchDistricts);
 exports.default = router;

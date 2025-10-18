@@ -17,6 +17,7 @@ const event_programs_route_1 = __importDefault(require("@modules/feature-manage-
 const google_meets_route_1 = __importDefault(require("@modules/feature-manage-modules/google-meets/google-meets.route"));
 const recruitment_posts_route_1 = __importDefault(require("@modules/feature-manage-modules/recruitment-posts/recruitment-posts.route"));
 const lookupsRoutes_1 = __importDefault(require("@modules/lookups-modules/lookupsRoutes"));
+const active_logo_module_route_1 = __importDefault(require("@modules/active-log-module/active-logo-module.route"));
 const router = (0, express_1.Router)();
 router.use(apiRequest_1.requireApiKey);
 // Company Owner Login Routes
@@ -47,4 +48,6 @@ router.use('/google-meet', google_meets_route_1.default);
 router.use('/recruitment-posts', recruitment_posts_route_1.default);
 // common drop downs Routes
 router.use('/lookups', lookupsRoutes_1.default);
+// user log
+router.use('/active-log', active_logo_module_route_1.default);
 exports.default = router;

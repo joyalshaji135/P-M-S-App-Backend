@@ -28,10 +28,11 @@ const teamManagersValidation = (data) => {
             'date.iso': 'Date of birth must be in ISO format (YYYY-MM-DD).',
         }),
         gender: joi_1.default.string().valid('male', 'female', 'other').required(),
-        lastLogin: joi_1.default.date().iso().optional().messages({
-            'date.base': 'Invalid date format.',
-            'date.iso': 'Last login must be in ISO format (YYYY-MM-DDTHH:MM:SS.SSSZ).',
-        }),
+        // lastLogin: Joi.date().iso().optional().messages({
+        //   'date.base': 'Invalid date format.',
+        //   'date.iso':
+        //     'Last login must be in ISO format (YYYY-MM-DDTHH:MM:SS.SSSZ).',
+        // }),
         status: joi_1.default.string().required(),
         preferences: joi_1.default.object({
             newsletter: joi_1.default.boolean().required(),
