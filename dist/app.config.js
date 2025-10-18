@@ -16,8 +16,9 @@ const routes_1 = __importDefault(require("./src/routes"));
 const response_1 = require("./src/helper/response");
 const i18n_config_1 = __importDefault(require("./src/config/i18n.config"));
 const path_1 = __importDefault(require("path"));
+const client_api = process.env.CLIENT_API || 'http://localhost:5173';
 const corsOptions = {
-    origin: 'http://localhost:5173', // Allow the client origin
+    origin: client_api, // Allow the client origin
     credentials: true,
     exposedHeaders: 'Content-Type, X-Auth-Token, x-app-version, x-api-key',
     methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',

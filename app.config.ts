@@ -11,8 +11,10 @@ import routes from './src/routes';
 import { respond } from './src/helper/response';
 import i18n from './src/config/i18n.config';
 import path from 'path';
+
+const client_api = process.env.CLIENT_API || 'http://localhost:5173';
 const corsOptions: cors.CorsOptions = {
-  origin: 'http://localhost:5173', // Allow the client origin
+  origin: client_api, // Allow the client origin
   credentials: true,
   exposedHeaders: 'Content-Type, X-Auth-Token, x-app-version, x-api-key',
   methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
